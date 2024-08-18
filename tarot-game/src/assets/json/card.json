@@ -1,0 +1,470 @@
+[
+    {
+        "id": 1,
+        "name": "The Fool",
+        "card_number": 0,
+        "meaning": "New beginnings, optimism, trust in the universe."
+    },
+    {
+        "id": 2,
+        "name": "The Magician",
+        "card_number": 1,
+        "meaning": "Skill, concentration, action, resourcefulness."
+    },
+    {
+        "id": 3,
+        "name": "The High Priestess",
+        "card_number": 2,
+        "meaning": "Intuition, sacred knowledge, divine feminine, the subconscious mind."
+    },
+    {
+        "id": 4,
+        "name": "The Empress",
+        "card_number": 3,
+        "meaning": "Fertility, femininity, beauty, nature, abundance."
+    },
+    {
+        "id": 5,
+        "name": "The Emperor",
+        "card_number": 4,
+        "meaning": "Authority, structure, control, fatherhood."
+    },
+    {
+        "id": 6,
+        "name": "The Hierophant",
+        "card_number": 5,
+        "meaning": "Spiritual wisdom, religious beliefs, conformity, tradition."
+    },
+    {
+        "id": 7,
+        "name": "The Lovers",
+        "card_number": 6,
+        "meaning": "Love, harmony, relationships, values alignment, choices."
+    },
+    {
+        "id": 8,
+        "name": "The Chariot",
+        "card_number": 7,
+        "meaning": "Control, willpower, success, action, determination."
+    },
+    {
+        "id": 9,
+        "name": "Strength",
+        "card_number": 8,
+        "meaning": "Courage, determination, inner strength."
+    },
+    {
+        "id": 10,
+        "name": "The Hermit",
+        "card_number": 9,
+        "meaning": "Soul-searching, introspection, being alone, inner guidance."
+    },
+    {
+        "id": 11,
+        "name": "Wheel of Fortune",
+        "card_number": 10,
+        "meaning": "Good luck, karma, life cycles, destiny, a turning point."
+    },
+    {
+        "id": 12,
+        "name": "Justice",
+        "card_number": 11,
+        "meaning": "Justice, fairness, truth, cause and effect, law."
+    },
+    {
+        "id": 13,
+        "name": "The Hanged Man",
+        "card_number": 12,
+        "meaning": "Pause, surrender, letting go, new perspectives."
+    },
+    {
+        "id": 14,
+        "name": "Death",
+        "card_number": 13,
+        "meaning": "Endings, change, transformation, transition."
+    },
+    {
+        "id": 15,
+        "name": "Temperance",
+        "card_number": 14,
+        "meaning": "Balance, moderation, patience, purpose."
+    },
+    {
+        "id": 16,
+        "name": "The Devil",
+        "card_number": 15,
+        "meaning": "Shadow self, attachment, addiction, restriction, sexuality."
+    },
+    {
+        "id": 17,
+        "name": "The Tower",
+        "card_number": 16,
+        "meaning": "Sudden change, upheaval, chaos, revelation, awakening."
+    },
+    {
+        "id": 18,
+        "name": "The Star",
+        "card_number": 17,
+        "meaning": "Hope, faith, purpose, renewal, spirituality."
+    },
+    {
+        "id": 19,
+        "name": "The Moon",
+        "card_number": 18,
+        "meaning": "Illusion, fear, anxiety, subconscious, intuition."
+    },
+    {
+        "id": 20,
+        "name": "The Sun",
+        "card_number": 19,
+        "meaning": "Positivity, fun, warmth, success, vitality."
+    },
+    {
+        "id": 21,
+        "name": "Judgement",
+        "card_number": 20,
+        "meaning": "Judgement, rebirth, inner calling, absolution."
+    },
+    {
+        "id": 22,
+        "name": "The World",
+        "card_number": 21,
+        "meaning": "Completion, integration, accomplishment, travel."
+    },
+    {
+        "id": 23,
+        "name": "Ace of Cups",
+        "card_number": 22,
+        "meaning": "Love, new relationships, compassion, creativity."
+    },
+    {
+        "id": 24,
+        "name": "Two of Cups",
+        "card_number": 23,
+        "meaning": "Unified love, partnership, mutual attraction."
+    },
+    {
+        "id": 25,
+        "name": "Three of Cups",
+        "card_number": 24,
+        "meaning": "Celebration, friendship, creativity, collaborations."
+    },
+    {
+        "id": 26,
+        "name": "Four of Cups",
+        "card_number": 25,
+        "meaning": "Meditation, contemplation, apathy, reevaluation."
+    },
+    {
+        "id": 27,
+        "name": "Five of Cups",
+        "card_number": 26,
+        "meaning": "Regret, failure, disappointment, pessimism."
+    },
+    {
+        "id": 28,
+        "name": "Six of Cups",
+        "card_number": 27,
+        "meaning": "Revisiting the past, childhood memories, innocence, joy."
+    },
+    {
+        "id": 29,
+        "name": "Seven of Cups",
+        "card_number": 28,
+        "meaning": "Opportunities, choices, wishful thinking, illusion."
+    },
+    {
+        "id": 30,
+        "name": "Eight of Cups",
+        "card_number": 29,
+        "meaning": "Disappointment, abandonment, withdrawal, escapism."
+    },
+    {
+        "id": 31,
+        "name": "Nine of Cups",
+        "card_number": 30,
+        "meaning": "Contentment, satisfaction, gratitude, wish come true."
+    },
+    {
+        "id": 32,
+        "name": "Ten of Cups",
+        "card_number": 31,
+        "meaning": "Divine love, blissful relationships, harmony, alignment."
+    },
+    {
+        "id": 33,
+        "name": "Page of Cups",
+        "card_number": 32,
+        "meaning": "Creative opportunities, intuitive messages, curiosity, possibility."
+    },
+    {
+        "id": 34,
+        "name": "Knight of Cups",
+        "card_number": 33,
+        "meaning": "Romance, charm, 'Knight in shining armor,' imagination."
+    },
+    {
+        "id": 35,
+        "name": "Queen of Cups",
+        "card_number": 34,
+        "meaning": "Compassionate, caring, emotionally stable, intuitive, in flow."
+    },
+    {
+        "id": 36,
+        "name": "King of Cups",
+        "card_number": 35,
+        "meaning": "Emotionally balanced, compassionate, diplomatic."
+    },
+    {
+        "id": 37,
+        "name": "Ace of Pentacles",
+        "card_number": 36,
+        "meaning": "A new financial or career opportunity, manifestation, abundance."
+    },
+    {
+        "id": 38,
+        "name": "Two of Pentacles",
+        "card_number": 37,
+        "meaning": "Balance, adaptability, time management, prioritization."
+    },
+    {
+        "id": 39,
+        "name": "Three of Pentacles",
+        "card_number": 38,
+        "meaning": "Teamwork, collaboration, learning, implementation."
+    },
+    {
+        "id": 40,
+        "name": "Four of Pentacles",
+        "card_number": 39,
+        "meaning": "Saving money, security, conservatism, scarcity, control."
+    },
+    {
+        "id": 41,
+        "name": "Five of Pentacles",
+        "card_number": 40,
+        "meaning": "Financial loss, poverty, lack mindset, isolation, worry."
+    },
+    {
+        "id": 42,
+        "name": "Six of Pentacles",
+        "card_number": 41,
+        "meaning": "Giving, receiving, sharing wealth, generosity, charity."
+    },
+    {
+        "id": 43,
+        "name": "Seven of Pentacles",
+        "card_number": 42,
+        "meaning": "Long-term view, sustainable results, perseverance, investment."
+    },
+    {
+        "id": 44,
+        "name": "Eight of Pentacles",
+        "card_number": 43,
+        "meaning": "Apprenticeship, repetitive tasks, mastery, skill development."
+    },
+    {
+        "id": 45,
+        "name": "Nine of Pentacles",
+        "card_number": 44,
+        "meaning": "Abundance, luxury, self-sufficiency, financial independence."
+    },
+    {
+        "id": 46,
+        "name": "Ten of Pentacles",
+        "card_number": 45,
+        "meaning": "Wealth, financial security, family, long-term success, contribution."
+    },
+    {
+        "id": 47,
+        "name": "Page of Pentacles",
+        "card_number": 46,
+        "meaning": "Manifestation, financial opportunity, skill development."
+    },
+    {
+        "id": 48,
+        "name": "Knight of Pentacles",
+        "card_number": 47,
+        "meaning": "Hard work, productivity, routine, conservatism."
+    },
+    {
+        "id": 49,
+        "name": "Queen of Pentacles",
+        "card_number": 48,
+        "meaning": "Nurturing, practical, providing financially, a working parent."
+    },
+    {
+        "id": 50,
+        "name": "King of Pentacles",
+        "card_number": 49,
+        "meaning": "Wealth, business, leadership, security, discipline, abundance."
+    },
+    {
+        "id": 51,
+        "name": "Ace of Swords",
+        "card_number": 50,
+        "meaning": "Breakthrough, clarity, sharp mind."
+    },
+    {
+        "id": 52,
+        "name": "Two of Swords",
+        "card_number": 51,
+        "meaning": "Difficult decisions, weighing up options, an impasse, avoidance."
+    },
+    {
+        "id": 53,
+        "name": "Three of Swords",
+        "card_number": 52,
+        "meaning": "Heartbreak, emotional pain, sorrow, grief, hurt."
+    },
+    {
+        "id": 54,
+        "name": "Four of Swords",
+        "card_number": 53,
+        "meaning": "Rest, relaxation, meditation, contemplation, recuperation."
+    },
+    {
+        "id": 55,
+        "name": "Five of Swords",
+        "card_number": 54,
+        "meaning": "Conflict, disagreements, competition, defeat, winning at all costs."
+    },
+    {
+        "id": 56,
+        "name": "Six of Swords",
+        "card_number": 55,
+        "meaning": "Transition, change, rite of passage, releasing baggage."
+    },
+    {
+        "id": 57,
+        "name": "Seven of Swords",
+        "card_number": 56,
+        "meaning": "Betrayal, deception, getting away with something, acting strategically."
+    },
+    {
+        "id": 58,
+        "name": "Eight of Swords",
+        "card_number": 57,
+        "meaning": "Negative thoughts, self-imposed restriction, imprisonment, victim mentality."
+    },
+    {
+        "id": 59,
+        "name": "Nine of Swords",
+        "card_number": 58,
+        "meaning": "Anxiety, worry, fear, depression, nightmares."
+    },
+    {
+        "id": 60,
+        "name": "Ten of Swords",
+        "card_number": 59,
+        "meaning": "Painful endings, deep wounds, betrayal, loss, crisis."
+    },
+    {
+        "id": 61,
+        "name": "Page of Swords",
+        "card_number": 60,
+        "meaning": "New ideas, curiosity, thirst for knowledge, new ways of communicating."
+    },
+    {
+        "id": 62,
+        "name": "Knight of Swords",
+        "card_number": 61,
+        "meaning": "Ambitious, action-oriented, driven to succeed, fast-thinking."
+    },
+    {
+        "id": 63,
+        "name": "Queen of Swords",
+        "card_number": 62,
+        "meaning": "Independent, unbiased judgement, clear boundaries, direct communication."
+    },
+    {
+        "id": 64,
+        "name": "King of Swords",
+        "card_number": 63,
+        "meaning": "Mental clarity, intellectual power, authority, truth."
+    },
+    {
+        "id": 65,
+        "name": "Ace of Wands",
+        "card_number": 64,
+        "meaning": "Inspiration, new opportunities, growth, potential."
+    },
+    {
+        "id": 66,
+        "name": "Two of Wands",
+        "card_number": 65,
+        "meaning": "Future planning, progress, decisions, discovery."
+    },
+    {
+        "id": 67,
+        "name": "Three of Wands",
+        "card_number": 66,
+        "meaning": "Progress, expansion, foresight, overseas opportunities."
+    },
+    {
+        "id": 68,
+        "name": "Four of Wands",
+        "card_number": 67,
+        "meaning": "Celebration, joy, harmony, relaxation, homecoming."
+    },
+    {
+        "id": 69,
+        "name": "Five of Wands",
+        "card_number": 68,
+        "meaning": "Conflict, disagreements, competition, tension, diversity."
+    },
+    {
+        "id": 70,
+        "name": "Six of Wands",
+        "card_number": 69,
+        "meaning": "Success, public recognition, progress, self-confidence."
+    },
+    {
+        "id": 71,
+        "name": "Seven of Wands",
+        "card_number": 70,
+        "meaning": "Challenge, competition, protection, perseverance."
+    },
+    {
+        "id": 72,
+        "name": "Eight of Wands",
+        "card_number": 71,
+        "meaning": "Movement, fast-paced change, action, alignment, air travel."
+    },
+    {
+        "id": 73,
+        "name": "Nine of Wands",
+        "card_number": 72,
+        "meaning": "Resilience, courage, persistence, test of faith, boundaries."
+    },
+    {
+        "id": 74,
+        "name": "Ten of Wands",
+        "card_number": 73,
+        "meaning": "Burden, extra responsibility, hard work, completion."
+    },
+    {
+        "id": 75,
+        "name": "Page of Wands",
+        "card_number": 74,
+        "meaning": "Inspiration, ideas, discovery, limitless potential, free spirit."
+    },
+    {
+        "id": 76,
+        "name": "Knight of Wands",
+        "card_number": 75,
+        "meaning": "Energy, passion, inspired action, adventure, impulsiveness."
+    },
+    {
+        "id": 77,
+        "name": "Queen of Wands",
+        "card_number": 76,
+        "meaning": "Courage, confidence, independence, social butterfly, determination."
+    },
+    {
+        "id": 78,
+        "name": "King of Wands",
+        "card_number": 77,
+        "meaning": "Natural-born leader, vision, entrepreneur, honor."
+    }
+]

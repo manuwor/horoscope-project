@@ -3,22 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@google/generative-ai": "^0.16.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.104",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "env-cmd": "^10.1.0",
     "react": "^18.3.1",
-    "axios": "^1.6.7",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
@@ -34,7 +35,8 @@
     "start:test:port:mac": "export PORT=4200 && env-cmd -f ./.env.test react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:test": "env-cmd -f ./.env.test react-scripts build && firebase use horoscope-project-d3937 && firebase target:clear hosting horoscope-project-d3937 && firebase target:apply hosting horoscope-project-d3937 horoscope-project-d3937 && firebase deploy --only hosting:horoscope-project-d3937"
   },
   "eslintConfig": {
     "extends": [

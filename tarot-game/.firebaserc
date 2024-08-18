@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "horoscope-project-d3937"
+  },
+  "targets": {
+    "horoscope-project-d3937": {
+      "hosting": {
+        "horoscope-project-d3937": [
+          "horoscope-project-d3937"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
