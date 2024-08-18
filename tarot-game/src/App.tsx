@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.scss';
+
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import LandingPage from './components/landing/landing';
 import InputPage from './components/input/input';

@@ -1,0 +1,176 @@
+@import "../../App.scss";
+
+.carousel-container-center{
+    justify-content: center;
+}
+.carousel-container {
+    position: relative;
+
+    .single-card-center {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.slick-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.slick-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-control {
+    width: 100vw;
+    min-height: 100vh;
+    background: $bg-color;
+    display: flex;
+    padding: 36px 0px;
+    flex-direction: column;
+
+    .result-meaning-control {
+        width: 100%;
+        min-height: 80vh; // Ensure it takes up 80vh of the screen
+        z-index: 2;
+        transition: opacity 0.5s ease-in-out;
+        padding-top: 48px;
+
+        .result-meaning-loading-control {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            justify-content: center;
+
+            .result-meaning-loading-text {
+                font-size: 18px;
+                font-family: $fontMedium;
+                color: white;
+                text-align: center;
+            }
+
+            .result-meaning-loading-spinner {
+                width: 20px;
+                height: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+                margin-top: 24px;
+            }
+        }
+
+        .result-meaning-item-control {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            justify-content: center;
+            padding-left: 16px;
+            padding-right: 16px;
+
+            .result-meaning-item-header {
+                font-size: 18px;
+                text-align: center;
+                color: white;
+                font-family: $fontMedium;
+            }
+
+            .result-meaning-item-desc {
+                font-size: 18px;
+                line-height: 1.5em;
+                margin-top: 24px;
+                color: white;
+                text-align: center;
+                font-family: $fontRegular;
+            }
+        }
+    }
+
+
+    .result-item-control {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 100%;
+
+
+
+        .result-item-carousel-control {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+
+
+        .result-item-header {
+            font-size: 24px;
+            color: white;
+            font-family: $fontMedium;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .result-slider-control {
+            width: 100%;
+        }
+
+        .result-card-item {
+            width: 95%;
+            background-color: white;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            border: 2px solid $button-color;
+            display: flex;
+            padding: 12px;
+            flex-direction: column;
+
+            .result-card-number {
+                font-size: 18px;
+                text-align: center;
+                font-family: $fontMedium;
+            }
+
+            .result-card-name {
+                font-size: 24px;
+                text-align: center;
+                line-height: 1.2em;
+                font-family: $fontMedium;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+            .result-card-button-control {
+                margin-top: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .result-card-desc {
+                font-size: 12px;
+                margin-top: 24px;
+                margin-bottom: 12px;
+                color: $text-gray;
+                text-align: center;
+                font-family: $fontRegular;
+            }
+
+            .result-card-button {
+                width: 100%;
+                height: 36px;
+                border: 1px solid $button-color;
+                background-color: $button-color;
+                color: $primary-color;
+                font-size: 12px;
+                font-family: $fontMedium;
+            }
+        }
+    }
+
+}

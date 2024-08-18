@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import TAROT_INPUT_IMG from "../../assets/images/input.jpg"
 import "./input.scss";
 const InputPage: React.FC = () => {
-  const [birthday, setBirthday] = useState('');
+  const currentYear = new Date().getFullYear();
+  const minDate = `${currentYear - 90}-01-01`; // 90 years ago from the current year
+  const maxDate = `${currentYear}-12-31`; // End of the current year
+
+  const [birthday, setBirthday] = useState(minDate); // Set initial value to the minimum date
   const [gender, setGender] = useState('');
   const [cardPick, setCardPick] = useState<number>(1);
   const navigate = useNavigate();
@@ -27,6 +31,8 @@ const InputPage: React.FC = () => {
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
             required
+            min={minDate}
+            max={maxDate}
           />
         </Form.Group>
         <Form.Group controlId="formGender" className='input-item-group-control'>

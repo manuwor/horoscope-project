@@ -16,6 +16,8 @@ interface TarotCard {
 const PlayingPage: React.FC = () => {
   const location = useLocation();
   const { cardPick } = location.state || { cardPick: 1 };
+  const { birthday } = location.state || { birthday: "01/01/1990" };
+  const { gender } = location.state || { gender: "NONE" };
   const [shuffledDeck, setShuffledDeck] = useState<TarotCard[]>([]);
   const [selectedCards, setSelectedCards] = useState<TarotCard[]>([]);
   const [showButtonReady, setShowButtonReady] = useState(false);
@@ -47,7 +49,7 @@ const PlayingPage: React.FC = () => {
 
   const handleViewResult = () => {
     if (selectedCards.length === cardPick) {
-      navigate('/result', { state: { selectedCards: selectedCards } });
+      navigate('/result', { state: { selectedCards: selectedCards, birthday, gender } });
     }
   };
 
@@ -61,7 +63,7 @@ const PlayingPage: React.FC = () => {
           <img src={TAROT_WAITING_IMG} className='shuffle-card-img'></img>
           {
             showButtonReady &&
-            <Button className='card-button' onClick={clickReady}>พร้อมเลือกไพ่</Button>
+            <Button className='shuffle-card-button' onClick={clickReady}>พร้อมเลือกไพ่</Button>
           }
 
         </div>
@@ -87,20 +89,23 @@ const PlayingPage: React.FC = () => {
                     <div className="card-back"></div>
                     {selectedCards.includes(card) && (
                       <div className="card-info">
-                        <p className="card-number">#{card.card_number}</p>
-                        <p className="card-name">{card.name}</p>
+                        <span className='card-title'>การ์ดใบที่คุณเลือก</span>
+                        <p className="card-number">#{Number(index+1)}</p>
                       </div>
                     )}
                   </div>
                 </Col>
               ))}
             </Row>
+            <div className='cards-scroll-control'>
+              <span className='cards-scroll-text'>เลื่อนลงเพื่อดูการ์ดที่เหลือ</span>
+            </div>
             {selectedCards.length === cardPick && (
               <Button
                 onClick={handleViewResult}
                 variant="primary"
                 size="lg"
-                className="card-button"
+                className="playing-card-button"
               >
                 ดูผลลัพธ์
               </Button>
