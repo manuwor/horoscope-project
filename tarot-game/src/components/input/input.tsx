@@ -8,7 +8,7 @@ const InputPage: React.FC = () => {
   const minDate = `${currentYear - 90}-01-01`; // 90 years ago from the current year
   const maxDate = `${currentYear}-12-31`; // End of the current year
 
-  const [birthday, setBirthday] = useState(minDate); // Set initial value to the minimum date
+  const [birthday, setBirthday] = useState(maxDate); // Set initial value to the minimum date
   const [gender, setGender] = useState('');
   const [cardPick, setCardPick] = useState<number>(1);
   const navigate = useNavigate();

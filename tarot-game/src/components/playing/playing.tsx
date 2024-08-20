@@ -11,6 +11,7 @@ interface TarotCard {
   name: string;
   card_number: number;
   meaning: string;
+  meaning_th: string
 }
 
 const PlayingPage: React.FC = () => {
@@ -26,7 +27,9 @@ const PlayingPage: React.FC = () => {
 
   useEffect(() => {
     shuffleDeck(deck);
+    
   }, []);
+ 
 
   const shuffleDeck = (deck: TarotCard[]) => {
     setIsShuffling(true);
@@ -36,7 +39,7 @@ const PlayingPage: React.FC = () => {
       setShowButtonReady(true);
     }, 1000); // Simulate shuffle animation delay
   };
-
+  
   const clickReady = () => {
     setIsShuffling(false);
   }

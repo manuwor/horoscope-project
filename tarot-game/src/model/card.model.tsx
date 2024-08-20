@@ -3,4 +3,5 @@ export default interface TarotCard {
     name: string;
     card_number: number;
     meaning: string;
+    meaning_th: string;
 }

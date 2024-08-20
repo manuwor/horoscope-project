@@ -30,7 +30,7 @@
     min-height: 100vh;
     background: $bg-color;
     display: flex;
-    padding: 36px 0px;
+    padding: 12px 14px;
     flex-direction: column;
 
     .result-meaning-control {
@@ -68,22 +68,30 @@
             flex-direction: column;
             margin: auto;
             justify-content: center;
-            padding-left: 16px;
-            padding-right: 16px;
+           
+
+            .result-meaning-item{
+                border-radius: 8px;
+                background-color: white;
+                border: none;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 14px;
+            }
 
             .result-meaning-item-header {
-                font-size: 18px;
-                text-align: center;
-                color: white;
+                font-size: 14px;
+                color: black;
                 font-family: $fontMedium;
             }
 
             .result-meaning-item-desc {
-                font-size: 18px;
+                font-size: 14px;
                 line-height: 1.5em;
-                margin-top: 24px;
-                color: white;
-                text-align: center;
+                margin-top: 8px;
+                color: black;
                 font-family: $fontRegular;
             }
         }
@@ -120,9 +128,9 @@
         }
 
         .result-card-item {
-            width: 95%;
+            width: 90%;
             background-color: white;
-            height: 300px;
+            min-height: 150px;
             margin-left: auto;
             margin-right: auto;
             border-radius: 8px;
@@ -130,47 +138,68 @@
             display: flex;
             padding: 12px;
             flex-direction: column;
+        }
 
-            .result-card-number {
-                font-size: 18px;
-                text-align: center;
-                font-family: $fontMedium;
-            }
+        .result-card-number {
+            font-size: 14px;
+            text-align: center;
+            font-family: $fontMedium;
+        }
 
-            .result-card-name {
-                font-size: 24px;
-                text-align: center;
-                line-height: 1.2em;
-                font-family: $fontMedium;
-                margin-top: auto;
-                margin-bottom: auto;
-            }
+        .result-card-name {
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.2em;
+            font-family: $fontMedium;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
 
-            .result-card-button-control {
-                margin-top: auto;
-                display: flex;
-                flex-direction: column;
-            }
+        .result-card-button-control {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+        }
 
-            .result-card-desc {
-                font-size: 12px;
-                margin-top: 24px;
-                margin-bottom: 12px;
-                color: $text-gray;
-                text-align: center;
-                font-family: $fontRegular;
-            }
+        .result-card-desc {
+            font-size: 12px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: $text-gray;
+            text-align: center;
+            font-family: $fontRegular;
+        }
 
-            .result-card-button {
-                width: 100%;
-                height: 36px;
-                border: 1px solid $button-color;
-                background-color: $button-color;
-                color: $primary-color;
-                font-size: 12px;
-                font-family: $fontMedium;
-            }
+        .result-card-button {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 36px;
+            border: 1px solid $button-color;
+            background-color: $button-color;
+            color: $primary-color;
+            font-size: 12px;
+            font-family: $fontMedium;
         }
     }
 
+    .result-back-to-home{
+        font-size: 14px;
+        margin-top: 24px;
+        text-decoration: underline;
+        color: white;
+        font-family: $fontMedium;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer;
+    }
+    .result-back-to-home-header{
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: underline;
+        color: white;
+        font-family: $fontMedium;
+    }
+        
 }
