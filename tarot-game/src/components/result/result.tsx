@@ -10,6 +10,7 @@ import { getVertexAI, getGenerativeModel, HarmCategory, HarmBlockThreshold, Safe
 import "./result.scss";
 import { ResultModel } from '../../model/result.model';
 import config from '../../config';
+import firebaseApp from '../../utility/firebase-config';
 
 
 
@@ -38,7 +39,6 @@ const ResultPage: React.FC = () => {
         getMeaningInThai()
     }, [selectedCards, gender, birthday]);
     // Initialize FirebaseApp
-    const firebaseApp = initializeApp(config.firebaseConfig);
 
     // Initialize the Vertex AI service
     const vertexAI = getVertexAI(firebaseApp);

@@ -28,9 +28,9 @@ const PlayingPage: React.FC = () => {
 
   useEffect(() => {
     shuffleDeck(deck);
-    
+
   }, []);
- 
+
 
   const shuffleDeck = (deck: TarotCard[]) => {
     setIsShuffling(true);
@@ -40,7 +40,7 @@ const PlayingPage: React.FC = () => {
       setShowButtonReady(true);
     }, 1000); // Simulate shuffle animation delay
   };
-  
+
   const clickReady = () => {
     setIsShuffling(false);
   }
@@ -58,18 +58,9 @@ const PlayingPage: React.FC = () => {
   };
 
   const setCardSelection = (cardId: number) => {
-    console.log(cardId);
-  
-    // Find the card in the shuffledDeck with the matching id
     const filteredDeck = shuffledDeck.find(card => card.id === cardId);
-  
     if (filteredDeck) {
-      // Create a new array based on the current selectedCards
       const selectedCardMod = [...selectedCards, filteredDeck] as TarotCard[];
-  
-      console.log(selectedCardMod);
-  
-      // Update the selectedCards state with the new selection
       setSelectedCards(selectedCardMod);
     } else {
       console.log(`Card with id ${cardId} not found in shuffledDeck`);
@@ -120,19 +111,29 @@ const PlayingPage: React.FC = () => {
                 </Col>
               ))}
             </Row> */}
-             <TarotCardWheel setSelectedCard={setCardSelection} />
-            <div className='cards-scroll-control'>
+            <TarotCardWheel setSelectedCard={setCardSelection} 
+            totalPick={cardPick}/>
+            {/* <div className='cards-scroll-control'>
               <span className='cards-scroll-text'>เลื่อนลงเพื่อดูการ์ดที่เหลือ</span>
-            </div>
-            {selectedCards.length === cardPick && (
-              <Button
-                onClick={handleViewResult}
-                variant="primary"
-                size="lg"
-                className="playing-card-button"
-              >
-                ดูผลลัพธ์
-              </Button>
+            </div> */}
+            {selectedCards.length > 0 && (
+              <div className='selected-card-control'>
+                <div className='selected-card-title-control'>
+                  <span className='selected-card-title'>จำนวนไพ่ที่เลือก</span>
+                  <span className='selected-card-value'>{selectedCards.length} ใบ</span>
+                </div>
+                {
+                  selectedCards.length === cardPick &&
+                  <Button
+                    onClick={handleViewResult}
+                    className="playing-card-button"
+                  >
+                    ดูผลลัพธ์
+                  </Button>
+                }
+
+
+              </div>
             )}
           </div>
         </>
