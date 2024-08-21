@@ -5,6 +5,7 @@ import deck from '../../assets/json/card.json';
 import "./playing.scss";
 
 import TAROT_WAITING_IMG from "../../assets/images/waiting-img.jpg";
+import TarotCardWheel from '../tarot-card/tarot-card-wheel';
 
 interface TarotCard {
   id: number;
@@ -56,6 +57,25 @@ const PlayingPage: React.FC = () => {
     }
   };
 
+  const setCardSelection = (cardId: number) => {
+    console.log(cardId);
+  
+    // Find the card in the shuffledDeck with the matching id
+    const filteredDeck = shuffledDeck.find(card => card.id === cardId);
+  
+    if (filteredDeck) {
+      // Create a new array based on the current selectedCards
+      const selectedCardMod = [...selectedCards, filteredDeck] as TarotCard[];
+  
+      console.log(selectedCardMod);
+  
+      // Update the selectedCards state with the new selection
+      setSelectedCards(selectedCardMod);
+    } else {
+      console.log(`Card with id ${cardId} not found in shuffledDeck`);
+    }
+  };
+
   return (
     <Container className="playing-page d-flex flex-column justify-content-center align-items-center vh-100">
       {isShuffling ? (
@@ -75,7 +95,7 @@ const PlayingPage: React.FC = () => {
         <>
           <div className='playing-control'>
             <span className='playing-title'> กรุณาเลือกไพ่ {cardPick} ใบ</span>
-            <Row className="cards-grid w-100">
+            {/* <Row className="cards-grid w-100">
               {shuffledDeck.map((card, index) => (
                 <Col
                   key={index}
@@ -99,7 +119,8 @@ const PlayingPage: React.FC = () => {
                   </div>
                 </Col>
               ))}
-            </Row>
+            </Row> */}
+             <TarotCardWheel setSelectedCard={setCardSelection} />
             <div className='cards-scroll-control'>
               <span className='cards-scroll-text'>เลื่อนลงเพื่อดูการ์ดที่เหลือ</span>
             </div>

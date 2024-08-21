@@ -5,42 +5,23 @@ import TarotCard from '../../model/card.model';
 import Carousel from "react-multi-carousel";
 import Slider from '@ant-design/react-slick';
 import "react-multi-carousel/lib/styles.css";
+import { initializeApp } from "firebase/app";
+import { getVertexAI, getGenerativeModel, HarmCategory, HarmBlockThreshold, SafetySetting, HarmBlockMethod } from "firebase/vertexai-preview";
 import "./result.scss";
 import { ResultModel } from '../../model/result.model';
-const {
-    GoogleGenerativeAI,
-    HarmCategory,
-    HarmBlockThreshold,
-} = require("@google/generative-ai");
+import config from '../../config';
 
-const apiKey = "AIzaSyB0cRjh4rzadQ89T4ri5zRR93PoVYFEasc";
-const genAI = new GoogleGenerativeAI(apiKey);
 
-const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro",
-});
+
 
 const generationConfig = {
     temperature: 1,
-    topP: 0.95,
-    topK: 64,
-    maxOutputTokens: 8192,
+    topP: 0.1,
+    topK: 16,
+    maxOutputTokens: 1000,
     responseMimeType: "application/json",
 };
-const safetySettings = [
-    {
-        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-        threshold: HarmBlockThreshold.BLOCK_NONE,
-    },
-    {
-        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-        threshold: HarmBlockThreshold.BLOCK_NONE,
-    },
-    {
-        category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-        threshold: HarmBlockThreshold.BLOCK_NONE,
-    }
-];
+
 
 
 const ResultPage: React.FC = () => {
@@ -56,7 +37,31 @@ const ResultPage: React.FC = () => {
     useEffect(() => {
         getMeaningInThai()
     }, [selectedCards, gender, birthday]);
+    // Initialize FirebaseApp
+    const firebaseApp = initializeApp(config.firebaseConfig);
 
+    // Initialize the Vertex AI service
+    const vertexAI = getVertexAI(firebaseApp);
+    const safetySettings: SafetySetting[] = [
+
+        {
+            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+            threshold: HarmBlockThreshold.BLOCK_NONE,
+            method: HarmBlockMethod.HARM_BLOCK_METHOD_UNSPECIFIED
+        },
+        {
+            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+            threshold: HarmBlockThreshold.BLOCK_NONE,
+            method: HarmBlockMethod.HARM_BLOCK_METHOD_UNSPECIFIED
+        },
+        {
+            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+            threshold: HarmBlockThreshold.BLOCK_NONE,
+            method: HarmBlockMethod.HARM_BLOCK_METHOD_UNSPECIFIED
+        }
+    ];
+
+    const model = getGenerativeModel(vertexAI, { model: "gemini-1.5-flash", safetySettings: safetySettings, generationConfig });
 
     const getMeaningInThai = async () => {
 
@@ -71,27 +76,13 @@ const ResultPage: React.FC = () => {
 
         })
         console.log(cardName);
-        const chatSession = model.startChat({
-            generationConfig,
-            safetySettings: safetySettings,
-            // safetySettings: Adjust safety settings
-            // See https://ai.google.dev/gemini-api/docs/safety-settings
-            history: [
-                {
-                    role: "user",
-                    parts: [
-                        {
-                            text: `You are magician horoscope expert, I draw card from deck and I got this cards ${cardName}
+
+        const prompt = `You are magician horoscope expert, I draw card from deck and I got this cards ${cardName}
                          I need meaning of expert from my info 
                          (Birthday: ${birthday}, Gender: ${gender}) and Today is ${new Date()}
-                         Please explain this card in Thai language about (overall, love, job, life) and suggest number 2 digit for matching with this card, Return JSON format only with key overall, love,job,life, number` },
-                    ],
-                }
-            ],
-
-        });
-
-        const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
+                         Please explain this card in Thai language about (overall, love, job, life) and suggest number 2 digit for matching with this card, Return JSON format only with key overall, love,job,life, number`
+        // To stream generated text output, call generateContentStream with the text input
+        const result = await model.generateContent(prompt);
         console.log(result.response.text());
         const jsonObject = JSON.parse(result.response.text());
         console.log(jsonObject);

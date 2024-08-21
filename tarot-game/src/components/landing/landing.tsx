@@ -13,12 +13,14 @@ const LandingPage: React.FC = () => {
   return (
     <div className="landing-control">
       <div className='landing-item-control'>
-        <h1 className='landing-item-title'>ดูดวงแบบสับสับ</h1>
-        <span className='landing-item-desc'>รับคำทำนายดวงชะตาแบบมืออาชีพผ่านไพ่ทาโรต์ เช็คดวงประจำวันของคุณและรับคำแนะนำในการดำเนินชีวิตอย่างสมดุล ไม่ว่าจะเรื่องใด คุณก็สามารถทราบอนาคตล่วงหน้าได้ง่าย ๆ</span>
-        <img src={TAROT_COVER} className='landing-item-img'></img>
-        <Button onClick={startGame} className='landing-item-button'>
-          เริ่มดูดวง
-        </Button>
+        <div className='landing-item-list-control'>
+          <span className='landing-item-text-header'>ตรวจสลากกินแบ่งรัฐบาล</span>
+          <span className='landing-item-text-desc'>เช็คผลรางวัลลอตเตอรี่ งวดนี้คุณจะรวยหรือเปล่า เช็คเลขได้ง่ายๆ รวดเร็ว ไม่ต้องรอ ให้คุณรู้ผลได้ทันที พร้อมลุ้นและสนุกไปกับการเสี่ยงโชค!</span>
+        </div>
+        <div className='landing-item-list-control' onClick={startGame}>
+          <span className='landing-item-text-header'>ดูดวงรายวัน</span>
+          <span className='landing-item-text-desc'>การทำนายดวงแต่ละวันแบบชิลๆ ไม่ว่าจะเป็นเรื่องงาน เงิน ความรัก หรือสุขภาพ มาเช็คดวงประจำวันเพื่อเตรียมตัวให้พร้อม สนุกๆ ไม่เครียด รู้แนวทางในแต่ละวันได้ที่นี่!</span>
+        </div>
       </div>
     </div>
   );

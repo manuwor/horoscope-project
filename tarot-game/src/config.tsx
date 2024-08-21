@@ -6,16 +6,21 @@ const test = {
         "transcript" : "/transcripts",
         "settings" : "/settings"
     },
+    api_lotto: {
+        base_url: "https://lotto.api.rayriffy.com",
+        list: "/list",
+        detail: "/lotto"
+    },
     firebaseConfig: {
-        apiKey: "AIzaSyD3RRCmRt2j6g1_rsgJVBDRvsaeZG-huno",
-        authDomain: "scoutout-mang-test-e17bf.firebaseapp.com",
-        databaseURL: "https://scoutout-mang-test-e17bf.firebaseio.com",
-        projectId: "scoutout-mang-test-e17bf",
-        storageBucket: "scoutout-mang-test-e17bf.appspot.com",
-        messagingSenderId: "436987830723",
-        appId: "1:436987830723:web:0089121ad8f1221adc1d76"
+        apiKey: "AIzaSyCznOBLd4ml4q8zyqUzjaEhlOFhmCZaMfc",
+        authDomain: "horoscope-project-d3937.firebaseapp.com",
+        projectId: "horoscope-project-d3937",
+        storageBucket: "horoscope-project-d3937.appspot.com",
+        messagingSenderId: "133923026913",
+        appId: "1:133923026913:web:783d14e21807b2e1ae04a0",
+        measurementId: "G-Z2MPLK12Y5"
       }
-
+      //https://github.com/rayriffy/thai-lotto-api
 
 };
 const prod = {
@@ -26,14 +31,19 @@ const prod = {
         "transcript" : "/transcripts",
         "settings" : "/settings"
     },
+    api_lotto: {
+        base_url: "https://lotto.api.rayriffy.com",
+        list: "/list",
+        detail: "/lotto"
+    },
     firebaseConfig: {
-        apiKey: "AIzaSyD3RRCmRt2j6g1_rsgJVBDRvsaeZG-huno",
-        authDomain: "scoutout-mang-test-e17bf.firebaseapp.com",
-        databaseURL: "https://scoutout-mang-test-e17bf.firebaseio.com",
-        projectId: "scoutout-mang-test-e17bf",
-        storageBucket: "scoutout-mang-test-e17bf.appspot.com",
-        messagingSenderId: "436987830723",
-        appId: "1:436987830723:web:0089121ad8f1221adc1d76"
+        apiKey: "AIzaSyCznOBLd4ml4q8zyqUzjaEhlOFhmCZaMfc",
+        authDomain: "horoscope-project-d3937.firebaseapp.com",
+        projectId: "horoscope-project-d3937",
+        storageBucket: "horoscope-project-d3937.appspot.com",
+        messagingSenderId: "133923026913",
+        appId: "1:133923026913:web:783d14e21807b2e1ae04a0",
+        measurementId: "G-Z2MPLK12Y5"
       }
 
 
