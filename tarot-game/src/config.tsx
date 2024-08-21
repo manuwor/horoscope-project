@@ -1,5 +1,5 @@
 const test = {
-    ga_4 : "",
+    ga_4 : "G-Z2MPLK12Y5",
     api: {
         "base_url": "https://testlambda.scoutout.net:444",
         "path_api" : "/quality-monitoring",
@@ -15,7 +15,7 @@ const test = {
 
 };
 const prod = {
-    ga_4 : "",
+    ga_4 : "G-Z2MPLK12Y5",
     api: {
         "base_url": "https://testlambda.scoutout.net:444",
         "path_api" : "/quality-monitoring",
