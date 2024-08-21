@@ -34,6 +34,9 @@
     flex-direction: column;
 
     .result-meaning-control {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 772px;
         width: 100%;
         min-height: 80vh; // Ensure it takes up 80vh of the screen
         z-index: 2;

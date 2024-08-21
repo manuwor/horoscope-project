@@ -14,6 +14,12 @@ const LottoComponent = () => {
         getLottoList();
     }, [])
 
+
+    const handleChangeSearch = (value) => {
+        setResult(null);
+        console.log(value);
+        setSearchNumber(value);
+    }
     const getLottoList = () => {
 
         APIService().getLottoPage(1).then((res: any) => {
@@ -37,6 +43,7 @@ const LottoComponent = () => {
 
                 if (res.status == 200) {
                     const result = res.data as LottoDetailModel;
+                    console.log(result);
                     setLottoDetail(result);
                 }
             } catch (error) {
@@ -58,23 +65,29 @@ const LottoComponent = () => {
 
 
             // Check if the number matches any of the prizes
+            const arrayResult: any[] = [];
+
             lottoDetail.response.prizes.forEach(prize => {
+                console.log(prize);
                 if (prize.number.includes(searchNumber)) {
-                    setResult({ name: prize.name, reward: prize.reward });
+                    console.log(searchNumber);
+                    arrayResult.push({ name: prize.name, reward: prize.reward });
                     found = true;
                 }
             });
+
 
             // Check if the number matches any of the running numbers
             if (!found) {
                 lottoDetail.response.runningNumbers.forEach(runningNumber => {
                     if (runningNumber.number.includes(searchNumber.slice(-3)) || runningNumber.number.includes(searchNumber.slice(-2))) {
-                        setResult({ name: runningNumber.name, reward: runningNumber.reward });
+                        arrayResult.push({ name: runningNumber.name, reward: runningNumber.reward });
                         found = true;
                     }
                 });
             }
-
+            setResult(arrayResult);
+            console.log(arrayResult);
             if (!found) {
                 setError('ไม่พบหมายเลขของท่านในรางวัล');
                 setResult(null);
@@ -89,39 +102,133 @@ const LottoComponent = () => {
             <div className="lotto-control">
                 <div className="lotto-item-control">
                     <div className="lotto-current-control">
-                        <span className="lotto-current-header">ตรวจสลากกินแบ่งงวดล่าสุด</span>
-                        <div>
-                            <Row>
-                                <Col md={{ span: 6, offset: 3 }}>
+                        <span className="lotto-current-header">ตรวจสลากกิน</span>
+                        {
+                            lottoDetail &&
+                            <div className="d-flex flex-column">
+                                <span className="lotto-current-header">งวดประจำวันที่ {lottoDetail.response.date}</span>
+                                <div>
                                     <Form>
                                         <Form.Group controlId="formLottoNumber" className="lotto-current-form-group">
                                             <Form.Label className="lotto-current-input-label">กรอกหมายเลขสลากของท่าน (6 หลัก)</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="เช่น 095867"
-                                                value={searchNumber}
-                                                onChange={(e) => setSearchNumber(e.target.value)}
-                                                maxLength={6}
-                                            />
+                                            <div className="lotto-current-search-control">
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="เช่น 095867"
+                                                    value={searchNumber}
+                                                    onChange={(e) => handleChangeSearch(e.target.value)}
+                                                    maxLength={6}
+                                                />
+                                                <Button className="lott-current-search-button" onClick={handleSearch}>
+                                                    ตรวจหวย
+                                                </Button>
+                                            </div>
                                         </Form.Group>
-                                        <Button variant="primary" onClick={handleSearch}>
-                                            ตรวจหวย
-                                        </Button>
+
                                     </Form>
-                                    {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+                                    {error && <div className="lotto-current-failed-control">
+                                        {
+                                            error != "กรุณากรอกหมายเลข 6 หลัก" && <span className="lotto-current-failed-sub-header">เสียใจด้วย</span>
+                                        }
+
+                                        <span className="lotto-current-failed-header">{error}</span>
+
+                                    </div>}
                                     {result && (
-                                        <Card className="mt-3">
-                                            <Card.Body>
-                                                <Card.Title>{result.name}</Card.Title>
-                                                <Card.Text>
-                                                    หมายเลข {searchNumber} ของท่านถูกรางวัล {result.name} รับเงินรางวัล {result.reward} บาท
-                                                </Card.Text>
-                                            </Card.Body>
-                                        </Card>
+                                        <div className="lotto-current-success-control">
+                                            <span className="lotto-current-success-sub-header">ยินดีด้วย</span>
+                                            <span className="lotto-current-success-header">{result.name}</span>
+                                            <span className="lotto-current-success-sub-header">
+                                                {
+                                                    result && result.length > 0 &&
+
+                                                    <div className="d-flex flex-column">
+                                                        <span className="lotto-current-success-header">{searchNumber}</span>
+                                                        หมายเลขของท่านถูกรางวัล
+
+                                                        {
+                                                            result.map((item, index) => {
+
+                                                                return (
+                                                                    <span>- {item.name}: {Number(item.reward).toLocaleString()} บาท</span>
+                                                                )
+
+                                                            })
+                                                        }
+                                                    </div>
+
+                                                }
+
+                                            </span>
+
+                                        </div>
                                     )}
-                                </Col>
-                            </Row>
-                        </div>
+                                </div>
+
+                                <div className="lotto-current-show-all-control">
+                                    <span className="lotto-current-show-all-title">
+                                        รางวัลที่ 1
+                                    </span>
+                                    <span className="lotto-current-show-all-value-1">
+                                        {lottoDetail.response.prizes[0].number}
+                                    </span>
+                                    <div className="lotto-current-show-all-divider"></div>
+                                    <div className="lotto-current-show-all-running-control">
+                                        {
+                                            lottoDetail.response.runningNumbers && lottoDetail.response.runningNumbers.map((item, index) => {
+
+
+                                                return (
+                                                    <div className="lotto-current-show-all-running-item" key={index}>
+                                                        <span className="lotto-current-show-all-title">{item.name}</span>
+                                                        {
+                                                            item.number.map((innerItem, innerIndex) => {
+                                                                return (
+                                                                    <span className="lotto-current-show-all-value-1" key={innerIndex}>
+                                                                        {innerItem}
+                                                                    </span>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    <div className="lotto-current-show-all-divider"></div>
+
+                                    {
+                                        lottoDetail.response.prizes && lottoDetail.response.prizes.filter((item) => item.id != "prizeFirst").map((item, index) => {
+                                            return (
+                                                <div className="lotto-current-show-all-other-control">
+                                                    <span className="lotto-current-show-all-other-title">
+                                                        {item.name}
+                                                    </span>
+                                                    <span className="lotto-current-show-all-other-sub-title">
+                                                        {item.amount} รางวัล รางวัลละ {Number(item.reward).toLocaleString()} บาท
+                                                    </span>
+                                                    <div className="lotto-current-show-all-other-value-control">
+                                                        {
+                                                            item.number.map((innerItem, innerIndex) => {
+
+                                                                return (
+                                                                    <span className="lotto-current-show-all-other-value">
+                                                                        {innerItem}
+                                                                    </span>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                    <div className="lotto-current-show-all-divider"></div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+                                </div>
+                            </div>
+                        }
+
                     </div>
                 </div>
             </div>
