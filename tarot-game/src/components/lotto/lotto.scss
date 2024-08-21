@@ -1,0 +1,46 @@
+@import "../../App.scss";
+
+
+.lotto-control{
+
+
+    width: 100vw;
+    height: 100vh;
+    background: $bg-color;
+    display: flex;
+    padding: 12px;
+
+    .lotto-item-control {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+
+        .lotto-current-control{
+            background-color: white;
+            border-radius: 8px;
+            border: none;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+
+            .lotto-current-header{
+                font-size: 18px;
+                color: $text-black;
+                font-family: $fontMedium;
+                text-align: center;
+            }
+            .lotto-current-form-group{
+                display: flex;
+                flex-direction: column;
+            }
+            .lotto-current-input-label{
+                font-size: 14px;
+                font-family: $fontMedium;
+                color: $text-black;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+}

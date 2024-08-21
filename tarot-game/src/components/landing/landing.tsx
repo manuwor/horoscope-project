@@ -9,11 +9,13 @@ const LandingPage: React.FC = () => {
   const startGame = () => {
     navigate('/input');
   };
-
+  const startLotto = () => {
+    navigate('/lotto');
+  };
   return (
     <div className="landing-control">
       <div className='landing-item-control'>
-        <div className='landing-item-list-control'>
+        <div className='landing-item-list-control' onClick={startLotto}>
           <span className='landing-item-text-header'>ตรวจสลากกินแบ่งรัฐบาล</span>
           <span className='landing-item-text-desc'>เช็คผลรางวัลลอตเตอรี่ งวดนี้คุณจะรวยหรือเปล่า เช็คเลขได้ง่ายๆ รวดเร็ว ไม่ต้องรอ ให้คุณรู้ผลได้ทันที พร้อมลุ้นและสนุกไปกับการเสี่ยงโชค!</span>
         </div>
