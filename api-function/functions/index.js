@@ -41,7 +41,7 @@ app.post('/create-article', authenticate, async (req, res) => {
     const articleData = req.body;
 
     // Validate the required fields
-    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt'];
+    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt' ,'imageUrl'];
     for (const field of requiredFields) {
       if (!articleData[field]) {
         return res.status(400).json({ error: `Field '${field}' is required.` });
@@ -57,13 +57,57 @@ app.post('/create-article', authenticate, async (req, res) => {
     return res.status(500).json({ error: 'Internal server error.' });
   }
 });
+app.get('/articles/:id', async (req, res) => {
+  try {
+    const { id } = req.params; // Get the article ID from the URL
+
+    // Get a reference to the document
+    const docRef = db.collection('articles').doc(id);
+
+    // Fetch the document from Firestore
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Article not found.' });
+    }
+
+    // Get the article data and include the document ID
+    const article = { id: doc.id, ...doc.data() };
+
+    return res.status(200).json({ article });
+  } catch (error) {
+    console.error('Error fetching article:', error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+app.get('/articles', async (req, res) => {
+  try {
+    // Fetch all documents from the 'articles' collection
+    const articlesSnapshot = await db.collection('articles').get();
+
+    if (articlesSnapshot.empty) {
+      return res.status(404).json({ error: 'No articles found.' });
+    }
+
+    // Map through each document and retrieve its data
+    const articles = articlesSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return res.status(200).json({ articles });
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
 app.put('/edit-article/:id', authenticate, async (req, res) => {
   try {
     const { id } = req.params; // Get the article ID from the URL
     const articleData = req.body; // Get the data from the request body
 
     // Validate the required fields
-    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt'];
+    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt' ,'imageUrl'];
     for (const field of requiredFields) {
       if (!articleData[field]) {
         return res.status(400).json({ error: `Field '${field}' is required.` });

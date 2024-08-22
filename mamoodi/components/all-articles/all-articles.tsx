@@ -11,16 +11,13 @@ const AllArticlesComponent = ({articles}: any) => {
     const router = useRouter();
 
     useEffect(() => {
+        console.log(articles);
         setArticleMod(articles);
 
     },[])
     const clickArticle = (item: Article) => {
-        UtilityService().clickSendEvent(item.seo.title, "click");
-        if(item.slug){
-            router.push('/articles/' + item.slug);
-        }else{
-            router.push('/articles/' + item.uuid);
-        }
+        UtilityService().clickSendEvent(item.title, "click");
+        router.push('/articles/' + item.id);
     
 
     }
@@ -39,40 +36,22 @@ const AllArticlesComponent = ({articles}: any) => {
     return (
         <>
             <div className={styles.allMain}>
-                <div className={styles.allMainControl}>
                     
                     {
                         articleMod &&
                         <div className={styles.allMainCenter}>
                             <h1 className={styles.allHeader}>บทความทั้งหมด</h1>
-                            {
-                                articleMod.length > 0 &&
-                                <div className={styles.allHeaderItem} onClick={() => clickArticle(articleMod[0])}>
-                                    <img src={articleMod[0].seo.cover_img} className={styles.allHeaderItemImg}></img>
-                                    <div className={styles.allHeaderItemCardControl}>
-
-                                        <span className={styles.allHeaderItemCardTitle}>
-                                            {articleMod[0].seo.title}
-                                        </span>
-                                        <span className={styles.allHeaderItemCardDesc}>
-                                            {articleMod[0].seo.description}
-                                        </span>
-                                    </div>
-                                </div>
-                            }
-
-
                             <div className={styles.allListControl}>
-                                {
-                                    articleMod.map((item: PostArticleModel, index: number) => {
+                                {articleMod.length > 0 &&
+                                    articleMod.map((item: Article, index: number) => {
 
                                         return (
-                                            index != 0 &&
+                                          
                                             <div className={styles.allListItem} key={index} onClick={() => clickArticle(item)}>
-                                                <img src={item.seo.cover_img} className={styles.itemImg}></img>
+                                                <img src="/assets/images/share-cover.jpg" className={styles.itemImg}></img>
                                                 <div className={styles.itemTextControl}>
                                                     <span className={styles.itemTitle}>{item.title}</span>
-                                                    <span className={styles.itemDesc}>{item.seo.description}</span>
+                                                    <span className={styles.itemDesc}>{item.shortDescription}</span>
                                                 </div>
                                             </div>
 
@@ -85,7 +64,6 @@ const AllArticlesComponent = ({articles}: any) => {
                     }
                     
 
-                </div>
 
             </div>
         </>

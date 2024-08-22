@@ -5,5 +5,7 @@ export interface Article {
     content: string[];
     conclusion: string;
     keywords: string[];
+    slug:string;
+    imageUrl: string
     createdAt: string;
   }

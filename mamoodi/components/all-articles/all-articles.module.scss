@@ -2,11 +2,13 @@
 
 
 .allMain {
-    width: 100vw;
+    width: auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
 
     .allMainControl{
         display: grid;
@@ -39,6 +41,7 @@
     .allMainCenter{
         display: flex;
         flex-direction: column;
+        width: 100%;
 
         @include media-breakpoint-down(md){
             width: 90%;

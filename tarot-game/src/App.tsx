@@ -20,7 +20,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<RedirectToExternal />} />
-          <Route path="/tarot-1/input" element={<InputPage />} />
+          <Route path="/tarot-1" element={<InputPage />} />
           <Route path="/tarot-1/play" element={<PlayingPage />} />
           <Route path="/lotto" element={<LottoComponent />} />
           <Route path="/tarot-1/result" element={<ResultPage />} />

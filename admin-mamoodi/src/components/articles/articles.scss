@@ -33,6 +33,14 @@
             flex-direction: column;
             color: white;
         }
+
+        .articles-img-preview{
+            width: 200px;
+            height: 100px;
+            margin-top: 4px;
+            margin-bottom: 12px;
+            object-fit: contain;
+        }
         .articles-title-text{
             font-size: 16px;
             font-family: $fontMedium;

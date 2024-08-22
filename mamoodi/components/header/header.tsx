@@ -47,6 +47,11 @@ const HeaderComponent = () => {
             id: 5,
             name: "ตรวจหวยออนไลน์",
             url: "https://scoutout.scoutcareers.com/th/home"
+        },
+        {
+            id: 5,
+            name: "บทความ",
+            url: "/articles"
         }
     ]
 
@@ -56,7 +61,7 @@ const HeaderComponent = () => {
 
     const clickOpenWeb = (url, name) => {
 
-        window.open(url + "?utm_source=blog-scoutout", "_blank");
+        window.open(url , "_self");
     }
 
     const clickHome = (url, name) => {

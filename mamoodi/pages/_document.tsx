@@ -26,13 +26,13 @@ export default function Document() {
      
 
         <link rel="icon" href="/favicon.ico" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-431ESJP6S8" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-xxxxxx" />
         <script>
           {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-431ESJP6S8');
+              gtag('config', 'G-xxxxxx');
             `}
         </script>
       </Head>
