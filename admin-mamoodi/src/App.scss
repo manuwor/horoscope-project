@@ -1,0 +1,105 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import '~bootstrap/scss/bootstrap';
+$fontBold: "LINESeedSansTH_He";
+$fontRegular: "LINESeedSansTH_Rg";
+$fontMedium: "LINESeedSansTH_Bd";
+$fontLight: "LINESeedSansTH_Th";
+
+$primary-color: #4B0082;
+$bg-color: #483D8B;
+$soft-bg-color: #715d80;
+$button-color: #FFD700;
+$dark-blue: #4880FF;
+$border-input: #E6E6FA;
+$text-black: #3D4655;
+$light-blue: #D9E4FF;
+$green-color: #00B69B;
+$dark-orange: #FF9066;
+$text-gray: #555E6D;
+$bg-gray: #EFEFEF;
+$text-light-gray: #919EB3;
+$placeholder-text: #919EB3;
+$text-blue: #8696BB;
+$red: #FF1E3B;
+$black: #1F1F39;
+$yellow: #EDCB54;
+$pink: #D39FE5;
+$gray-color: #F3F3F3;
+$graph-blue: #3D42DF;
+$light-orange: #282321;
+$text-soft-pink: #D7B8FF;
+$text-soft-green: #63CEAD;
+$text-soft-blue: #AECBFA;
+$radius: 16px;
+$shadow-box: 0px 0px 4px #112644;
+$gradient-primary: linear-gradient(85deg, #AF34F4 0%, #7321E4 39.97%, #4008DC 100%);
+
+.text-green{
+    color: $green-color !important;
+}
+
+.text-blue{
+    color: $dark-blue !important;
+}
+
+
+a {
+    cursor: pointer;
+    color: #64b5fc;
+    margin-top: 16px;
+    font-family: $fontMedium;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+body {
+    font-family: $fontRegular !important;
+    background-color: $bg-color;
+    scrollbar-width: none;
+    justify-content: center;
+    display: flex;
+    width: 100vw;
+
+}
+
+.App {
+    min-height: 100vh;
+    max-width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+    display: grid;
+    border: 2px;
+
+
+}
+
+
+.MuiFormLabel-root {
+    font-family: $fontRegular !important;
+}
+
+.MuiChip-label {
+    font-family: $fontMedium !important;
+}
+
+
+@font-face {
+    font-family: $fontBold;
+    src: local("LINESeedSansTH_He"), url(../public/fonts/LINESeedSansTH_He.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontMedium;
+    src: local("LINESeedSansTH_Bd"), url(../public/fonts/LINESeedSansTH_Bd.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontRegular;
+    src: local("LINESeedSansTH_Rg"), url(../public/fonts/LINESeedSansTH_Rg.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontLight;
+    src: local("LINESeedSansTH_Th"), url(../public/fonts/LINESeedSansTH_Th.ttf) format("truetype");
+}

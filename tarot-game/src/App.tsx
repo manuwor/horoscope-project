@@ -1,24 +1,32 @@
 
 import './App.scss';
 
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import LandingPage from './components/landing/landing';
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import InputPage from './components/input/input';
 import PlayingPage from './components/playing/playing';
 import ResultPage from './components/result/result';
 import LottoComponent from './components/lotto/lotto';
+import { useEffect } from 'react';
 function App() {
+  const RedirectToExternal = () => {
+    useEffect(() => {
+      window.open("https://mamoodi.com", "_self")
+    }, []);
+
+    return null;
+  };
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/input" element={<InputPage/>} />
-          <Route path="/play" element={<PlayingPage />} />
+          <Route path="/" element={<RedirectToExternal />} />
+          <Route path="/tarot-1/input" element={<InputPage />} />
+          <Route path="/tarot-1/play" element={<PlayingPage />} />
           <Route path="/lotto" element={<LottoComponent />} />
-          <Route path="/result" element={<ResultPage />} />
+          <Route path="/tarot-1/result" element={<ResultPage />} />
+          {/* Wildcard route to catch all undefined paths */}
+          <Route path="*" element={<RedirectToExternal />} />
 
-        
         </Routes>
       </BrowserRouter>
     </div>

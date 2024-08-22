@@ -8,6 +8,7 @@ import axios from 'axios';
 import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, LineIcon, LineShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'next-share';
 import config from '@/config';
 import { PostArticleModel } from '@/model/post-article.model';
+import { db } from '@/util/firebase-config';
 interface ContentData {
   title: string;
   raw_description: string;
@@ -84,12 +85,34 @@ export default ArticlePage;
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { articleId } = context.params || {}; // Handle empty params
 
-  const response = await fetch(config.url + "&id=" + articleId, { method: 'GET' })
-  const article = await response.json();
-  const articleModel = article.result;
-  return {
-    props: {
-      articleModel,
-    },
-  };
+  if (!articleId) {
+    return {
+      notFound: true,
+    };
+  }
+
+  try {
+    // Fetch the document from Firestore by articleId
+    const docRef = db.collection('articles').doc(articleId as string);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const articleModel = doc.data();
+
+    return {
+      props: {
+        articleModel,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching article:", error);
+    return {
+      notFound: true,
+    };
+  }
 }

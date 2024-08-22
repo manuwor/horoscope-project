@@ -53,7 +53,7 @@ const PlayingPage: React.FC = () => {
 
   const handleViewResult = () => {
     if (selectedCards.length === cardPick) {
-      navigate('/result', { state: { selectedCards: selectedCards, birthday, gender } });
+      navigate('/tarot-1/result', { state: { selectedCards: selectedCards, birthday, gender } });
     }
   };
 

@@ -42,7 +42,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:test": "env-cmd -f ./.env.test react-scripts build && firebase use horoscope-project-d3937 && firebase target:clear hosting horoscope-project-d3937 && firebase target:apply hosting horoscope-project-d3937 horoscope-project-d3937 && firebase deploy --only hosting:horoscope-project-d3937"
+    "deploy:test": "env-cmd -f ./.env.test react-scripts build && firebase use horoscope-project-d3937 && firebase target:clear hosting app-mamoodi && firebase target:apply hosting app-mamoodi app-mamoodi && firebase deploy --only hosting:app-mamoodi"
   },
   "eslintConfig": {
     "extends": [

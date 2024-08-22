@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "horoscope-project-d3937",
+      "target": "app-mamoodi",
       "public": "build",
       "ignore": [
         "firebase.json",

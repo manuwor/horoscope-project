@@ -15,7 +15,7 @@ const InputPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/play', { state: { birthday, gender, cardPick } });
+    navigate('/tarot-1/play', { state: { birthday, gender, cardPick } });
   };
 
   return (
