@@ -1,0 +1,35 @@
+{
+    "hosting": [
+      {
+        "target": "horoscope-project-d3937",
+        "public": "public",
+        "cleanUrls": true,
+        "rewrites": [
+          {
+            "source": "**",
+            "function": "blogMamooDi"
+          }
+        ],
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ]
+      }
+    ],
+    "functions": {
+      "runtime": "nodejs18",
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "firbease-debug.log",
+        "**/.*",
+        "**/node_modules/**",
+        "components/**",
+        "pages/**",
+        "public/**",
+        "readme.md"
+      ]
+    }
+  }
+  

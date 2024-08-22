@@ -1,0 +1,122 @@
+@import "../../styles/globals.scss";
+
+.headerMain {
+
+    width: auto;
+    min-height: 80px;
+    background-color: white;
+    display: flex;
+    padding-left: 2%;
+    padding-right: 2%;
+
+    .headerLogo {
+        width: auto;
+        height: 40px;
+        margin-top: auto;
+        margin-bottom: auto;
+        object-fit: contain;
+
+        @include media-breakpoint-down(xl) {
+            height: 25px;
+        }
+    }
+
+    .headerLogoControl{
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        .headerLogoImg{
+            width: 40px;
+            height: auto;
+            object-fit: contain;
+            margin-right: 12px;
+        }
+
+        .headerLogoText{
+            font-size: 24px;
+            margin-left: 14px;
+            font-family: $fontMedium;
+            color: black;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    }
+
+    .headerMenuMobile {
+        display: none;
+
+        @include media-breakpoint-down(md) {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding-right: 5%;
+        }
+
+        .headerMenuMobileToggle{
+            color: black;
+            width: 30px;
+            height: 30px;
+            margin-left: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .headerMenuMobileText{
+            font-size: 16px;
+            color: black;
+            font-family: $fontRegular;
+        }
+        .headerMobileLINEOAButton{
+            background-color: #06c755;
+            color: white;
+            font-size: 16px;
+        }
+    }
+
+    .headerLINEOAButton{
+        background-color: #06c755;
+        color: white;
+        font-size: 16px;
+    }
+
+    .headerMenuControl {
+        display: flex;
+        margin-left: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+
+        .headerMenuText {
+            cursor: pointer;
+            font-size: 15px;
+            font-family: $fontRegular;
+            text-decoration: none;
+            color: black;
+            margin-left: 14px;
+            margin-right: 14px;
+            margin-top: auto;
+            margin-bottom: auto;
+
+            @include media-breakpoint-down(xl) {
+                font-size: 11px;
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            @include media-breakpoint-down(lg) {
+                font-size: 10px;
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+
+}

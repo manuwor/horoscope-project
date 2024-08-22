@@ -1,0 +1,65 @@
+@import "../../styles/globals.scss";
+
+.footerMain {
+    background-color: black;
+    height: 90px;
+    width: auto;
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    left: 0;
+    bottom: 0;
+
+    @include media-breakpoint-down(md){
+        flex-direction: column;
+        min-height: 30px;
+        height: auto;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+
+    .footerLogo{
+        cursor: pointer;
+        width: auto;
+        height: 60px;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        object-fit: contain;
+        @include media-breakpoint-down(md){
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            height: auto;
+            width: 150px;
+        }
+    }
+
+    .footerTextControl{
+        margin-left: auto;
+        display: flex;
+        @include media-breakpoint-down(md){
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 24px;
+        }
+
+        .footerText{
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+            margin-top: auto;
+            font-family: $fontRegular;
+            margin-bottom: auto;
+            margin-left: 18px;
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,208 @@
+@import "../../styles/globals.scss";
+
+
+.allMain {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+
+    .allMainControl{
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+
+        @include media-breakpoint-down(md){
+            grid-template-columns: 100%;
+        }
+    }
+
+    .allMainBanner{
+        display: flex;
+        flex-direction: column;
+
+        @include media-breakpoint-down(md){
+            order: 3;
+        }
+
+        .allBannerItem{
+            cursor: pointer;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 16px;
+        }
+    }
+
+    .allMainCenter{
+        display: flex;
+        flex-direction: column;
+
+        @include media-breakpoint-down(md){
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+  
+
+    .allHeader {
+        font-size: 24px !important;
+        margin-right: auto;
+        font-family: "LINESeedSansTH_Bd";
+        color: black;
+    }
+
+    .allHeaderItem{
+        cursor: pointer;
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        @include media-breakpoint-down(md){
+            height: auto;
+        }
+
+        .allHeaderItemImg{
+            width: 100%;
+            height: 35vh;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+
+            @include media-breakpoint-down(md){
+                height: 200px;
+                border-radius: 0px;
+            }
+        }
+
+        .allHeaderItemCardControl{
+            position: absolute;
+            width: 400px;
+            height: 150px;
+            background-color: white;
+            border: 1px solid #f4f4f4;
+            bottom: 0;
+            margin-left: 15%;
+            margin-top: -100px;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+
+            @include media-breakpoint-down(md){
+                margin-top: 0px;
+                position: relative;
+                width: 100%;
+                margin-left: 0px;
+                padding: 12px;
+                min-height: 150px;
+                height: auto;
+                margin-bottom: 12px;
+            }
+
+            .allHeaderItemCardTitle{
+                font-size: 16px !important;
+                font-family: $fontMedium !important;
+                color: black;
+
+                @include media-breakpoint-down(md){
+                    font-size: 16px !important;
+                }
+            }
+
+            .allHeaderItemCardDesc{
+                font-size: 13px !important;
+                font-family: $fontRegular !important;
+                color: rgb(77, 77, 77);
+
+                @include media-breakpoint-down(md){
+                    font-size: 14px !important;
+                }
+            }
+        }
+    }
+
+    .allListControl {
+        display: grid;
+        width: 100%;
+        margin-top: 48px;
+        margin-left: auto;
+        margin-right: auto;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 12px;
+
+        @include media-breakpoint-down(md){
+            grid-template-columns: 100%;
+            margin-top: 12px;
+        }
+
+        .allListItem {
+            cursor: pointer;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f4f4f4;
+            box-shadow: 0px 0px 5px 2px #f4f4f4;
+            margin-bottom: 16px;
+
+            @include media-breakpoint-down(md){
+                margin-bottom: 12px;
+            }
+
+            .itemImg {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+
+            .itemTextControl{
+                display: flex;
+                flex-direction: column;
+                padding: 6px;
+                @include media-breakpoint-down(md){
+                    padding: 12px;
+                }
+            }
+
+            .itemTitle {
+                font-size: 16px !important;
+                font-family: "LINESeedSansTH_Bd" !important;
+                color: black;
+                margin-top: 3px;
+
+                @include media-breakpoint-down(md){
+                    font-size: 16px !important;
+                }
+            }
+
+            .itemDesc {
+                width: 100%;
+                font-size: 12px !important;
+                font-family: $fontRegular !important;
+                color: rgb(77, 77, 77);
+                margin-top: 3px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+                max-height: 3em; /* adjust based on line-height and font-size */
+
+                @include media-breakpoint-down(md){
+                    font-size: 14px !important;
+                }
+              
+            }
+        }
+    }
+}
