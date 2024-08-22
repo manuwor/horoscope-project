@@ -1,0 +1,32 @@
+@import "../../App.scss";
+
+
+.quill-main{
+    background-color: white;
+    color: black;
+
+    span{
+        font-size: 12px !important;
+        white-space: 'pre-line' !important;
+    }
+
+    .ql-editor{
+        min-height: 400px !important;
+    }
+
+    img{
+        width: 100%;
+        height: auto;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    h1,h2,h3,h4,h5{
+        font-size: 14px !important;
+        font-family: $fontMedium !important;
+    }
+
+    p{
+        margin-bottom: 0rem;
+    }
+}

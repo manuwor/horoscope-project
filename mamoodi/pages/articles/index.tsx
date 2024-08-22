@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import config from "@/config";
 import AllArticlesComponent from "@/components/all-articles/all-articles";
+import { db } from "@/util/firebase-config";
 
 const AllArticlePage: React.FC = ({ articleModel }: any) => {
 
@@ -66,15 +67,32 @@ const AllArticlePage: React.FC = ({ articleModel }: any) => {
 
 export default AllArticlePage;
 
-
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const response = await fetch(config.url, { method: 'GET' })
-    const article = await response.json();
-    const articleModel = article.result;
-    return {
-        props: {
-            articleModel,
-        },
-    };
-}
+    try {
+        // Fetch all documents from the 'articles' collection
+        const articlesSnapshot = await db.collection('articles').get();
 
+        if (articlesSnapshot.empty) {
+            return {
+                notFound: true,
+            };
+        }
+
+        // Map through each document and retrieve its data
+        const articles = articlesSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        return {
+            props: {
+                articles, // Pass the array of articles as a prop
+            },
+        };
+    } catch (error) {
+        console.error("Error fetching articles:", error);
+        return {
+            notFound: true,
+        };
+    }
+}

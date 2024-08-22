@@ -41,7 +41,7 @@ app.post('/create-article', authenticate, async (req, res) => {
     const articleData = req.body;
 
     // Validate the required fields
-    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'conclusion', 'keywords', 'createdAt'];
+    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt'];
     for (const field of requiredFields) {
       if (!articleData[field]) {
         return res.status(400).json({ error: `Field '${field}' is required.` });
@@ -51,9 +51,40 @@ app.post('/create-article', authenticate, async (req, res) => {
     // Store the article in Firestore
     const docRef = await db.collection('articles').add(articleData);
 
-    return res.status(201).json({ message: 'Article created successfully.', id: docRef.id });
+    return res.status(200).json({ message: 'Article created successfully.', id: docRef.id });
   } catch (error) {
     console.error('Error creating article:', error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+app.put('/edit-article/:id', authenticate, async (req, res) => {
+  try {
+    const { id } = req.params; // Get the article ID from the URL
+    const articleData = req.body; // Get the data from the request body
+
+    // Validate the required fields
+    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt'];
+    for (const field of requiredFields) {
+      if (!articleData[field]) {
+        return res.status(400).json({ error: `Field '${field}' is required.` });
+      }
+    }
+
+    // Get a reference to the document
+    const docRef = db.collection('articles').doc(id);
+
+    // Check if the document exists
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Article not found.' });
+    }
+
+    // Update the document with the new data
+    await docRef.update(articleData);
+
+    return res.status(200).json({ message: 'Article updated successfully.' });
+  } catch (error) {
+    console.error('Error updating article:', error);
     return res.status(500).json({ error: 'Internal server error.' });
   }
 });

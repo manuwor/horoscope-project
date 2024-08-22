@@ -2,19 +2,19 @@ import config from "@/config";
 import styles from "./all-articles.module.scss";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { PostArticleModel } from "@/model/post-article.model";
 import UtilityService from "@/util/utility";
+import { Article } from "@/model/article.model";
 
 
 const AllArticlesComponent = ({articles}: any) => {
-    const [articleMod, setArticleMod] = React.useState<PostArticleModel[]>();
+    const [articleMod, setArticleMod] = React.useState<Article[]>();
     const router = useRouter();
 
     useEffect(() => {
         setArticleMod(articles);
 
     },[])
-    const clickArticle = (item: PostArticleModel) => {
+    const clickArticle = (item: Article) => {
         UtilityService().clickSendEvent(item.seo.title, "click");
         if(item.slug){
             router.push('/articles/' + item.slug);

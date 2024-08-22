@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useAuth } from '../../context/auth-context';
 import { useNavigate } from 'react-router-dom';
+import "./login.scss";
 
 const LoginPage: React.FC = () => {
   const { user, login } = useAuth(); // Access user and login function from the context
@@ -14,19 +15,19 @@ const LoginPage: React.FC = () => {
       // If the user is authenticated, navigate to the article list page
       navigate('/articles-list');
     }
-  }, [user, navigate]);
+  }, [user]);
 
   return (
-    <Container className="d-flex vh-100 align-items-center justify-content-center">
-      <Row>
+    <div  className="login-control">
+      <div className='login-item-control'>
         <Col className="text-center">
-          <h2>Login with Google</h2>
-          <Button onClick={login} variant="primary">
-            Login
+          <h2 className='login-title'>Login with Google</h2>
+          <Button onClick={login} className='login-button'>
+            เข้าสู่ระบบ
           </Button>
         </Col>
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 };
 

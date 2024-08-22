@@ -4,6 +4,8 @@ import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../utility/firebase-config';
+import "./articles.scss";
+import Header from '../header/header';
 
 interface Article {
   id: string;
@@ -37,36 +39,35 @@ const ArticleListPage: React.FC = () => {
     navigate(`/edit/${id}`);
   }
   return (
-    <Container>
-      <Row className="justify-content-between my-4">
-        <Col>
-          <h2>Articles</h2>
-        </Col>
-        <Col className="text-end">
-          <Button  variant="primary" onClick={createArticle}>
-            Create New Article
+    <div className='articles-control'>
+        <Header title="บทความทั้งหมด" isBack={false} />
+      <div className='articles-item-control'>
+        <div className="justify-content-between my-4">
+          
+          <Button className='articles-create-button'onClick={createArticle}>
+            + สร้างบทความใหม่
           </Button>
-        </Col>
-      </Row>
-      <Row>
-        {articles.map((article) => (
-          <Col key={article.id} md={4} className="mb-4">
-            <Card>
-              <Card.Body>
-                <Card.Title>{article.title}</Card.Title>
-                <Card.Text>{article.shortDescription}</Card.Text>
-                <Button  onClick={() => editArtlicle(article.id)} variant="warning">
-                  Edit
-                </Button>
-                <Button onClick={() => handleDelete(article.id)} variant="danger" className="ms-2">
-                  Delete
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+        </div>
+        <div>
+          {articles.map((article) => (
+            <div key={article.id} className="mb-4">
+              <Card>
+                <Card.Body>
+                  <Card.Title className='articles-title-text'>{article.title}</Card.Title>
+                  <Card.Text className='articles-desc-text'>{article.shortDescription}</Card.Text>
+                  <Button onClick={() => editArtlicle(article.id)} variant="warning">
+                    แก้ไข
+                  </Button>
+                  <Button onClick={() => handleDelete(article.id)} variant="danger" className="ms-2">
+                    ลบ
+                  </Button>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -7,8 +7,8 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, LineIcon, LineShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'next-share';
 import config from '@/config';
-import { PostArticleModel } from '@/model/post-article.model';
 import { db } from '@/util/firebase-config';
+import { Article } from '@/model/article.model';
 interface ContentData {
   title: string;
   raw_description: string;
@@ -20,8 +20,7 @@ interface ContentData {
 const ArticlePage: React.FC = ({ articleModel }: any) => {
   const HeaderComponent = dynamic(() => import('../../components/header/header'));
   const FooterComponent = dynamic(() => import('../../components/footer/footer'));
-  const [articleMod, setArticleMod] = React.useState<PostArticleModel>();
-  const [articleRecommend, setArticleRecommend] = React.useState<PostArticleModel[]>([]);
+  const [articleMod, setArticleMod] = React.useState<Article>();
   const router = useRouter()
   const { articleId } = router.query
   React.useEffect(() => {

@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.105",
     "@types/react": "^18.3.4",
@@ -23,6 +23,7 @@
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
+    "react-quilljs": "^2.0.4",
     "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
     "sass": "^1.77.8",
@@ -37,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:test": "env-cmd -f ./.env.test react-scripts build && firebase use horoscope-project-d3937 && firebase target:clear hosting app-mamoodi && firebase target:apply hosting app-mamoodi app-mamoodi && firebase deploy --only hosting:app-mamoodi"
+    "deploy:test": "env-cmd -f ./.env.test react-scripts build && firebase use horoscope-project-d3937 && firebase target:clear hosting admin-mamoodi && firebase target:apply hosting admin-mamoodi admin-mamoodi && firebase deploy --only hosting:admin-mamoodi"
   },
   "eslintConfig": {
     "extends": [

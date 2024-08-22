@@ -12,21 +12,20 @@ import EditArticlePage from './components/articles/edit/edit-article';
 function App() {
 
   const { user } = useAuth();
+  useEffect(() => {
+    if (user) {
+    }
+  }, [user])
   return (
     <div className="App">
       <BrowserRouter>
-      
-          <Routes>
-            {!user ? (
-              <Route path="/" element={<LoginPage />} />
-            ) : (
-              <>
-                <Route path="/articles-list" element={<ArticleListPage />} />
-                <Route path="/create" element={<CreateArticlePage />} />
-                <Route path="/edit/:id" element={<EditArticlePage />} />
-              </>
-            )}
-          </Routes>
+
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/articles-list" element={<ArticleListPage />} />
+          <Route path="/create" element={<CreateArticlePage />} />
+          <Route path="/edit/:id" element={<EditArticlePage />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
