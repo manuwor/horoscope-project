@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{"/_app":[],"/":[],"/articles":[],"/articles/[articleId]":[]},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';
+self.__NEXT_FONT_MANIFEST='{"pages":{"/_app":[],"/":[],"/articles/[articleId]":[],"/articles":[]},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';

@@ -21,22 +21,22 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
-        <meta name="google-site-verification" content="beDc3cM2TX-JOmgv12qX4ACEqM4eYp4VHcGsfyd8yDg" />
-      
-     
+
+
 
         <link rel="icon" href="/favicon.ico" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-xxxxxx" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2MPLK12Y5" />
         <script>
           {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-xxxxxx');
+              gtag('config', 'G-Z2MPLK12Y5');
             `}
         </script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7304132375043084" crossOrigin="anonymous"></script>
       </Head>
-      <body style={{margin: '0px'}}>
+      <body style={{ margin: '0px' }}>
         <Main />
         <NextScript />
       </body>
