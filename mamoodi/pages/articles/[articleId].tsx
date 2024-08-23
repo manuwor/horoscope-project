@@ -83,7 +83,6 @@ const ArticlePage: React.FC = ({ articleModel }: any) => {
       {
         articleMod && <ArticleComponent article={articleMod}></ArticleComponent>
       }
-      <FooterComponent></FooterComponent>
 
     </div>
   )

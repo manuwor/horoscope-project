@@ -25,28 +25,28 @@ const HeaderComponent = () => {
         {
             id: 1,
             name: "ดูดวงรายวัน",
-            url: "https://scoutout.co/employer/"
+            url: "https://app.mamoodi.com/tarot-1"
         },
         {
             id: 2,
             name: "ดูดวงทะเบียนรถ",
-            url: "https://scoutout.co/jobseeker/"
+            url: "https://app.mamoodi.com/car-hora"
         },
         {
             id: 3,
             name: "ดูดวงตามวันเกิด",
-            url: "https://blog.scoutout.co"
+            url: "https://app.mamoodi.com/dob-hora"
         }
         ,
         {
             id: 4,
             name: "ดูดวงเบอร์โทรศัพท์",
-            url: "https://scoutout.co/all-products/"
+            url: "https://app.mamoodi.com/tel-hora"
         },
         {
             id: 5,
             name: "ตรวจหวยออนไลน์",
-            url: "https://scoutout.scoutcareers.com/th/home"
+            url: "https://app.mamoodi.com/lotto"
         },
         {
             id: 5,

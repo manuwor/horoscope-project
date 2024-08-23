@@ -1,14 +1,12 @@
 import dynamic from "next/dynamic";
-import { GetServerSidePropsContext } from "next";
 import React, { useEffect } from "react";
 
 import Head from "next/head";
 import config from "@/config";
 import AllArticlesComponent from "@/components/all-articles/all-articles";
-import { db } from "@/util/firebase-config";
+import { GetServerSidePropsContext } from "next";
 
-const AllArticlePage: React.FC = ({ articleModel }: any) => {
-
+const AllArticlePage = () => {
     const HeaderComponent = dynamic(() => import('../../components/header/header'));
     const FooterComponent = dynamic(() => import('../../components/footer/footer'));
 
@@ -39,16 +37,15 @@ const AllArticlePage: React.FC = ({ articleModel }: any) => {
                 <meta name="msapplication-TileColor" content="#ffffff" />
                 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
                 <meta name="theme-color" content="#ffffff" />
-                <title>บทความทั้งหมด - ScoutOut</title>
-                <meta name="google-site-verification" content="beDc3cM2TX-JOmgv12qX4ACEqM4eYp4VHcGsfyd8yDg" />
+                <title>บทความทั้งหมด - Mamoodi</title>
                 <meta name="description"
-                    content="บทความทั้งหมด - ScoutOut" />
-                <meta name="og:description" content="บทความทั้งหมด - ScoutOut" />
-                <meta property="og:url" content="https://blog.scoutout.co/articles/" />
+                    content="บทความทั้งหมด - Mamoodi" />
+                <meta name="og:description" content="บทความทั้งหมด - Mamoodi" />
+                <meta property="og:url" content="https://mamoodi.com/articles/" />
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="บทความทั้งหมด - ScoutOut" />
+                <meta property="og:title" content="บทความทั้งหมด - Mamoodi" />
                 <meta property="og:image"
-                    content="https://firebasestorage.googleapis.com/v0/b/scoutout-mang-test-e17bf.appspot.com/o/articles%2Fscoutout%2Fcover-so.jpg?alt=media" />
+                    content="https://mamoodi.com/assets/images/share-cover.jpg" />
                 <meta name="keywords"
                     content="บทความ" />
                 <meta property="og:keywords"
@@ -57,10 +54,7 @@ const AllArticlePage: React.FC = ({ articleModel }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <HeaderComponent></HeaderComponent>
-            {
-                articleModel && <AllArticlesComponent articles={articleModel}></AllArticlesComponent>
-            }
-            <FooterComponent></FooterComponent>
+            <AllArticlesComponent></AllArticlesComponent>
         </div>
     )
 }
@@ -68,12 +62,10 @@ const AllArticlePage: React.FC = ({ articleModel }: any) => {
 export default AllArticlePage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const response = await fetch(config.api.url + "articles", { method: 'GET' })
-    const article = await response.json();
-    const articleModel = article.articles;
+
     return {
-        props: {
-            articleModel,
-        },
+      props: {
+       
+      },
     };
-}
+  }

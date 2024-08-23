@@ -6,13 +6,13 @@ function generateSiteMap(arryList: string[]) {
      <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
        <!-- Add the static URLs manually -->
        <url>
-          <loc>https://blog.scoutout.co</loc>
-          <lastmod>2024-03-25</lastmod> 
+          <loc>https://mamoodi.com</loc>
+          <lastmod>2024-08-23</lastmod> 
           <changefreq>daily</changefreq>
           <priority>1.0</priority> 
        </url>
        <url>
-         <loc>https://blog.scoutout.co/articles</loc>
+         <loc>https://mamoodi.com/articles</loc>
          <lastmod>2024-03-25</lastmod> 
          <changefreq>daily</changefreq>
          <priority>1.0</priority> 
@@ -21,8 +21,8 @@ function generateSiteMap(arryList: string[]) {
       .map((item) => {
         return `
             <url>
-                <loc>${`https://blog.scoutout.co/articles/${item}`}</loc>
-                <lastmod>2024-03-25</lastmod> 
+                <loc>${`https://mamoodi.com/articles/${item}`}</loc>
+                <lastmod>2024-08-23</lastmod> 
                 <changefreq>daily</changefreq>
                 <priority>1.0</priority> 
             </url>

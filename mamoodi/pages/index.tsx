@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import config from "@/config";
 import AllArticlesComponent from "@/components/all-articles/all-articles";
-import styles from "../styles/Home.module.scss";
+import styles from "./home.module.scss";
 const HomePage: React.FC = ({ articleModel }: any) => {
   const HeaderComponent = dynamic(() => import('../components/header/header'));
   const FooterComponent = dynamic(() => import('../components/footer/footer'));
@@ -63,9 +63,11 @@ const HomePage: React.FC = ({ articleModel }: any) => {
             <span className={styles.landingItemTextHeader}>ดูดวงรายวัน</span>
             <span className={styles.landingItemTextDesc}>การทำนายดวงแต่ละวันแบบชิลๆ ไม่ว่าจะเป็นเรื่องงาน เงิน ความรัก หรือสุขภาพ มาเช็คดวงประจำวันเพื่อเตรียมตัวให้พร้อม สนุกๆ ไม่เครียด รู้แนวทางในแต่ละวันได้ที่นี่!</span>
           </div>
+          <div className={styles.landingItemArticleControl} >
+            <AllArticlesComponent></AllArticlesComponent>
+          </div>
         </div>
       </div>
-      <FooterComponent></FooterComponent>
     </div>
   )
 }

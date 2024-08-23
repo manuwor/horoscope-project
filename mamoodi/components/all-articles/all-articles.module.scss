@@ -2,13 +2,26 @@
 
 
 .allMain {
-    width: auto;
+    width: fit-content;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     padding-top: 2%;
+    border-radius: 8px;
+    background-color: white;
     padding-left: 5%;
     padding-right: 5%;
+    max-width: 992px;
+
+    @include media-breakpoint-down(md){
+        max-width: 552px;
+    }
+
+    @include media-breakpoint-down(sm){
+        max-width: 400px;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
 
     .allMainControl{
         display: grid;
@@ -17,6 +30,8 @@
         @include media-breakpoint-down(md){
             grid-template-columns: 100%;
         }
+
+
     }
 
     .allMainBanner{
@@ -44,7 +59,7 @@
         width: 100%;
 
         @include media-breakpoint-down(md){
-            width: 90%;
+            width: 100%;
             margin-left: auto;
             margin-right: auto;
         }
@@ -56,6 +71,11 @@
         margin-right: auto;
         font-family: "LINESeedSansTH_Bd";
         color: black;
+
+        @include media-breakpoint-down(sm){
+            font-size: 16px !important;
+        }
+    
     }
 
     .allHeaderItem{

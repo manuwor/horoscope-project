@@ -6,13 +6,12 @@ import UtilityService from "@/util/utility";
 import { Article } from "@/model/article.model";
 
 
-const AllArticlesComponent = ({articles}: any) => {
+const AllArticlesComponent = () => {
     const [articleMod, setArticleMod] = React.useState<Article[]>();
     const router = useRouter();
 
     useEffect(() => {
-        console.log(articles);
-        setArticleMod(articles);
+        getAllArticle()
 
     },[])
     const clickArticle = (item: Article) => {
@@ -22,10 +21,10 @@ const AllArticlesComponent = ({articles}: any) => {
 
     }
     const getAllArticle = async () => {
-        const response = await fetch(config.url, { method: 'GET' })
+        const response = await fetch(config.api.url+"articles", { method: 'GET' })
         const article = await response.json();
 
-        setArticleMod(article.result)
+        setArticleMod(article.articles)
 
     }
 
@@ -48,7 +47,7 @@ const AllArticlesComponent = ({articles}: any) => {
                                         return (
                                           
                                             <div className={styles.allListItem} key={index} onClick={() => clickArticle(item)}>
-                                                <img src="/assets/images/share-cover.jpg" className={styles.itemImg}></img>
+                                                <img src={item.imageUrl} className={styles.itemImg}></img>
                                                 <div className={styles.itemTextControl}>
                                                     <span className={styles.itemTitle}>{item.title}</span>
                                                     <span className={styles.itemDesc}>{item.shortDescription}</span>
