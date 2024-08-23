@@ -1,3 +1,4 @@
+import { Article } from "@/model/article.model";
 import SiteMapServices from "../services/sitemap";
 
 function generateSiteMap(arryList: string[]) {
@@ -37,11 +38,11 @@ export async function getServerSideProps({ res }) {
 
   const result = await SiteMapServices().fetchBlogPosts();
   if (result) {
-    const articles = result.result;
+    const articles = result.articles as Article[];
     const arryList = new Array();
     articles.map((item) => {
 
-      arryList.push(item.uuid);
+      arryList.push(item.id);
     })
 
     const sitemap = generateSiteMap(arryList);

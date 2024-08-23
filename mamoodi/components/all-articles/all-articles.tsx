@@ -32,6 +32,19 @@ const AllArticlesComponent = () => {
         UtilityService().clickSendEvent(name, "click");
         window.open(url, "_blank")
     }
+
+    const convertThDate = (dateString) : string=> {
+        const date = new Date(dateString);
+        const thaiDate = date.toLocaleDateString('th-TH', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+
+          return thaiDate;
+          
+    }
     return (
         <>
             <div className={styles.allMain}>
@@ -42,7 +55,9 @@ const AllArticlesComponent = () => {
                             <h1 className={styles.allHeader}>บทความทั้งหมด</h1>
                             <div className={styles.allListControl}>
                                 {articleMod.length > 0 &&
-                                    articleMod.map((item: Article, index: number) => {
+                                    articleMod.sort((a, b) => {
+                                        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                                      }).map((item: Article, index: number) => {
 
                                         return (
                                           
@@ -51,6 +66,7 @@ const AllArticlesComponent = () => {
                                                 <div className={styles.itemTextControl}>
                                                     <span className={styles.itemTitle}>{item.title}</span>
                                                     <span className={styles.itemDesc}>{item.shortDescription}</span>
+                                                    <span className={styles.itemDesc}>เผยแพร่ {convertThDate(item.createdAt)}</span>
                                                 </div>
                                             </div>
 
