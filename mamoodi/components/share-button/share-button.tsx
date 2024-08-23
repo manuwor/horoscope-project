@@ -10,9 +10,7 @@ import {
   WhatsappIcon,
 } from 'next-share';
 
-const ShareButtons: React.FC = () => {
-  const url = 'https://your-website-url.com'; // Replace with the URL you want to share
-  const title = 'Check out this amazing article!'; // Replace with the title of your content
+const ShareButtons = ({url, title}:any) => {
 
   return (
     <div style={{ display: 'flex', gap: '10px' }}>

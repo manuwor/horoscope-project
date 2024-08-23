@@ -28,7 +28,7 @@ const ArticleComponent = ({ article }: any) => {
                         <>
                             <span className={styles.articleItemHeader}>{articleMod.title}</span>
                             <span dangerouslySetInnerHTML={{__html: articleMod.content}} className={styles.articleItemDesc}></span>
-                            <ShareButtons />
+                            <ShareButtons url={config.url+"articles/"+articleMod.id} title={articleMod.title} ></ShareButtons>
                         </>
 
                     }

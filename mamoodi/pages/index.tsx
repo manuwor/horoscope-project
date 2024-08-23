@@ -10,10 +10,10 @@ const HomePage: React.FC = ({ articleModel }: any) => {
   const FooterComponent = dynamic(() => import('../components/footer/footer'));
 
   const startLotto = () => {
-    window.open(config.app_url.lotto)
+    window.open(config.app_url.lotto, "_self")
   }
   const startTarot = () => {
-    window.open(config.app_url.tarot1)
+    window.open(config.app_url.tarot1, "_self")
   }
   return (
     <div>

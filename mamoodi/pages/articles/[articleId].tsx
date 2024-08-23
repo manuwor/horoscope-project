@@ -41,8 +41,7 @@ const ArticlePage: React.FC = ({ articleModel }: any) => {
     <div>
 
       <Head>
-        {
-          articleMod &&
+     
           <>
             <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
             <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
@@ -61,22 +60,21 @@ const ArticlePage: React.FC = ({ articleModel }: any) => {
             <meta name="msapplication-TileColor" content="#ffffff" />
             <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
             <meta name="theme-color" content="#ffffff" />
-            <title>{articleMod.title}</title>
+            <title>{articleModel.title}</title>
             <meta name="google-site-verification" content="beDc3cM2TX-JOmgv12qX4ACEqM4eYp4VHcGsfyd8yDg" />
             <meta name="description"
-              content={articleMod.shortDescription} />
-            <meta name="og:description" content={articleMod.title} />
-            <meta property="og:url" content={config.url + "articles/" + articleMod.id} />
+              content={articleModel.shortDescription} />
+            <meta name="og:description" content={articleModel.title} />
+            <meta property="og:url" content={config.url + "articles/" + articleModel.id} />
             <meta property="og:type" content="website" />
-            <meta property="og:title" content={articleMod.title} />
+            <meta property="og:title" content={articleModel.title} />
             <meta property="og:image"
-              content={articleMod.imageUrl} />
-             <meta name="keywords" content={articleMod.keywords.join(', ')} />
-             <meta property="og:keywords" content={articleMod.keywords.join(', ')} />
+              content={articleModel.imageUrl} />
+             <meta name="keywords" content={articleModel.keywords.join(', ')} />
+             <meta property="og:keywords" content={articleModel.keywords.join(', ')} />
 
             <link rel="icon" href="/favicon.ico" />
           </>
-        }
 
       </Head>
       <HeaderComponent></HeaderComponent>
