@@ -5,7 +5,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import imageCompression from 'browser-image-compression';
 import { auth, db } from '../../../utility/firebase-config';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import APIService from '../../../services/api.service';
 import "../articles.scss";
 import QuillEditor from '../../quill-editor/quill-editor';
 import Header from '../../header/header';
@@ -16,15 +15,15 @@ const EditArticlePage: React.FC = () => {
   const [content, setContent] = useState('');
   const [slug, setSlug] = useState('');
   const [keywords, setKeywords] = useState('');
+  const [status, setStatus] = useState<string>('Draft'); // New state for status
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [article, setArticleMod] = useState<any>();
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>(); // Assuming you use React Router
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    // Fetch the existing article data
     const fetchArticle = async () => {
       if (!id) return;
       const docRef = doc(db, "articles", id);
@@ -40,6 +39,7 @@ const EditArticlePage: React.FC = () => {
         setKeywords(article.keywords.join(','));
         setImageUrl(article.imageUrl);
         setImagePreviewUrl(article.imageUrl); // Show the current image
+        setStatus(article.status || 'Draft'); // Load the status
         setArticleMod(article);
       } else {
         console.error("No such article found!");
@@ -106,6 +106,7 @@ const EditArticlePage: React.FC = () => {
       slug,
       keywords: keywords.split(','),
       imageUrl: imageURL,
+      status, // Include the status here
       updatedAt: new Date().toISOString(), // Track update time
     };
 
@@ -125,66 +126,72 @@ const EditArticlePage: React.FC = () => {
   return (
     <div className='articles-control'>
       <Header title="แก้ไขบทความ" isBack={true} />
-      {
-        article && 
+      {article && (
         <div className='articles-item-control'>
-        <Form onSubmit={handleSubmit} className='articles-form-control'>
-          <Form.Group controlId="title">
-            <Form.Label>Title</Form.Label>
-            <Form.Control
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="shortDescription" className="mt-3">
-            <Form.Label>Short Description</Form.Label>
-            <Form.Control
-              type="text"
-              value={shortDescription}
-              onChange={(e) => setShortDescription(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="slug" className="mt-3">
-            <Form.Label>Slug</Form.Label>
-            <Form.Control
-              type="text"
-              value={slug}
-              onChange={(e) => setSlug(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="content" className="mt-3">
-            <Form.Label>Content</Form.Label>
-            <QuillEditor value={content} editValue={content} setDefaultValue={setContent} />
-          </Form.Group>
-          <Form.Group controlId="image" className="mt-3 d-flex flex-column">
-            <Form.Label>Share Image</Form.Label>
-            {imagePreviewUrl && (
-              <div className="articles-img-preview">
-                <img src={imagePreviewUrl} className='articles-img-preview' alt="Preview" />
-              </div>
-            )}
-            <Form.Control type="file" accept="image/*" onChange={handleImageChange} />
-          </Form.Group>
-          <Form.Group controlId="keywords" className="mt-3">
-            <Form.Label>Keywords (comma separated)</Form.Label>
-            <Form.Control
-              type="text"
-              value={keywords}
-              onChange={(e) => setKeywords(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Button type="submit" variant="primary" className="mt-4">
-            Update
-          </Button>
-        </Form>
-      </div>
-      }
-      
+          <Form onSubmit={handleSubmit} className='articles-form-control'>
+            <Form.Group controlId="title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="shortDescription" className="mt-3">
+              <Form.Label>Short Description</Form.Label>
+              <Form.Control
+                type="text"
+                value={shortDescription}
+                onChange={(e) => setShortDescription(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="slug" className="mt-3">
+              <Form.Label>Slug</Form.Label>
+              <Form.Control
+                type="text"
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="status" className="mt-3">
+              <Form.Label>Status</Form.Label>
+              <Form.Select value={status} onChange={(e) => setStatus(e.target.value)} required>
+                <option value="Draft">Draft</option>
+                <option value="Publish">Publish</option>
+                <option value="Archived">Archived</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group controlId="content" className="mt-3">
+              <Form.Label>Content</Form.Label>
+              <QuillEditor value={content} editValue={content} setDefaultValue={setContent} />
+            </Form.Group>
+            <Form.Group controlId="image" className="mt-3 d-flex flex-column">
+              <Form.Label>Share Image</Form.Label>
+              {imagePreviewUrl && (
+                <div className="articles-img-preview">
+                  <img src={imagePreviewUrl} className='articles-img-preview' alt="Preview" />
+                </div>
+              )}
+              <Form.Control type="file" accept="image/*" onChange={handleImageChange} />
+            </Form.Group>
+            <Form.Group controlId="keywords" className="mt-3">
+              <Form.Label>Keywords (comma separated)</Form.Label>
+              <Form.Control
+                type="text"
+                value={keywords}
+                onChange={(e) => setKeywords(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button type="submit" variant="primary" className="mt-4">
+              Update
+            </Button>
+          </Form>
+        </div>
+      )}
     </div>
   );
 };

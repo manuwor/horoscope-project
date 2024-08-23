@@ -43,6 +43,7 @@ const HomePage: React.FC = ({ articleModel }: any) => {
         <meta property="og:url" content="https://mamoodi.com" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={config.seo.description} />
+        <meta name="google-adsense-account" content="ca-pub-7304132375043084"></meta>
         <meta property="og:image"
           content="/share-cover.jpg" />
         <meta name="keywords"

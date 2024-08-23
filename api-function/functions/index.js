@@ -40,12 +40,17 @@ app.post('/create-article', authenticate, async (req, res) => {
   try {
     const articleData = req.body;
 
-    // Validate the required fields
-    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt' ,'imageUrl'];
+    // Validate the required fields except imageUrl
+    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt', 'status'];
     for (const field of requiredFields) {
       if (!articleData[field]) {
         return res.status(400).json({ error: `Field '${field}' is required.` });
       }
+    }
+
+    // Check if imageUrl exists, if not, set it to null or a default value
+    if (!articleData.imageUrl) {
+      articleData.imageUrl = null; // or you can set a default value if you prefer
     }
 
     // Store the article in Firestore
@@ -71,8 +76,13 @@ app.get('/articles/:id', async (req, res) => {
       return res.status(404).json({ error: 'Article not found.' });
     }
 
-    // Get the article data and include the document ID
+    // Get the article data
     const article = { id: doc.id, ...doc.data() };
+
+    // Check if the article status is 'Publish'
+    if (article.status !== 'Publish') {
+      return res.status(403).json({ error: 'Article is not published.' });
+    }
 
     return res.status(200).json({ article });
   } catch (error) {
@@ -80,13 +90,16 @@ app.get('/articles/:id', async (req, res) => {
     return res.status(500).json({ error: 'Internal server error.' });
   }
 });
+
 app.get('/articles', async (req, res) => {
   try {
-    // Fetch all documents from the 'articles' collection
-    const articlesSnapshot = await db.collection('articles').get();
+    // Fetch all documents from the 'articles' collection where status is 'Publish'
+    const articlesSnapshot = await db.collection('articles')
+      .where('status', '==', 'Publish')
+      .get();
 
     if (articlesSnapshot.empty) {
-      return res.status(404).json({ error: 'No articles found.' });
+      return res.status(404).json({ error: 'No published articles found.' });
     }
 
     // Map through each document and retrieve its data
@@ -107,13 +120,16 @@ app.put('/edit-article/:id', authenticate, async (req, res) => {
     const articleData = req.body; // Get the data from the request body
 
     // Validate the required fields
-    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt' ,'imageUrl'];
+    const requiredFields = ['title', 'shortDescription', 'urlPath', 'content', 'keywords', 'slug', 'createdAt', 'status'];
     for (const field of requiredFields) {
       if (!articleData[field]) {
         return res.status(400).json({ error: `Field '${field}' is required.` });
       }
     }
-
+    // Check if imageUrl exists, if not, set it to null or a default value
+    if (!articleData.imageUrl) {
+      articleData.imageUrl = null; // or you can set a default value if you prefer
+    }
     // Get a reference to the document
     const docRef = db.collection('articles').doc(id);
 

@@ -19,7 +19,26 @@
         width: 100%;
         flex-direction: column;
 
+        .article-ai-button{
+            border-radius: 8px;
+            background-color: $button-color;
+            color: $primary-color;
+            border: none;
+            height: 30px;
+            font-family: $fontMedium;
+            font-size: 12px;
+            margin-left: auto;
+        }
 
+        .article-item-status{
+            border-radius: 4px;
+            padding: 4px 6px;
+            background-color: $primary-color;
+            color: white;
+            font-family: $fontMedium;
+            font-size: 12px;
+            margin-left: auto;
+        }
         .articles-item-title{
             font-size: 20px;
             color: white;
