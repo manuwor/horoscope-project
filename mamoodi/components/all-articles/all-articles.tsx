@@ -62,7 +62,7 @@ const AllArticlesComponent = () => {
                                         return (
                                           
                                             <div className={styles.allListItem} key={index} onClick={() => clickArticle(item)}>
-                                                <img src={item.imageUrl} className={styles.itemImg}></img>
+                                                <img src={item.imageUrl != null ? item.imageUrl : "/assets/images/share-cover.jpg"} className={styles.itemImg}></img>
                                                 <div className={styles.itemTextControl}>
                                                     <span className={styles.itemTitle}>{item.title}</span>
                                                     <span className={styles.itemDesc}>{item.shortDescription}</span>

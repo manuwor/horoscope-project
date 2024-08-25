@@ -6,14 +6,8 @@ import "./playing.scss";
 
 import TAROT_WAITING_IMG from "../../assets/images/waiting-img.jpg";
 import TarotCardWheel from '../tarot-card/tarot-card-wheel';
+import TarotCard from '../../model/card.model';
 
-interface TarotCard {
-  id: number;
-  name: string;
-  card_number: number;
-  meaning: string;
-  meaning_th: string
-}
 
 const PlayingPage: React.FC = () => {
   const location = useLocation();

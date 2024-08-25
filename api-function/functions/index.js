@@ -149,5 +149,146 @@ app.put('/edit-article/:id', authenticate, async (req, res) => {
   }
 });
 
+// POST: Create a new result document
+app.post('/results', async (req, res) => {
+  try {
+    const { menu_id, result, imageUrl } = req.body;
+
+    // Set default values if necessary
+    const imageUrlToUse = imageUrl || 'https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media';
+    const createdAt = admin.firestore.FieldValue.serverTimestamp();
+
+    // Add a new document with an auto-generated ID
+    const docRef = await db.collection('result').add({
+      menu_id,
+      result,
+      imageUrl: imageUrlToUse,
+      createdAt
+    });
+
+    res.status(200).json({ message: 'Result created successfully', id: docRef.id });
+  } catch (error) {
+    console.error('Error creating result:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// GET: Retrieve all results
+app.get('/results', async (req, res) => {
+  try {
+    const snapshot = await db.collection('result').get();
+    const results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    res.status(200).json(results);
+  } catch (error) {
+    console.error('Error getting results:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// GET: Retrieve a single result by result_id
+app.get('/results/:result_id', async (req, res) => {
+  try {
+    const { result_id } = req.params;
+    const doc = await db.collection('result').doc(result_id).get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Result not found' });
+    }
+
+    res.status(200).json({ id: doc.id, ...doc.data() });
+  } catch (error) {
+    console.error('Error getting result:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// PUT: Update a result by result_id
+app.put('/results/:result_id', async (req, res) => {
+  try {
+    const { result_id } = req.params;
+    const { menu_id, result, imageUrl, createdAt } = req.body;
+
+    const docRef = db.collection('result').doc(result_id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Result not found' });
+    }
+
+    await docRef.update({
+      menu_id,
+      result,
+      imageUrl,
+      createdAt: createdAt ? new Date(createdAt) : admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    res.status(200).json({ message: 'Result updated successfully' });
+  } catch (error) {
+    console.error('Error updating result:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// DELETE: Delete a result by result_id
+app.delete('/results/:result_id', async (req, res) => {
+  try {
+    const { result_id } = req.params;
+
+    const docRef = db.collection('result').doc(result_id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Result not found' });
+    }
+
+    await docRef.delete();
+
+    res.status(200).json({ message: 'Result deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting result:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// PUT: Increment the view count by result_id
+app.put('/results/:result_id/increment-view', async (req, res) => {
+  try {
+    const { result_id } = req.params;
+
+    const docRef = db.collection('result').doc(result_id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Result not found' });
+    }
+
+    // Increment the view count
+    const currentViewCount = doc.data().view || 0;
+    await docRef.update({ view: currentViewCount + 1 });
+
+    res.status(200).json({ message: 'View count incremented successfully', newViewCount: currentViewCount + 1 });
+  } catch (error) {
+    console.error('Error incrementing view count:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// GET: Retrieve all menu items
+app.get('/menu', async (req, res) => {
+  try {
+    const snapshot = await db.collection('menu').get();
+    const menuItems = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    res.status(200).json(menuItems);
+  } catch (error) {
+    console.error('Error getting menu items:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Export the express app as a cloud function
 exports.api = functions.region('asia-southeast1').https.onRequest(app);

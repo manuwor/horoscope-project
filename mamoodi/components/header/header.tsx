@@ -61,7 +61,7 @@ const HeaderComponent = () => {
 
     const clickOpenWeb = (url, name) => {
 
-        window.open(url , "_self");
+        window.open(url, "_self");
     }
 
     const clickHome = (url, name) => {
@@ -110,8 +110,10 @@ const HeaderComponent = () => {
                 <div className={styles.headerLogoControl}>
                     <img alt="MamooDi"
                         onClick={() => clickOpenWeb("https://mamoodi.com/", "Home")}
-                        src="/assets/images/logo.jpg" className={styles.headerLogoImg}></img>
-                    <span className={styles.headerLogoText}>Mamoodi</span>
+                        src="/assets/images/logo.png" className={styles.headerLogoImg}></img>
+                    <img className={styles.headerLogoTextImg}
+                        onClick={() => clickOpenWeb("https://mamoodi.com/", "Home")}
+                        src="/assets/images/text-logo.png"></img>
                 </div>
 
                 <div className={styles.headerMenuControl}>

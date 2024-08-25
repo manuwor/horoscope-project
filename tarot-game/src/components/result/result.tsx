@@ -2,26 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import TarotCard from '../../model/card.model';
-import Carousel from "react-multi-carousel";
-import Slider from '@ant-design/react-slick';
 import "react-multi-carousel/lib/styles.css";
-import { initializeApp } from "firebase/app";
 import { getVertexAI, getGenerativeModel, HarmCategory, HarmBlockThreshold, SafetySetting, HarmBlockMethod } from "firebase/vertexai-preview";
 import "./result.scss";
 import { ResultModel } from '../../model/result.model';
-import config from '../../config';
 import firebaseApp from '../../utility/firebase-config';
+import { safetySettings } from '../../utility/safe-settings';
+import { geminiConfig } from '../../utility/gemini-config';
 
-
-
-
-const generationConfig = {
-    temperature: 1,
-    topP: 0.1,
-    topK: 16,
-    maxOutputTokens: 1000,
-    responseMimeType: "application/json",
-};
 
 
 
@@ -42,26 +30,9 @@ const ResultPage: React.FC = () => {
 
     // Initialize the Vertex AI service
     const vertexAI = getVertexAI(firebaseApp);
-    const safetySettings: SafetySetting[] = [
+    
 
-        {
-            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-            method: HarmBlockMethod.HARM_BLOCK_METHOD_UNSPECIFIED
-        },
-        {
-            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-            method: HarmBlockMethod.HARM_BLOCK_METHOD_UNSPECIFIED
-        },
-        {
-            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-            method: HarmBlockMethod.HARM_BLOCK_METHOD_UNSPECIFIED
-        }
-    ];
-
-    const model = getGenerativeModel(vertexAI, { model: "gemini-1.5-flash", safetySettings: safetySettings, generationConfig });
+    const model = getGenerativeModel(vertexAI, { model: "gemini-1.5-flash", safetySettings: safetySettings, generationConfig: geminiConfig });
 
     const getMeaningInThai = async () => {
 
@@ -88,156 +59,12 @@ const ResultPage: React.FC = () => {
         console.log(jsonObject);
         setMeaning(jsonObject);
         setShowMeaning(true);
-        // alert(result.response.text());
-
     }
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 1
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
+   
 
-        }
-    };
-
-    const backToHome = () => {
-        navigate("/")
-    }
     return (
         <div className="result-control">
-            <div className='d-flex'>
-                <span className='result-back-to-home-header' onClick={backToHome}>ย้อนกลับ</span>
-            </div>
-            <div className='result-item-control'>
-                <div className={`result-item-carousel-control`}>
-                    <span className='result-item-header'>ไพ่ที่คุณเลือก</span>
-                    {selectedCards && (
-                        <Carousel
-                            responsive={responsive}
-                            swipeable={true}
-                            draggable={true}
-                            showDots={false}
-                            ssr={true} // means to render carousel on server-side.
-                            infinite={false}
-                            centerMode={true}
-                            arrows={true}
-                            keyBoardControl={true}
-                            customTransition="all .5"
-                            transitionDuration={500}
-                            containerClass={selectedCards.length > 1 ? 'carousel-container' : 'carousel-container carousel-container-center'}
-                            removeArrowOnDeviceType={["tablet", "mobile"]}
-                            dotListClass="custom-dot-list-style"
-                            itemClass="carousel-item-padding-40-px single-card-center"
-
-                        >
-                            {selectedCards.map((card: TarotCard, index: number) => (
-                                <div key={index} className="result-card-item">
-                                    <span className='result-card-name'>{card.name}</span>
-                                    <div className='result-card-button-control'>
-
-                                        <span className='result-card-desc'>{card.meaning}</span>
-
-                                    </div>
-
-                                </div>
-                            ))}
-                        </Carousel>
-                    )}
-                </div>
-                {
-                    !meaning && !showMeaning &&
-                    <div className='result-meaning-control'>
-                        <div className='result-meaning-loading-control'>
-                            <span className='result-meaning-loading-text'>กำลังเปิดคำทำนาย</span>
-                            <Spinner className='result-meaning-loading-spinner'></Spinner>
-                        </div>
-
-                    </div>
-                }
-                {showMeaning && (
-                    <div className='result-meaning-control'>
-                        {
-                            meaning ?
-                                <div className='result-meaning-item-control'>
-                                    {
-                                        meaning.overall &&
-                                        <div className='result-meaning-item'>
-                                            <span className='result-meaning-item-header'>
-                                                ตัวเลขที่แนะนำ : {meaning.number}
-                                            </span>
-
-                                        </div>
-                                    }
-                                    {
-                                        meaning.overall &&
-                                        <div className='result-meaning-item'>
-                                            <span className='result-meaning-item-header'>
-                                                ภาพรวม
-                                            </span>
-                                            <span className='result-meaning-item-desc'>
-                                                {meaning.overall}
-                                            </span>
-                                        </div>
-                                    }
-                                    {
-                                        meaning.love &&
-                                        <div className='result-meaning-item'>
-                                            <span className='result-meaning-item-header'>
-                                                ความรัก
-                                            </span>
-                                            <span className='result-meaning-item-desc'>
-                                                {meaning.love}
-                                            </span>
-                                        </div>
-                                    }
-                                    {
-                                        meaning.life &&
-                                        <div className='result-meaning-item'>
-                                            <span className='result-meaning-item-header'>
-                                                ชีวิต
-                                            </span>
-                                            <span className='result-meaning-item-desc'>
-                                                {meaning.life}
-                                            </span>
-                                        </div>
-                                    }
-                                    {
-                                        meaning.job &&
-                                        <div className='result-meaning-item'>
-                                            <span className='result-meaning-item-header'>
-                                                งาน
-                                            </span>
-                                            <span className='result-meaning-item-desc'>
-                                                {meaning.job}
-                                            </span>
-                                        </div>
-                                    }
-                                </div> :
-                                <div className='d-flex'>
-                                    <Button className='result-card-button' onClick={getMeaningInThai}>ดูผลทำนายอีกครั้ง</Button>
-                                </div>
-                        }
-                        <div className='d-flex'>
-
-                            <span className='result-back-to-home' onClick={backToHome}>กลับหน้าหลัก</span>
-                        </div>
-
-
-                    </div>
-                )}
-            </div>
+            
 
         </div>
     );

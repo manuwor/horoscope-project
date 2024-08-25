@@ -7,6 +7,7 @@ import PlayingPage from './components/playing/playing';
 import ResultPage from './components/result/result';
 import LottoComponent from './components/lotto/lotto';
 import { useEffect } from 'react';
+import Menu1Component from './components/menu_1/menu_1';
 function App() {
   const RedirectToExternal = () => {
     useEffect(() => {
@@ -20,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<RedirectToExternal />} />
-          <Route path="/tarot-1" element={<InputPage />} />
+          <Route path="/tarot-1" element={<Menu1Component />} />
           <Route path="/tarot-1/play" element={<PlayingPage />} />
           <Route path="/lotto" element={<LottoComponent />} />
           <Route path="/tarot-1/result" element={<ResultPage />} />

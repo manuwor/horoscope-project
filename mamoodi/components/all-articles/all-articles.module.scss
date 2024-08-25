@@ -2,46 +2,47 @@
 
 
 .allMain {
-    width: fit-content;
+    width: auto;
     min-height: 100vh;
     display: flex;
+   
     flex-direction: column;
-    border-radius: 8px;
-    background-color: white;
     padding-left: 2%;
     padding-right: 2%;
-    max-width: 992px;
 
-    @include media-breakpoint-down(md){
+
+    @include media-breakpoint-down(md) {
         max-width: 552px;
     }
 
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
         max-width: 400px;
         padding-left: 0%;
         padding-right: 0%;
     }
 
-    .allMainControl{
+    .allMainControl {
         display: grid;
         grid-template-columns: 20% 60% 20%;
-
-        @include media-breakpoint-down(md){
+        max-width: 992px;
+       
+        padding: 12px;
+        @include media-breakpoint-down(md) {
             grid-template-columns: 100%;
         }
 
 
     }
 
-    .allMainBanner{
+    .allMainBanner {
         display: flex;
         flex-direction: column;
 
-        @include media-breakpoint-down(md){
+        @include media-breakpoint-down(md) {
             order: 3;
         }
 
-        .allBannerItem{
+        .allBannerItem {
             cursor: pointer;
             width: 80%;
             margin-left: auto;
@@ -52,32 +53,35 @@
         }
     }
 
-    .allMainCenter{
+    .allMainCenter {
         display: flex;
         flex-direction: column;
         width: 100%;
-
-        @include media-breakpoint-down(md){
-            width: 100%;
+        border-radius: 20px;
+        background-color: #333333;
+        box-shadow: inset 0 0 10px #333333, inset 0 0 20px #222222;
+        @include media-breakpoint-down(md) {
+            width: auto;
             margin-left: auto;
             margin-right: auto;
+            padding: 2%;
         }
     }
-  
+
 
     .allHeader {
         font-size: 24px !important;
         margin-right: auto;
         font-family: "LINESeedSansTH_Bd";
-        color: black;
+        color: white;
 
-        @include media-breakpoint-down(sm){
+        @include media-breakpoint-down(sm) {
             font-size: 16px !important;
         }
-    
+
     }
 
-    .allHeaderItem{
+    .allHeaderItem {
         cursor: pointer;
         width: 100%;
         height: 40vh;
@@ -85,11 +89,11 @@
         flex-direction: column;
         position: relative;
 
-        @include media-breakpoint-down(md){
+        @include media-breakpoint-down(md) {
             height: auto;
         }
 
-        .allHeaderItemImg{
+        .allHeaderItemImg {
             width: 100%;
             height: 35vh;
             object-fit: cover;
@@ -97,13 +101,13 @@
             margin-top: 0px;
             margin-bottom: 0px;
 
-            @include media-breakpoint-down(md){
+            @include media-breakpoint-down(md) {
                 height: 200px;
                 border-radius: 0px;
             }
         }
 
-        .allHeaderItemCardControl{
+        .allHeaderItemCardControl {
             position: absolute;
             width: 400px;
             height: 150px;
@@ -116,7 +120,7 @@
             flex-direction: column;
             padding: 16px;
 
-            @include media-breakpoint-down(md){
+            @include media-breakpoint-down(md) {
                 margin-top: 0px;
                 position: relative;
                 width: 100%;
@@ -127,22 +131,22 @@
                 margin-bottom: 12px;
             }
 
-            .allHeaderItemCardTitle{
+            .allHeaderItemCardTitle {
                 font-size: 16px !important;
                 font-family: $fontMedium !important;
-                color: black;
+                color: white;
 
-                @include media-breakpoint-down(md){
+                @include media-breakpoint-down(md) {
                     font-size: 16px !important;
                 }
             }
 
-            .allHeaderItemCardDesc{
+            .allHeaderItemCardDesc {
                 font-size: 13px !important;
                 font-family: $fontRegular !important;
-                color: rgb(77, 77, 77);
+                color: white;
 
-                @include media-breakpoint-down(md){
+                @include media-breakpoint-down(md) {
                     font-size: 14px !important;
                 }
             }
@@ -158,7 +162,7 @@
         grid-template-columns: repeat(3, 1fr);
         column-gap: 12px;
 
-        @include media-breakpoint-down(md){
+        @include media-breakpoint-down(md) {
             display: flex;
             margin-top: 12px;
             flex-direction: column;
@@ -172,11 +176,10 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #f4f4f4;
-            box-shadow: 0px 0px 5px 2px #f4f4f4;
             margin-bottom: 16px;
-            
 
-            @include media-breakpoint-down(md){
+
+            @include media-breakpoint-down(md) {
                 margin-bottom: 12px;
                 flex-direction: row;
                 border-radius: 8px;
@@ -189,7 +192,7 @@
                 margin-top: 0px;
                 margin-bottom: 0px;
 
-                @include media-breakpoint-down(md){
+                @include media-breakpoint-down(md) {
                     width: 120px;
                     height: 120px;
                     margin-top: auto;
@@ -200,11 +203,12 @@
                 }
             }
 
-            .itemTextControl{
+            .itemTextControl {
                 display: flex;
                 flex-direction: column;
                 padding: 6px;
-                @include media-breakpoint-down(md){
+
+                @include media-breakpoint-down(md) {
                     padding: 12px;
                 }
             }
@@ -212,10 +216,10 @@
             .itemTitle {
                 font-size: 16px !important;
                 font-family: "LINESeedSansTH_Bd" !important;
-                color: black;
+                color: white;
                 margin-top: 3px;
 
-                @include media-breakpoint-down(md){
+                @include media-breakpoint-down(md) {
                     font-size: 13px !important;
                 }
             }
@@ -224,7 +228,7 @@
                 width: 100%;
                 font-size: 12px !important;
                 font-family: $fontRegular !important;
-                color: rgb(77, 77, 77);
+                color: white;
                 margin-top: 3px;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
@@ -232,12 +236,13 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: normal;
-                max-height: 3em; /* adjust based on line-height and font-size */
+                max-height: 3em;
+                /* adjust based on line-height and font-size */
 
-                @include media-breakpoint-down(md){
+                @include media-breakpoint-down(md) {
                     font-size: 11px !important;
                 }
-              
+
             }
         }
     }

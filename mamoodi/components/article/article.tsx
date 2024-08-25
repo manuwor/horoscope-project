@@ -18,7 +18,7 @@ const ArticleComponent = ({ article }: any) => {
     }, [])
 
     return (
-        <>
+        <div className={styles.bodyCustomMain}>
             <div className={styles.articleMain}>
 
                 <div className={styles.articleItem}>
@@ -34,7 +34,7 @@ const ArticleComponent = ({ article }: any) => {
                     }
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

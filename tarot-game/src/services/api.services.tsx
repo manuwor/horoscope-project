@@ -16,6 +16,10 @@ export default function APIService() {
         async getLottoCurrent(id) {
             return axios.get(config.api_lotto.base_url + config.api_lotto.detail + "/"+ id, headerFix)
                 .then(res => res).catch(err => console.log(err));
-        }
+        },
+        async postResult(body) {
+            return axios.post(config.api.base_url + config.api.result, body, headerFix)
+                .then(res => res).catch(err => console.log(err));
+        },
     };
 }

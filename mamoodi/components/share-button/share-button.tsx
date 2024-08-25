@@ -8,6 +8,8 @@ import {
   LinkedinIcon,
   WhatsappShareButton,
   WhatsappIcon,
+  LineShareButton,
+  LineIcon,
 } from 'next-share';
 
 const ShareButtons = ({url, title}:any) => {
@@ -22,9 +24,9 @@ const ShareButtons = ({url, title}:any) => {
         <TwitterIcon size={32} round />
       </TwitterShareButton>
 
-      <LinkedinShareButton url={url}>
-        <LinkedinIcon size={32} round />
-      </LinkedinShareButton>
+      <LineShareButton url={url}>
+        <LineIcon size={32} round />
+      </LineShareButton>
 
       <WhatsappShareButton url={url} title={title}>
         <WhatsappIcon size={32} round />

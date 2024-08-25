@@ -1,0 +1,95 @@
+@import "../../App.scss";
+
+
+.menu-1-control{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 24px;
+
+
+    .menu-1-playing-control{
+        display: flex;
+        flex-direction: column;
+
+
+        .menu-1-playing-title{
+            font-size: 18px;
+            font-family: $fontMedium;
+            color: white;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .menu-1-playing-desc{
+            font-size: 13px;
+            font-family: $fontRegular;
+            color: $white;
+            line-height: 1.2em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-1-form-control{
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-top: 24px;
+            min-height: 400px;
+
+            .menu-1-form-loading{
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+
+                .menu-1-form-loading-spinner{
+                    width: 30px;
+                    height: 30px;
+                    object-fit: contain;
+                    margin-left: auto;
+                    margin-right: auto;
+                    color: white;
+                    margin-bottom: 14px;
+                }
+
+                .menu-1-form-loading-text{
+                    font-size: 16px;
+                    font-family: $fontMedium;
+                    color: white;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+            
+
+            .menu-1-form-label{
+                font-size: 14px;
+                font-family: $fontMedium;
+                color: white;
+            }
+
+            .menu-1-tarot-control{
+                width: 100%;
+                height: 200px;
+                position: relative;
+                display: block;
+                justify-content: center;
+            }
+        }
+    }
+
+    .menu-1-button{
+        margin-top: auto;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 48px;
+        border: 1px solid $button-color !important;
+        background-color: $button-color !important;
+        color: $primary-color !important;
+        font-size: 16px;
+        font-family: $fontMedium;
+    }
+
+
+
+}

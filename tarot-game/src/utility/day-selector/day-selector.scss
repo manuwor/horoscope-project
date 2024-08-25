@@ -1,0 +1,31 @@
+@import "../../App.scss";
+
+.day-selector-control{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5%;
+
+    .day-selector-label{
+        font-size: 18px;
+        color: white;
+        font-family: $fontMedium;
+    }
+
+    .day-selector-item-control{
+        margin-bottom: 14px;
+    }
+
+    .day-selector-circle{
+        border-color: white;
+        color: black;
+        border-radius: 50%;
+        background-color: white;
+    }
+    .day-selector-circle-active{
+        border-color: $primary-color;
+        color: $primary-color;
+        border-radius: 50%;
+        background-color: $button-color;
+    }
+}

@@ -2,12 +2,12 @@
 
 .headerMain {
 
-    width: auto;
+    width: 100vw;
     min-height: 80px;
-    background-color: white;
     display: flex;
-    padding-left: 2%;
-    padding-right: 2%;
+    background: black;
+    border: none;
+
 
     .headerLogo {
         width: auto;
@@ -25,6 +25,13 @@
         display: flex;
         margin-top: auto;
         margin-bottom: auto;
+        padding-left: 2%;
+        padding-right: 2%;
+        width: 30%;
+
+        @include media-breakpoint-down(md){
+            width: 100%;
+        }
 
         .headerLogoImg{
             width: 40px;
@@ -33,13 +40,13 @@
             margin-right: 12px;
         }
 
-        .headerLogoText{
-            font-size: 24px;
-            margin-left: 14px;
-            font-family: $fontMedium;
-            color: black;
-            margin-top: auto;
-            margin-bottom: auto;
+        .headerLogoTextImg{
+           width: auto;
+           height: 40px;
+           object-fit: contain;
+           margin-top: auto;
+           margin-bottom: auto;
+           margin-left: 6px;
         }
     }
 
@@ -54,7 +61,7 @@
         }
 
         .headerMenuMobileToggle{
-            color: black;
+            color: white;
             width: 30px;
             height: 30px;
             margin-left: auto;
@@ -92,10 +99,10 @@
 
         .headerMenuText {
             cursor: pointer;
-            font-size: 15px;
+            font-size: 12px;
             font-family: $fontRegular;
             text-decoration: none;
-            color: black;
+            color: white;
             margin-left: 14px;
             margin-right: 14px;
             margin-top: auto;
@@ -112,6 +119,7 @@
                 margin-left: 8px;
                 margin-right: 8px;
             }
+
 
             &:hover {
                 color: $primary-color;

@@ -33,43 +33,53 @@ $shadow-box: 0px 0px 4px #112644;
 $gradient-primary: linear-gradient(85deg, #AF34F4 0%, #7321E4 39.97%, #4008DC 100%);
 
 
-$fontBold: "LINESeedSansTH_He";
-$fontRegular: "LINESeedSansTH_Rg";
-$fontMedium: "LINESeedSansTH_Bd";
-$fontLight: "LINESeedSansTH_Th";
+$fontBold: "IBMPlexSansThaiLooped-Bold";
+$fontRegular: "IBMPlexSansThaiLooped-Regular";
+$fontMedium: "IBMPlexSansThaiLooped-Medium";
+$fontLight: "IBMPlexSansThaiLooped-Light";
 
 @font-face {
     font-family: $fontBold;
-    src: local("LINESeedSansTH_He"), url(../public/fonts/LINESeedSansTH_He.ttf) format("truetype");
+    src: local("IBMPlexSansThaiLooped-Bold"), url(../public/fonts/IBMPlexSansThaiLooped-Bold.ttf) format("truetype");
 }
 
 @font-face {
     font-family: $fontMedium;
-    src: local("LINESeedSansTH_Bd"), url(../public/fonts/LINESeedSansTH_Bd.ttf) format("truetype");
+    src: local("IBMPlexSansThaiLooped-Medium"), url(../public/fonts/IBMPlexSansThaiLooped-Medium.ttf) format("truetype");
 }
 
 @font-face {
     font-family: $fontRegular;
-    src: local("LINESeedSansTH_Rg"), url(../public/fonts/LINESeedSansTH_Rg.ttf) format("truetype");
+    src: local("IBMPlexSansThaiLooped-Regular"), url(../public/fonts/IBMPlexSansThaiLooped-Regular.ttf) format("truetype");
 }
 
 @font-face {
     font-family: $fontLight;
-    src: local("LINESeedSansTH_Th"), url(../public/fonts/LINESeedSansTH_Th.ttf) format("truetype");
+    src: local("IBMPlexSansThaiLooped-Light"), url(../public/fonts/IBMPlexSansThaiLooped-Light.ttf) format("truetype");
 }
 
 .body {
     font-family: $fontRegular !important;
     // background-color: #edf0f5;
     scrollbar-width: none;
-    background-size: cover;
-    /* or contain depending on what you need */
+    background-color: black;
+    background-image: url('/assets/images/bg.png');
+    background-position: bottom center;
     background-repeat: no-repeat;
-    background-position: top center;
+    background-size: cover;
+    /* Adjust this as needed */
     margin-left: 0px !important;
     margin-right: 0px !important;
     width: 100vw;
     display: flex;
     min-height: 100vh;
 
+}
+
+.bodyCustomMain{
+    background-color: black;
+    background-image: url('/assets/images/bg.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

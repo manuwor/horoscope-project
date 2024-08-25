@@ -5,6 +5,10 @@ const test = {
         base_url: "https://lotto.api.rayriffy.com",
         list: "/list",
         detail: "/lotto"
+    },
+    api:{
+        base_url: "https://asia-southeast1-horoscope-project-d3937.cloudfunctions.net/api/",
+        result: "results"
     }
       //https://github.com/rayriffy/thai-lotto-api
 
@@ -16,6 +20,10 @@ const prod = {
         base_url: "https://lotto.api.rayriffy.com",
         list: "/list",
         detail: "/lotto"
+    },
+    api:{
+        base_url: "https://asia-southeast1-horoscope-project-d3937.cloudfunctions.net/api/",
+        result: "results"
     }
 
 

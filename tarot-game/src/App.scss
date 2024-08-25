@@ -42,6 +42,13 @@ $gradient-primary: linear-gradient(85deg, #AF34F4 0%, #7321E4 39.97%, #4008DC 10
     color: $dark-blue !important;
 }
 
+body{
+    background-color: black;
+    background-image: url('/assets/images/bg.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 a {
     cursor: pointer;

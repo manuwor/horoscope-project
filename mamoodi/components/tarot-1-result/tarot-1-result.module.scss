@@ -1,0 +1,87 @@
+@import "../../styles/globals.scss";
+
+
+.tarot1Result {
+    display: flex;
+    width: auto;
+    height: auto;
+    min-height: 100vh;
+    padding: 16px 12px;
+
+    @include media-breakpoint-down(md){
+        width: auto;
+    }
+
+    .tarot1ResultItem {
+        display: flex;
+        margin-top: 24px;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 992px;
+
+        @include media-breakpoint-down(md){
+            max-width: 552px;
+        }
+
+        .tarot1ResultShareControl {
+            margin-top: 24px;
+        }
+
+        .tarot1ResultItemHeader {
+            font-size: 20px;
+            font-family: $fontMedium;
+            text-align: center;
+            margin-left: auto;
+            color: white;
+            margin-right: auto;
+        }
+
+        .tarot1ResultCardControl {
+            margin-top: 14px;
+            background-color: #333333;
+            /* Approximate dark gray color */
+            border-radius: 20px;
+            box-shadow: inset 0 0 10px #333333, inset 0 0 20px #222222;
+            width: auto;
+            height: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+
+            .tarot1ResultCardTitle {
+                font-size: 17px;
+                font-family: $fontMedium;
+                color: white;
+
+            }
+
+            .tarot1ResultCardDesc {
+                font-size: 12px;
+                font-family: $fontRegular;
+                color: white;
+
+            }
+        }
+
+        .tarot1ResultStartControl{
+            display: flex;
+            margin-top: 24px;
+            margin-left: auto;
+            margin-right: auto;
+
+            .tarot1ResultStartButton{
+                margin-top: 36px;
+                width: 300px;
+                height: 48px;
+                border: 1px solid $button-color;
+                background-color: $button-color;
+                color: $primary-color;
+                font-size: 16px;
+                border-radius: 20px;
+                font-family: $fontMedium;
+            }
+        }
+
+    }
+}

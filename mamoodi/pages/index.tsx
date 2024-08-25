@@ -54,25 +54,27 @@ const HomePage: React.FC = ({ articleModel }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderComponent></HeaderComponent>
-      <div className={styles.landingControl}>
-        <div className={styles.landingItemControl}>
-          <div className={styles.landingItemListControl} onClick={startLotto}>
-            <img src="/assets/images/lotto.jpg" className={styles.landingItemListImgControl} />
-            <div className={styles.landingItemListContentControl}>
-              <span className={styles.landingItemTextHeader}>ตรวจสลากกินแบ่งรัฐบาล</span>
-              <span className={styles.landingItemTextDesc}>เช็คผลรางวัลลอตเตอรี่ งวดนี้คุณจะรวยหรือเปล่า เช็คเลขได้ง่ายๆ รวดเร็ว ไม่ต้องรอ ให้คุณรู้ผลได้ทันที พร้อมลุ้นและสนุกไปกับการเสี่ยงโชค!</span>
-            </div>
+      <div className={styles.bodyCustomMain}>
+        <div className={styles.landingControl}>
+          <div className={styles.landingItemControl}>
+            <div className={styles.landingItemListControl} onClick={startLotto}>
+              <img src="/assets/images/lotto.jpg" className={styles.landingItemListImgControl} />
+              <div className={styles.landingItemListContentControl}>
+                <span className={styles.landingItemTextHeader}>ตรวจสลากกินแบ่งรัฐบาล</span>
+                <span className={styles.landingItemTextDesc}>เช็คผลรางวัลลอตเตอรี่ งวดนี้คุณจะรวยหรือเปล่า เช็คเลขได้ง่ายๆ รวดเร็ว ไม่ต้องรอ ให้คุณรู้ผลได้ทันที พร้อมลุ้นและสนุกไปกับการเสี่ยงโชค!</span>
+              </div>
 
-          </div>
-          <div className={styles.landingItemListControl} onClick={startTarot}>
-            <img src="/assets/images/daily-horos.jpg" className={styles.landingItemListImgControl} />
-            <div className={styles.landingItemListContentControl}>
-              <span className={styles.landingItemTextHeader}>ดูดวงรายวัน</span>
-              <span className={styles.landingItemTextDesc}>การทำนายดวงแต่ละวันแบบชิลๆ ไม่ว่าจะเป็นเรื่องงาน เงิน ความรัก หรือสุขภาพ มาเช็คดวงประจำวันเพื่อเตรียมตัวให้พร้อม สนุกๆ ไม่เครียด รู้แนวทางในแต่ละวันได้ที่นี่!</span>
             </div>
-          </div>
-          <div className={styles.landingItemArticleControl} >
-            <AllArticlesComponent></AllArticlesComponent>
+            <div className={styles.landingItemListControl} onClick={startTarot}>
+              <img src="/assets/images/daily-horos.jpg" className={styles.landingItemListImgControl} />
+              <div className={styles.landingItemListContentControl}>
+                <span className={styles.landingItemTextHeader}>ดูดวงรายวัน</span>
+                <span className={styles.landingItemTextDesc}>การทำนายดวงแต่ละวันแบบชิลๆ ไม่ว่าจะเป็นเรื่องงาน เงิน ความรัก หรือสุขภาพ มาเช็คดวงประจำวันเพื่อเตรียมตัวให้พร้อม สนุกๆ ไม่เครียด รู้แนวทางในแต่ละวันได้ที่นี่!</span>
+              </div>
+            </div>
+            <div className={styles.landingItemArticleControl} >
+              <AllArticlesComponent></AllArticlesComponent>
+            </div>
           </div>
         </div>
       </div>
