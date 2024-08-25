@@ -12,6 +12,9 @@ const HomePage: React.FC = ({ articleModel }: any) => {
   const startLotto = () => {
     window.open(config.app_url.lotto, "_self")
   }
+  const startCarHora = () => {
+    window.open(config.app_url.car_hora, "_self")
+  }
   const startTarot = () => {
     window.open(config.app_url.tarot1, "_self")
   }
@@ -71,6 +74,14 @@ const HomePage: React.FC = ({ articleModel }: any) => {
                 <span className={styles.landingItemTextHeader}>ดูดวงรายวัน</span>
                 <span className={styles.landingItemTextDesc}>การทำนายดวงแต่ละวันแบบชิลๆ ไม่ว่าจะเป็นเรื่องงาน เงิน ความรัก หรือสุขภาพ มาเช็คดวงประจำวันเพื่อเตรียมตัวให้พร้อม สนุกๆ ไม่เครียด รู้แนวทางในแต่ละวันได้ที่นี่!</span>
               </div>
+            </div>
+            <div className={styles.landingItemListControl} onClick={startCarHora}>
+              <img src="/assets/images/car-hora.jpg" className={styles.landingItemListImgControl} />
+              <div className={styles.landingItemListContentControl}>
+                <span className={styles.landingItemTextHeader}>ดูดวงทะเบียนรถ</span>
+                <span className={styles.landingItemTextDesc}>การดูดวงทะเบียนรถเป็นความเชื่อส่วนบุคคลที่หลายคนให้ความสำคัญ โดยเชื่อว่าตัวเลขในทะเบียนรถนั้นมีความหมายและสามารถส่งผลต่อชีวิตของผู้ขับขี่ได้ เช่น โชคลาภ ความปลอดภัย หรือความสำเร็จในด้านต่าง ๆ</span>
+              </div>
+
             </div>
             <div className={styles.landingItemArticleControl} >
               <AllArticlesComponent></AllArticlesComponent>

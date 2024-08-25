@@ -1,5 +1,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import '~bootstrap/scss/bootstrap';
+
+
 $fontBold: "LINESeedSansTH_He";
 $fontRegular: "LINESeedSansTH_Rg";
 $fontMedium: "LINESeedSansTH_Bd";
@@ -45,7 +47,7 @@ $gradient-primary: linear-gradient(85deg, #AF34F4 0%, #7321E4 39.97%, #4008DC 10
 body{
     background-color: black;
     background-image: url('/assets/images/bg.png');
-    background-position: bottom center;
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -61,7 +63,6 @@ a {
 
 body {
     font-family: $fontRegular !important;
-    background-color: $bg-color;
     scrollbar-width: none;
     justify-content: center;
     display: flex;

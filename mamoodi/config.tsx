@@ -8,7 +8,8 @@ const test = {
     },
     app_url: {
         lotto: "https://app.mamoodi.com/lotto",
-        tarot1: "https://app.mamoodi.com/tarot-1"
+        tarot1: "https://app.mamoodi.com/tarot-1",
+        car_hora: "https://app.mamoodi.com/car-hora",
     },
     api:{
         url : "https://asia-southeast1-horoscope-project-d3937.cloudfunctions.net/api/"
@@ -27,7 +28,8 @@ const prod = {
     },
     app_url: {
         lotto: "https://app.mamoodi.com/lotto",
-        tarot1: "https://app.mamoodi.com/tarot-1"
+        tarot1: "https://app.mamoodi.com/tarot-1",
+        car_hora: "https://app.mamoodi.com/car-hora",
     },
     api:{
         url : "https://asia-southeast1-horoscope-project-d3937.cloudfunctions.net/api/"

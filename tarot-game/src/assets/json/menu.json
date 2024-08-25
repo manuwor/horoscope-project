@@ -16,5 +16,14 @@
         },
         "name": "ดูดวงวันเกิด",
         "menu_id": "hnkHanftGEnPS9a9Fa2X"
+    },
+    {
+        "id": "LTnxtDXHVsqY9n8rBHfj",
+        "createdAt": {
+            "_seconds": 1724562148,
+            "_nanoseconds": 319000000
+        },
+        "name": "ดูดวงทะเบียนรถ",
+        "menu_id": "LTnxtDXHVsqY9n8rBHfj"
     }
 ]
