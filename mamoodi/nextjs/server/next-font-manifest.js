@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{"/_app":[],"/":[],"/articles":[],"/car-hora/result":[],"/articles/[articleId]":[],"/tarot-1/result":[]},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';
+self.__NEXT_FONT_MANIFEST='{"pages":{"/_app":[],"/":[],"/car-hora/result":[],"/articles":[],"/articles/[articleId]":[],"/tarot-1/result":[],"/tel-hora/result":[]},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';

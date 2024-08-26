@@ -57,9 +57,13 @@
             }
 
             .tarot1ResultCardDesc {
-                font-size: 12px;
+                font-size: 15px;
                 font-family: $fontRegular;
                 color: white;
+
+                @include media-breakpoint-down(md){
+                    font-size: 13px;
+                }
 
             }
         }

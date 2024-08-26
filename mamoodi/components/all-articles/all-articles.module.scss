@@ -1,11 +1,13 @@
 @import "../../styles/globals.scss";
 
-
+.allBG{
+    background-color: #333333;
+    box-shadow: inset 0 0 10px #333333, inset 0 0 20px #222222;
+}
 .allMain {
     width: auto;
     min-height: 100vh;
     display: flex;
-   
     flex-direction: column;
     padding-left: 2%;
     padding-right: 2%;
@@ -20,6 +22,31 @@
         padding-left: 0%;
         padding-right: 0%;
     }
+
+}
+
+.allMainBG {
+    width: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #333333;
+    box-shadow: inset 0 0 10px #333333, inset 0 0 20px #222222;
+
+
+    @include media-breakpoint-down(md) {
+        max-width: 552px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        max-width: 400px;
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+
+}
 
     .allMainControl {
         display: grid;
@@ -57,9 +84,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        border-radius: 20px;
-        background-color: #333333;
-        box-shadow: inset 0 0 10px #333333, inset 0 0 20px #222222;
+      
         @include media-breakpoint-down(md) {
             width: auto;
             margin-left: auto;
@@ -67,7 +92,21 @@
             padding: 2%;
         }
     }
+    
 
+    .allMainCenterNoBG {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: transparent;
+       
+        @include media-breakpoint-down(md) {
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2%;
+        }
+    }
 
     .allHeader {
         font-size: 24px !important;
@@ -177,6 +216,8 @@
             flex-direction: column;
             border: 1px solid #f4f4f4;
             margin-bottom: 16px;
+            padding-left: 4px;
+            padding-right: 4px;
 
 
             @include media-breakpoint-down(md) {
@@ -246,4 +287,3 @@
             }
         }
     }
-}

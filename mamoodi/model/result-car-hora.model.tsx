@@ -8,14 +8,14 @@
     createdAt: CreatedAt
   }
   
-  export interface Result {
+interface Result {
     sum_car_id: string
     explanation: string
     title: string
     car_id: string
   }
   
-  export interface CreatedAt {
+interface CreatedAt {
     _seconds: number
     _nanoseconds: number
   }

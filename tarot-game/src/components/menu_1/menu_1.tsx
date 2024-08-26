@@ -36,13 +36,18 @@ const Menu1Component = () => {
         }, 1000); // Simulate shuffle animation delay
     };
     const setCardSelection = (cardId: number) => {
-        const filteredDeck = shuffledDeck.find(card => card.id === cardId);
-        if (filteredDeck) {
-            const selectedCardMod = [...selectedCards, filteredDeck] as TarotCard[];
-            setSelectedCards(selectedCardMod);
-        } else {
-            console.log(`Card with id ${cardId} not found in shuffledDeck`);
+        if(cardId != null){
+            const filteredDeck = shuffledDeck.find(card => card.id === cardId);
+            if (filteredDeck) {
+                const selectedCardMod = [...selectedCards, filteredDeck] as TarotCard[];
+                setSelectedCards(selectedCardMod);
+            } else {
+                console.log(`Card with id ${cardId} not found in shuffledDeck`);
+            }
+        }else{
+            setSelectedCards(new Array());
         }
+       
     };
 
 

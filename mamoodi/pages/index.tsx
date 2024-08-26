@@ -18,6 +18,9 @@ const HomePage: React.FC = ({ articleModel }: any) => {
   const startTarot = () => {
     window.open(config.app_url.tarot1, "_self")
   }
+  const startTelHora = () => {
+    window.open(config.app_url.tel_hora, "_self")
+  }
   return (
     <div>
       <Head>
@@ -83,8 +86,16 @@ const HomePage: React.FC = ({ articleModel }: any) => {
               </div>
 
             </div>
+            <div className={styles.landingItemListControl} onClick={startTelHora}>
+              <img src="/assets/images/tel-hora.jpg" className={styles.landingItemListImgControl} />
+              <div className={styles.landingItemListContentControl}>
+                <span className={styles.landingItemTextHeader}>ดูดวงจากเบอร์โทรศัพท์</span>
+                <span className={styles.landingItemTextDesc}>ค้นพบความหมายของเลขในเบอร์โทรศัพท์ของคุณ พร้อมวิธีการเลือกเบอร์มงคลที่เหมาะกับดวงชะตา เสริมสร้างโชคลาภ สุขภาพ และความสำเร็จในชีวิต</span>
+              </div>
+
+            </div>
             <div className={styles.landingItemArticleControl} >
-              <AllArticlesComponent></AllArticlesComponent>
+              <AllArticlesComponent isbg={false}></AllArticlesComponent>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import UtilityService from "@/util/utility";
 import { Article } from "@/model/article.model";
 
 
-const AllArticlesComponent = () => {
+const AllArticlesComponent = ({isbg}) => {
     const [articleMod, setArticleMod] = React.useState<Article[]>();
     const router = useRouter();
 
@@ -47,11 +47,11 @@ const AllArticlesComponent = () => {
     }
     return (
         <>
-            <div className={styles.allMain}>
+            <div className={!isbg ? styles.allMain : styles.allMainBG} >
                     
                     {
                         articleMod &&
-                        <div className={styles.allMainCenter}>
+                        <div className={!isbg ? styles.allMainCenterNoBG : styles.allMainCenterNoBG}>
                             <h1 className={styles.allHeader}>บทความทั้งหมด</h1>
                             <div className={styles.allListControl}>
                                 {articleMod.length > 0 &&

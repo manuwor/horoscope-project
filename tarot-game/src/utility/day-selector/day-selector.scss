@@ -4,7 +4,11 @@
     width: auto;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 5%;
+    margin-top: 25%;
+
+    @include media-breakpoint-down(md){
+        margin-top: 5%;
+    }
 
     .day-selector-label{
         font-size: 18px;

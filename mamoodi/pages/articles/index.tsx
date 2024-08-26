@@ -54,7 +54,7 @@ const AllArticlePage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <HeaderComponent></HeaderComponent>
-            <AllArticlesComponent></AllArticlesComponent>
+            <AllArticlesComponent isbg={true}></AllArticlesComponent>
         </div>
     )
 }

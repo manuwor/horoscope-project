@@ -26,4 +26,14 @@
         "name": "ดูดวงทะเบียนรถ",
         "menu_id": "LTnxtDXHVsqY9n8rBHfj"
     }
+    ,
+    {
+        "id": "0u9JnNuj0t2M7YqaOEzt",
+        "createdAt": {
+            "_seconds": 1724562148,
+            "_nanoseconds": 319000000
+        },
+        "name": "ดูดวงเบอร์โทรศัพท์",
+        "menu_id": "0u9JnNuj0t2M7YqaOEzt"
+    }
 ]

@@ -14,22 +14,23 @@ const TarotCardWheel = ({ setSelectedCard, totalPick }: any) => {
     height: inherit;
     margin-top: 20%;
     position: relative;
+
+      @media (max-width: 552px) {
+ margin-top: 20%;
+}
   `;
 
-  const StyledCard = styled(Card)<{ angle: number; isSelected: boolean; isVisible: boolean }>`
+  const StyledCard = styled(Card) <{ angle: number; isSelected: boolean; isVisible: boolean }>`
     position: absolute;
-    width: 100px;
-    height: 150px;
-    transform: ${({ angle }) => `rotate(${angle}deg) translate(120px) rotate(-${angle}deg)`};
+    width: 60px;
+    height: 110px;
+    transform: ${({ angle }) => `rotate(${angle}deg) translate(190px) rotate(-${angle}deg)`};
     cursor: pointer;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     background-color: ${({ isSelected }) => (isSelected ? '#FFD700' : 'white')};
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
 
-    &:hover {
-      transform: ${({ angle }) => `rotate(${angle}deg) translate(370px) rotate(-${angle}deg)`};
-    }
-
+   
     .card-body {
       display: flex;
       justify-content: center;
@@ -41,11 +42,11 @@ const TarotCardWheel = ({ setSelectedCard, totalPick }: any) => {
       width: 50px;
       height: 70px;
       transform: ${({ angle }) =>
-        `rotate(${angle}deg) translate(120px) rotate(-${angle}deg)`};
+      `rotate(${angle}deg) translate(120px) rotate(-${angle}deg)`};
 
       &:hover {
         transform: ${({ angle }) =>
-          `rotate(${angle}deg) translate(120px) rotate(-${angle}deg)`};
+      `rotate(${angle}deg) translate(120px) rotate(-${angle}deg)`};
       }
     }
   `;
@@ -82,7 +83,14 @@ const TarotCardWheel = ({ setSelectedCard, totalPick }: any) => {
   const handleCardClick = (index: number) => {
     const selectCardMod = [...selectCards];
     if (selectCardMod.length === totalPick) {
-      alert('เลือกไพ่ครบแล้ว');
+
+      if (selectCardMod[0] == index) {
+        setSelectCards(new Array());
+        setSelectedCard(null);
+      } else {
+        alert('เลือกไพ่ครบแล้ว');
+      }
+   
     } else {
       selectCardMod.push(index);
       setSelectCards(selectCardMod);
