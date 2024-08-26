@@ -80,7 +80,7 @@ const CarHoraResultComponent = ({ result }: any) => {
                                 <ShareButtons url={config.url + "car-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>
                             </div>
                             <div className={styles.carHoraResultStartControl}>
-                                <Button className={styles.carHoraResultStartButton} onClick={clickStart}>เริ่มดูดวงวันนี้</Button>
+                                <Button className={styles.carHoraResultStartButton} onClick={clickStart}>เริ่มตรวจทะเบียนรถ</Button>
                             </div>
                         </div>
                     </div>
