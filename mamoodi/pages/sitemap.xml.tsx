@@ -1,5 +1,6 @@
 import { Article } from "@/model/article.model";
 import SiteMapServices from "../services/sitemap";
+import { ResultsModel } from "@/model/results.model";
 
 function generateSiteMap(arryList: string[]) {
 
@@ -45,6 +46,14 @@ export async function getServerSideProps({ res }) {
       arryList.push(item.id);
     })
 
+    const resultAPI = await SiteMapServices().fetchResults();
+    if(resultAPI){
+      const results = resultAPI as ResultsModel[];
+      results.map((item) => {
+        arryList.push(item.id);
+      })
+    }
+   
     const sitemap = generateSiteMap(arryList);
     res.setHeader("Content-Type", "text/xml");
     // Send the XML to the browser

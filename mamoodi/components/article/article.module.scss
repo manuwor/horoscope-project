@@ -48,11 +48,40 @@
              color: white;
         }
 
+        .articleItemImg {
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            object-fit: contain;
+            margin-top: 12px;
+            margin-bottom: 12px;
+
+            @include media-breakpoint-down(md){
+                width: 100%;
+            }
+        }
+        .articleItemCount {
+            font-size: 13px;
+            font-family: $fontRegular;
+            margin-top: 16px;
+            text-align: left;
+            color: white;
+
+        }
         .articleItemDesc {
             font-size: 13px;
             font-family: $fontRegular;
             margin-top: 16px;
             color: white;
+
+            h1,h2,h3,h4,h5{
+                font-size: 15px !important;
+            }
+
+            a{
+                color: $button-color !important;
+            }
 
         }
     }

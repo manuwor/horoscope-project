@@ -8,4 +8,5 @@ export interface Article {
     slug:string;
     imageUrl: string
     createdAt: string;
+    viewCount: number;
   }

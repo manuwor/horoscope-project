@@ -13,9 +13,11 @@ import { Article } from '../../model/article.model';
 const ArticleListPage: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const navigate = useNavigate();
-
   useEffect(() => {
-    console.log("test");
+    console.log(articles);
+  },[articles]);
+  useEffect(() => {
+
     const fetchArticles = async () => {
       const querySnapshot = await getDocs(collection(db, 'articles'));
       setArticles(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Article)));
@@ -66,7 +68,7 @@ const ArticleListPage: React.FC = () => {
               <Card>
                 <Card.Body className='d-flex flex-column'>
                   <span className='article-item-status'>{article.status}</span>
-                  <Card.Text className='articles-desc-text'>โพสต์วันที่ {convertThDate(article.createdAt)}</Card.Text>
+                  <Card.Text className='articles-desc-text'>โพสต์วันที่ {convertThDate(article.createdAt)} {article.viewCount && "("+article.viewCount+")"}</Card.Text>
                   <Card.Title className='articles-title-text'>{article.title}</Card.Title>
                   <Card.Text className='articles-desc-text'>{article.shortDescription}</Card.Text>
                   <div className='d-flex'>

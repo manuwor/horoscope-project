@@ -70,8 +70,8 @@ const ArticlePage: React.FC = ({ articleModel }: any) => {
             <meta property="og:title" content={articleModel.title} />
             <meta property="og:image"
               content={articleModel.imageUrl} />
-             <meta name="keywords" content={articleModel.keywords.join(', ')} />
-             <meta property="og:keywords" content={articleModel.keywords.join(', ')} />
+             <meta name="keywords" content={articleModel.keywords.join(', ') + " " + config.seo.keyword} />
+             <meta property="og:keywords" content={articleModel.keywords.join(', ') + " " + config.seo.keyword} />
 
             <link rel="icon" href="/favicon.ico" />
           </>

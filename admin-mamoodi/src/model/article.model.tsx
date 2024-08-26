@@ -4,4 +4,5 @@ export interface Article {
     shortDescription: string;
     createdAt: string;
     status: string;
+    viewCount: number;
   }

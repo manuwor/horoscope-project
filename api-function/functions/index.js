@@ -62,6 +62,34 @@ app.post('/create-article', authenticate, async (req, res) => {
     return res.status(500).json({ error: 'Internal server error.' });
   }
 });
+// PUT endpoint to increment view count by article id
+app.put('/articles/:id/view', async (req, res) => {
+  try {
+    const articleId = req.params.id;
+
+    // Reference to the article document
+    const docRef = db.collection('articles').doc(articleId);
+
+    // Get the current document
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Article not found.' });
+    }
+
+    // Increment the viewCount (initialize if not present)
+    const currentViewCount = doc.data().viewCount || 0;
+    const newViewCount = currentViewCount + 1;
+
+    // Update the viewCount in the document
+    await docRef.update({ viewCount: newViewCount });
+
+    return res.status(200).json({ message: 'View count updated successfully.', viewCount: newViewCount });
+  } catch (error) {
+    console.error('Error updating view count:', error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
 app.get('/articles/:id', async (req, res) => {
   try {
     const { id } = req.params; // Get the article ID from the URL

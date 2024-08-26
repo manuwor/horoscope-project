@@ -50,9 +50,9 @@ const CarHoraResultPage = ({result}:any) => {
                 <meta property="og:image"
                     content={result.imageUrl} />
                 <meta name="keywords"
-                    content="บทความ" />
+                    content={config.seo.keyword} />
                 <meta property="og:keywords"
-                    content="บทความ" />
+                    content={config.seo.keyword} />
 
                 <link rel="icon" href="/favicon.ico" />
             </Head>

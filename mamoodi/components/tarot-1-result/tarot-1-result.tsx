@@ -16,7 +16,33 @@ const Tarot1Result = ({ result }: any) => {
         }
 
     }, [result])
+    useEffect(() => {
+        if (resultItem) {
+            incrementResultViewCount(resultItem.id)
+        }
 
+    }, [resultItem])
+
+
+    const incrementResultViewCount = async (resultId: string) => {
+        try {
+            const response = await fetch(`${config.api.url}results/${resultId}/increment-view`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to increment view count');
+            }
+
+            const data = await response.json();
+            console.log('New view count:', data.newViewCount);
+        } catch (error) {
+            console.error('Error incrementing view count:', error);
+        }
+    };
     const clickStart = () => {
         window.open(config.app_url.tarot1 , "_self");
 
