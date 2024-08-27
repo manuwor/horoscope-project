@@ -1,0 +1,25 @@
+
+$fontBold: "IBMPlexSansThaiLooped-Bold";
+$fontRegular: "IBMPlexSansThaiLooped-Regular";
+$fontMedium: "IBMPlexSansThaiLooped-Medium";
+$fontLight: "IBMPlexSansThaiLooped-Light";
+
+@font-face {
+    font-family: $fontBold;
+    src: local("IBMPlexSansThaiLooped-Bold"), url(../public/fonts/IBMPlexSansThaiLooped-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontMedium;
+    src: local("IBMPlexSansThaiLooped-Medium"), url(../public/fonts/IBMPlexSansThaiLooped-Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontRegular;
+    src: local("IBMPlexSansThaiLooped-Regular"), url(../public/fonts/IBMPlexSansThaiLooped-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontLight;
+    src: local("IBMPlexSansThaiLooped-Light"), url(../public/fonts/IBMPlexSansThaiLooped-Light.ttf) format("truetype");
+}

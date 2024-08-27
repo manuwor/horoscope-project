@@ -34,8 +34,8 @@ const HeaderComponent = () => {
         },
         {
             id: 3,
-            name: "ดูดวงตามวันเกิด",
-            url: "https://app.mamoodi.com/dob-hora"
+            name: "ดูดวงจากชื่อ",
+            url: "https://app.mamoodi.com/name-hora"
         }
         ,
         {

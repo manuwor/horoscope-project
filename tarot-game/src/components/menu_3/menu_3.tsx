@@ -71,7 +71,6 @@ const Menu3Component = () => {
 
                 try {
                     if (res.status == 200) {
-                        console.log(res);
                         const result = res.data as ResultMessageModel;
                         window.open("https://mamoodi.com/car-hora/result?id=" + result.id, "_self");
                     }

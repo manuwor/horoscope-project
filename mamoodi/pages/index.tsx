@@ -21,6 +21,9 @@ const HomePage: React.FC = ({ articleModel }: any) => {
   const startTelHora = () => {
     window.open(config.app_url.tel_hora, "_self")
   }
+  const startNameHora = () => {
+    window.open(config.app_url.name_hora, "_self")
+  }
   return (
     <div>
       <Head>
@@ -91,6 +94,14 @@ const HomePage: React.FC = ({ articleModel }: any) => {
               <div className={styles.landingItemListContentControl}>
                 <span className={styles.landingItemTextHeader}>ดูดวงจากเบอร์โทรศัพท์</span>
                 <span className={styles.landingItemTextDesc}>ค้นพบความหมายของเลขในเบอร์โทรศัพท์ของคุณ พร้อมวิธีการเลือกเบอร์มงคลที่เหมาะกับดวงชะตา เสริมสร้างโชคลาภ สุขภาพ และความสำเร็จในชีวิต</span>
+              </div>
+
+            </div>
+            <div className={styles.landingItemListControl} onClick={startNameHora}>
+              <img src="/assets/images/name-hora.jpg" className={styles.landingItemListImgControl} />
+              <div className={styles.landingItemListContentControl}>
+                <span className={styles.landingItemTextHeader}>ดูดวงจากชื่อของคุณ</span>
+                <span className={styles.landingItemTextDesc}>อยากรู้ว่าชื่อของคุณมีความหมายอย่างไร? ดูดวงด้วยชื่อ เลขศาสตร์ และตัวอักษร เพื่อค้นหาความลับที่ซ่อนอยู่ในชื่อของคุณ พร้อมเจาะลึกบุคลิกภาพ ความสามารถ และโชคชะตา</span>
               </div>
 
             </div>
