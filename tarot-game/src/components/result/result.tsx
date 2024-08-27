@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 import { getVertexAI, getGenerativeModel, HarmCategory, HarmBlockThreshold, SafetySetting, HarmBlockMethod } from "firebase/vertexai-preview";
 import "./result.scss";
 import { ResultModel } from '../../model/result.model';
-import firebaseApp from '../../utility/firebase-config';
+import {firebaseApp} from '../../utility/firebase-config';
 import { safetySettings } from '../../utility/safe-settings';
 import { geminiConfig } from '../../utility/gemini-config';
 

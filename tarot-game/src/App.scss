@@ -2,10 +2,32 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-$fontBold: "LINESeedSansTH_He";
-$fontRegular: "LINESeedSansTH_Rg";
-$fontMedium: "LINESeedSansTH_Bd";
-$fontLight: "LINESeedSansTH_Th";
+
+
+$fontBold: "IBMPlexSansThaiLooped-Bold";
+$fontRegular: "IBMPlexSansThaiLooped-Regular";
+$fontMedium: "IBMPlexSansThaiLooped-Medium";
+$fontLight: "IBMPlexSansThaiLooped-Light";
+
+@font-face {
+    font-family: $fontBold;
+    src: local("IBMPlexSansThaiLooped-Bold"), url(../public/fonts/IBMPlexSansThaiLooped-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontMedium;
+    src: local("IBMPlexSansThaiLooped-Medium"), url(../public/fonts/IBMPlexSansThaiLooped-Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontRegular;
+    src: local("IBMPlexSansThaiLooped-Regular"), url(../public/fonts/IBMPlexSansThaiLooped-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: $fontLight;
+    src: local("IBMPlexSansThaiLooped-Light"), url(../public/fonts/IBMPlexSansThaiLooped-Light.ttf) format("truetype");
+}
 
 $primary-color: #4B0082;
 $bg-color: #483D8B;
@@ -89,25 +111,4 @@ body {
 
 .MuiChip-label {
     font-family: $fontMedium !important;
-}
-
-
-@font-face {
-    font-family: $fontBold;
-    src: local("LINESeedSansTH_He"), url(../public/fonts/LINESeedSansTH_He.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: $fontMedium;
-    src: local("LINESeedSansTH_Bd"), url(../public/fonts/LINESeedSansTH_Bd.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: $fontRegular;
-    src: local("LINESeedSansTH_Rg"), url(../public/fonts/LINESeedSansTH_Rg.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: $fontLight;
-    src: local("LINESeedSansTH_Th"), url(../public/fonts/LINESeedSansTH_Th.ttf) format("truetype");
 }

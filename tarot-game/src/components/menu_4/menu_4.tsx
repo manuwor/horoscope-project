@@ -1,6 +1,6 @@
 import { getGenerativeModel, getVertexAI } from "@firebase/vertexai-preview";
 import APIService from "../../services/api.services";
-import firebaseApp from "../../utility/firebase-config";
+import {firebaseApp} from "../../utility/firebase-config";
 import { useState } from "react";
 import { safetySettings } from "../../utility/safe-settings";
 import { geminiConfig } from "../../utility/gemini-config";

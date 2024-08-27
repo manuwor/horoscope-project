@@ -1,6 +1,5 @@
 import { getGenerativeModel, getVertexAI } from "@firebase/vertexai-preview";
 import APIService from "../../services/api.services";
-import firebaseApp from "../../utility/firebase-config";
 import { useState } from "react";
 import { safetySettings } from "../../utility/safe-settings";
 import { geminiConfig } from "../../utility/gemini-config";
@@ -9,15 +8,17 @@ import { ResultMessageModel } from "../../model/result-post.model";
 import { Button, Form, Spinner } from "react-bootstrap";
 import "./menu_5.scss";
 import { generateImageFromText } from "../../services/image-service";
+import { compressAndUploadImage } from "../../services/upload-image";
+import { firebaseApp } from "../../utility/firebase-config";
 
 
 const Menu5Component = () => {
     const [name, setName] = useState("");
     const [surname, setSurName] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [imgData, setImgData] = useState<any>("" || null);
 
     const submit = async () => {
-
         if (name && surname) {
             const vertexAI = getVertexAI(firebaseApp);
 
@@ -26,26 +27,25 @@ const Menu5Component = () => {
 
             const prompt = `ฉันอยากดูดวงด้วยชื่อ
     ชื่อของฉันคือ ${name} และนามสกุลคือ ${surname} 
-    Return JSON format only with key ( explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), name_id (ชื่อ ${name} และ นามสกุล ${surname}))`
+    Return JSON format only with key (summary (สั้นๆ ไม่เกิน 50 คำ), explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), name_id (ชื่อ ${name} และ นามสกุล ${surname}))`
             // To stream generated text output, call generateContentStream with the text input
             const result = await model.generateContent(prompt);
             console.log(result.response.text());
             const jsonObject = JSON.parse(result.response.text());
             console.log(jsonObject);
             jsonObject["title"] = "ผลลัพธ์จากชื่อ " + name + " และนามสกุล " + surname + " ของคุณคือ";
-            const imageData = await generateImageFromText("ผลลัพธ์จากชื่อ " + name + " และนามสกุล " + surname + " ของคุณคือ", jsonObject.explanation);
-            console.log(imageData);
+            const imageData = await generateImageFromText("ดวงจากชื่อ ", name + " " + surname, jsonObject.summary);
+            let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
+            setImgData(imageData);
+
+            if (imageData) {
+                uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
+            }
             const body = {
                 menu_id: MENU_LIST[3].id,
                 result: jsonObject,
             }
-
-            if (imageData) {
-                body["imageUrl"] = imageData
-
-            } else {
-                body["imageUrl"] = 'https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media'
-            }
+            body["imageUrl"] = uploadedImageUrl
             APIService().postResult(body).then((res: any) => {
 
                 try {
@@ -118,7 +118,7 @@ const Menu5Component = () => {
 
                                     </div>
                                     {
-                                        name && surname &&
+
                                         <Button className="menu-5-button" onClick={submit}>ตรวจชื่อของคุณ</Button>
                                     }
                                 </div>

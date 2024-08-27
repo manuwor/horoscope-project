@@ -6,7 +6,7 @@ import DaySelector from "../../utility/day-selector/day-selector";
 import TarotCardWheel from "../tarot-card/tarot-card-wheel";
 import { Button, Spinner } from "react-bootstrap";
 import { getGenerativeModel, getVertexAI } from "@firebase/vertexai-preview";
-import firebaseApp from "../../utility/firebase-config";
+import {firebaseApp} from "../../utility/firebase-config";
 import { safetySettings } from "../../utility/safe-settings";
 import { geminiConfig } from "../../utility/gemini-config";
 import MENU_LIST from "../../assets/json/menu.json";

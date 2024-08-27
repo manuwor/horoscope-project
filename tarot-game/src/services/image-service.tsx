@@ -1,6 +1,7 @@
 export const generateImageFromText = (
-    nameId: string,
-    explanation: string
+    title: string,
+    header: string,
+    description: string
 ): Promise<string | undefined> => {
     const canvas: HTMLCanvasElement = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -13,65 +14,54 @@ export const generateImageFromText = (
     canvas.width = 1260;
     canvas.height = 630;
 
-    // Draw background
-    ctx.fillStyle = "#000000"; // Background color black
+    // Create radial gradient background
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, Math.max(canvas.width, canvas.height) / 2);
+    gradient.addColorStop(1, '#066137');    // Edge color
+    gradient.addColorStop(0.6, '#000000');  // Midpoint color
+
+    // Apply gradient as background
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Load and draw the background image with CORS enabled
-    const backgroundImage = new Image();
-    backgroundImage.crossOrigin = "anonymous"; // Allow cross-origin image loading
-    backgroundImage.src = 'https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fbg.png?alt=media';
+    // Title Text
+    ctx.fillStyle = "#ffffff"; // Text color
+    ctx.font = "32px 'IBMPlexSansThaiLooped-Medium'"; // Font size and family
+    ctx.textAlign = "center";
+    ctx.fillText(title, canvas.width / 2, 120); // Centered title text at y=100
 
+    // Header Text
+    ctx.font = "bold 60px 'IBMPlexSansThaiLooped-Medium'"; // Font size and style
+    ctx.fillText(header, canvas.width / 2, 220); // Centered header text at y=180
+
+    // Description Text
+    ctx.font = "35px 'IBMPlexSansThaiLooped-Medium'"; // Font size for description
+   // Calculate 60% width for description text and center it
+   const descriptionWidth = canvas.width * 0.6;
+   const descriptionX = (canvas.width - descriptionWidth) / 2;
+
+   const lines: string[] = wrapText(ctx, description, descriptionWidth); // Wrap text within 60% of the canvas width
+   lines.forEach((line, index) => {
+       ctx.fillText(line, canvas.width / 2, 320 + index * 60); // Centered description text, with line spacing
+   });
+    // Convert canvas to image and compress it
     return new Promise((resolve) => {
-        backgroundImage.onload = () => {
-            // Draw the image on the canvas
-            ctx.drawImage(
-                backgroundImage, 
-                0, 
-                canvas.height - backgroundImage.height, // Position the image at the bottom
-                canvas.width, 
-                backgroundImage.height
-            );
-
-            // Set text styles using the pre-loaded global font
-            ctx.fillStyle = "#FFFFFF"; // Text color white
-            ctx.font = "bold 40px 'IBMPlexSansThaiLooped-Medium'"; // Font for name_id
-            ctx.textAlign = "center";
-
-            // Add name_id text
-            ctx.fillText(nameId, canvas.width / 2, 150);
-
-            // Set font for explanation
-            ctx.font = "30px 'IBMPlexSansThaiLooped-Medium'"; // Font for explanation
-
-            // Add explanation text, handle multi-line text if it's too long
-            const lines: string[] = wrapText(ctx, explanation, canvas.width - 50);
-            lines.forEach((line, index) => {
-                ctx.fillText(line, canvas.width / 2, 250 + index * 50);
-            });
-
-            // Convert canvas to image and compress it
-            canvas.toBlob(
-                (blob) => {
-                    if (blob) {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(blob);
-                        reader.onloadend = () => {
-                            resolve(reader.result as string);
-                        };
-                    } else {
-                        resolve(undefined);
-                    }
-                },
-                "image/jpeg",
-                0.7 // Adjust compression quality to keep image size < 60KB
-            );
-        };
-
-        backgroundImage.onerror = () => {
-            console.error('Failed to load the background image.');
-            resolve(undefined);
-        };
+        canvas.toBlob(
+            (blob) => {
+                if (blob) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = () => {
+                        resolve(reader.result as string);
+                    };
+                } else {
+                    resolve(undefined);
+                }
+            },
+            "image/jpeg",
+            0.7 // Adjust compression quality to keep image size < 60KB
+        );
     });
 };
 
