@@ -1,5 +1,5 @@
 const test = {
-    ga_4 : "G-Z2MPLK12Y5",
+    ga_4 : "G-H9TF3EKB8E",
     
     api_lotto: {
         base_url: "https://lotto.api.rayriffy.com",
@@ -14,7 +14,7 @@ const test = {
 
 };
 const prod = {
-    ga_4 : "G-Z2MPLK12Y5",
+    ga_4 : "G-H9TF3EKB8E",
   
     api_lotto: {
         base_url: "https://lotto.api.rayriffy.com",

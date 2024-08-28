@@ -21,5 +21,10 @@ export default function APIService() {
             return axios.post(config.api.base_url + config.api.result, body, headerFix)
                 .then(res => res).catch(err => console.log(err));
         },
+
+        async getResultNumber(id) {
+            return axios.get(config.api.base_url +"get_results_number/"+ id, headerFix)
+                .then(res => res).catch(err => console.log(err));
+        },
     };
 }

@@ -318,5 +318,24 @@ app.get('/menu', async (req, res) => {
   }
 });
 
+
+// GET endpoint to retrieve a result by id
+app.get('/get_results_number/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const docRef = db.collection('results_number').doc(id);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: 'Result not found' });
+    }
+
+    res.status(200).json(doc.data());
+  } catch (error) {
+    console.error('Error fetching result:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Export the express app as a cloud function
 exports.api = functions.region('asia-southeast1').https.onRequest(app);

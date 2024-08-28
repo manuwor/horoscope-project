@@ -1,6 +1,6 @@
 import { getGenerativeModel, getVertexAI } from "@firebase/vertexai-preview";
 import APIService from "../../services/api.services";
-import {firebaseApp} from "../../utility/firebase-config";
+import { firebaseApp } from "../../utility/firebase-config";
 import { useState } from "react";
 import { safetySettings } from "../../utility/safe-settings";
 import { geminiConfig } from "../../utility/gemini-config";
@@ -10,6 +10,7 @@ import { Button, Form, Spinner } from "react-bootstrap";
 import "./menu_4.scss";
 import { generateImageFromText } from "../../services/image-service";
 import { compressAndUploadImage } from "../../services/upload-image";
+import { APITelHoraModel } from "../../model/api-tel-hora.model";
 
 
 const Menu4Component = () => {
@@ -25,44 +26,97 @@ const Menu4Component = () => {
     const submit = async () => {
 
         if (telID) {
-            const vertexAI = getVertexAI(firebaseApp);
 
-            setIsSubmitting(true);
-            const model = getGenerativeModel(vertexAI, { model: "gemini-1.5-flash", safetySettings: safetySettings, generationConfig: geminiConfig });
-
-            const prompt = `ฉันอยากดูดวงเบอร์โทรศัพท์
-    เลขโทรศัพท์คือ ${telID} และ ผลรวมคือ ${sumTelephoneNumber(telID)}
-    ดูดวงจากผลรวม ${sumTelephoneNumber(telID)}
-    Return JSON format only with key (sum_tel_id (ผลลัพธ์ของเลข), summary (สั้นๆ ไม่เกิน 100 คำ),explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), tel_id (เลข ${telID}))`
-            // To stream generated text output, call generateContentStream with the text input
-            const result = await model.generateContent(prompt);
-            const jsonObject = JSON.parse(result.response.text());
-            jsonObject["title"] = "ผลลัพธ์เลขโทรศัพท์ " + telID + " ของคุณคือ";
-            const imageData = await generateImageFromText("ผลดูดวงจากเบอร์ของคุณ ", telID , jsonObject.summary);
-            let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
-            if (imageData) {
-                uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
-            }
-            const body = {
-                menu_id: MENU_LIST[3].id,
-                result: jsonObject,
-            }
-            body["imageUrl"] = uploadedImageUrl
-          
-            APIService().postResult(body).then((res: any) => {
-
+            const res = await APIService().getResultNumber(sumTelephoneNumber(telID));
+            if (res) {
                 try {
                     if (res.status == 200) {
-                        const result = res.data as ResultMessageModel;
-                        window.open("https://mamoodi.com/tel-hora/result?id=" + result.id, "_self");
+                        const result = res.data as APITelHoraModel;
+
+                        const jsonObject = {
+                            sum_tel_id: sumTelephoneNumber(telID),
+                            summary: result.summary[0],
+                            explanation: result.explanation[0],
+                            tel_id: telID,
+                            title: result.seo_title
+                        }
+
+                        const imageData = await generateImageFromText("ผลดูดวงจากเบอร์ของคุณ ", telID, jsonObject.summary);
+                        let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
+                        if (imageData) {
+                            uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
+                        }
+                        const body = {
+                            menu_id: MENU_LIST[3].id,
+                            result: jsonObject,
+                        }
+                        body["imageUrl"] = uploadedImageUrl
+
+                        APIService().postResult(body).then((res: any) => {
+
+                            try {
+                                if (res.status == 200) {
+                                    const result = res.data as ResultMessageModel;
+                                    window.open("https://mamoodi.com/tel-hora/result?id=" + result.id, "_self");
+                                }
+                            } catch (error) {
+
+                            }
+                        })
+
+
                     }
                 } catch (error) {
-
+                    AICompute();
                 }
-            })
+
+            } else {
+                AICompute();
+            }
+
+
         }
 
 
+    }
+
+    const AICompute = async () => {
+        const vertexAI = getVertexAI(firebaseApp);
+
+        setIsSubmitting(true);
+        const model = getGenerativeModel(vertexAI, { model: "gemini-1.5-flash", safetySettings: safetySettings, generationConfig: geminiConfig });
+
+        const prompt = `ฉันอยากดูดวงเบอร์โทรศัพท์
+                เลขโทรศัพท์คือ ${telID} และ ผลรวมคือ ${sumTelephoneNumber(telID)}
+                ดูดวงจากผลรวม ${sumTelephoneNumber(telID)}
+                Return JSON format only with key (sum_tel_id (ผลลัพธ์ของเลข), summary (สั้นๆ ไม่เกิน 100 คำ),explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), tel_id (เลข ${telID}))`
+        // To stream generated text output, call generateContentStream with the text input
+        const result = await model.generateContent(prompt);
+        const jsonObject = JSON.parse(result.response.text());
+        jsonObject["title"] = "ผลลัพธ์เลขโทรศัพท์ " + telID + " ของคุณคือ";
+
+        const imageData = await generateImageFromText("ผลดูดวงจากเบอร์ของคุณ ", telID, jsonObject.summary);
+        let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
+        if (imageData) {
+            uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
+        }
+        const body = {
+            menu_id: MENU_LIST[3].id,
+            result: jsonObject,
+        }
+        body["imageUrl"] = uploadedImageUrl
+
+        APIService().postResult(body).then((res: any) => {
+
+            try {
+                if (res.status == 200) {
+                    const result = res.data as ResultMessageModel;
+                    window.open("https://mamoodi.com/tel-hora/result?id=" + result.id, "_self");
+                }
+            } catch (error) {
+
+            }
+        })
     }
 
     const handleInputChange = (e) => {
@@ -83,7 +137,7 @@ const Menu4Component = () => {
                 <div className='menu-4-playing-control'>
                     <span className="menu-4-playing-title">ดูดวงเบอร์โทรศัพท์ของคุณ</span>
                     <span className="menu-4-playing-desc">
-                    การดูดวงเบอร์โทรศัพท์เชื่อว่าเบอร์ที่มงคลสามารถเสริมดวงชะตา ความมั่นใจ และนำโชคลาภมาให้เจ้าของเบอร์ได้ โดยพลังงานจากตัวเลขในเบอร์ถูกมองว่ามีอิทธิพลต่อชีวิตประจำวัน.</span>
+                        การดูดวงเบอร์โทรศัพท์เชื่อว่าเบอร์ที่มงคลสามารถเสริมดวงชะตา ความมั่นใจ และนำโชคลาภมาให้เจ้าของเบอร์ได้ โดยพลังงานจากตัวเลขในเบอร์ถูกมองว่ามีอิทธิพลต่อชีวิตประจำวัน.</span>
 
                     {
                         !isSubmitting ?

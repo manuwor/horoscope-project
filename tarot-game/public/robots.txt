@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://mamoodi.com/sitemap.xml
+Sitemap: https://app.mamoodi.com/sitemap.xml

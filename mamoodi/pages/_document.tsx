@@ -1,3 +1,4 @@
+import GoogleAdsense from "@/services/google-adsense";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -34,12 +35,13 @@ export default function Document() {
               gtag('config', 'G-Z2MPLK12Y5');
             `}
         </script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7304132375043084" crossOrigin="anonymous"></script>
+       
       </Head>
       <body style={{ margin: '0px' }}>
         <Main />
         <NextScript />
       </body>
+      <GoogleAdsense />
     </Html>
   );
 }

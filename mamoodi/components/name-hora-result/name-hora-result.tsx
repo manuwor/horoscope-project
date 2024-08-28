@@ -48,6 +48,11 @@ const NameHoraResultComponent = ({ result }: any) => {
         window.open(config.app_url.name_hora, "_self");
 
     }
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.adsbygoogle) {
+            window.adsbygoogle.push({});
+        }
+    }, []);
 
     return (
         <>
@@ -81,6 +86,19 @@ const NameHoraResultComponent = ({ result }: any) => {
                             </div>
                             <div className={styles.nameHoraResultStartControl}>
                                 <Button className={styles.nameHoraResultStartButton} onClick={clickStart}>เริ่มดูเช็คดวงด้วยชื่อ</Button>
+                            </div>
+
+                            {/* Google AdSense */}
+                            <div>
+                              
+                                <ins
+                                    className="adsbygoogle"
+                                    style={{ display: "block", textAlign: "center" }}
+                                    data-ad-layout="in-article"
+                                    data-ad-format="fluid"
+                                    data-ad-client="ca-pub-7304132375043084"
+                                    data-ad-slot="5829918586"
+                                ></ins>
                             </div>
                         </div>
                     </div>
