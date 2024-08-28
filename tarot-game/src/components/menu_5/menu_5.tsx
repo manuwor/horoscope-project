@@ -27,10 +27,12 @@ const Menu5Component = () => {
 
             const prompt = `ฉันอยากดูดวงด้วยชื่อ
     ชื่อของฉันคือ ${name} และนามสกุลคือ ${surname} 
-    Return JSON format only with key (summary (สั้นๆ ไม่เกิน 50 คำ), explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), name_id (ชื่อ ${name} และ นามสกุล ${surname}))`
+    Return JSON format only with key (summary (สั้นๆ ระหว่าง 40-50 คำ โดยไม่ต้องทวนชื่อนามสกุล word break by "<br>"), explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), name_id (ชื่อ ${name} และ นามสกุล ${surname}))`
             // To stream generated text output, call generateContentStream with the text input
             const result = await model.generateContent(prompt);
             const jsonObject = JSON.parse(result.response.text());
+            jsonObject["summary"] = jsonObject.summary.replaceAll("<br>","");
+            jsonObject["explanation"] = jsonObject.explanation.replaceAll("<br>","");
             jsonObject["title"] = "ผลลัพธ์จากชื่อ " + name + " และนามสกุล " + surname + " ของคุณคือ";
             const imageData = await generateImageFromText("ดวงจากชื่อ ", name + " " + surname, jsonObject.summary);
             let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
@@ -89,7 +91,7 @@ const Menu5Component = () => {
                     <span className="menu-5-playing-title">ดูดวงจากชื่อของคุณ</span>
                     <span className="menu-5-playing-desc">
                         อยากรู้ว่าชื่อของคุณมีความหมายอย่างไร? ดูดวงด้วยชื่อ เลขศาสตร์ และตัวอักษร เพื่อค้นหาความลับที่ซ่อนอยู่ในชื่อของคุณ พร้อมเจาะลึกบุคลิกภาพ ความสามารถ และโชคชะตา</span>
-
+                        {/* <img src={imgData} /> */}
                     {
                         !isSubmitting ?
 
@@ -114,6 +116,7 @@ const Menu5Component = () => {
                                         <span className="menu-5-form-warning">*ใส่ข้อมูลโดยไม่ต้องเว้นวรรค เช่น อังศนา</span>
 
                                     </div>
+                                   
                                     {
 
                                         <Button className="menu-5-button" onClick={submit}>ตรวจชื่อของคุณ</Button>

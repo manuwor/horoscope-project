@@ -4,6 +4,7 @@ import ShareButtons from "../share-button/share-button";
 import config from "@/config";
 import { Button } from "@mui/material";
 import { CarHoraResultModel } from "@/model/result-car-hora.model";
+import ShareButton from "@/services/share-button";
 
 const CarHoraResultComponent = ({ result }: any) => {
 
@@ -63,7 +64,9 @@ const CarHoraResultComponent = ({ result }: any) => {
                 <div className={styles.bodyCustomMain}>
                     <div className={styles.carHoraResult}>
                         <div className={styles.carHoraResultItem}>
-                            <span className={styles.carHoraResultItemHeaderDesc}>ผลลัพธ์จากเลขทะเบียน </span>
+                            <div className="d-flex">
+                                <ShareButton url={config.url + "car-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButton>
+                            </div>
 
 
                             {
@@ -79,7 +82,7 @@ const CarHoraResultComponent = ({ result }: any) => {
                             </div>
                             {/* Google AdSense */}
                             <div>
-                              
+
                                 <ins
                                     className="adsbygoogle"
                                     style={{ display: "block", textAlign: "center" }}
@@ -91,7 +94,7 @@ const CarHoraResultComponent = ({ result }: any) => {
                             </div>
                             <div className={styles.carHoraResultCardControl}>
                                 <span className={styles.carHoraResultCardTitle}>คำอธิบาย</span>
-                                <span className={styles.carHoraResultCardDesc}>{resultItem.result.explanation}</span>
+                                <span className={styles.carHoraResultCardDesc}>{resultItem.result.explanation.replaceAll("<br>", "")}</span>
                             </div>
                             <div className={styles.carHoraResultShareControl}>
                                 <ShareButtons url={config.url + "car-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>

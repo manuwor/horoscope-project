@@ -1,7 +1,8 @@
 export const generateImageFromText = (
     title: string,
     header: string,
-    description: string
+    description: string,
+    menu_id?: number
 ): Promise<string | undefined> => {
     const canvas: HTMLCanvasElement = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -14,58 +15,108 @@ export const generateImageFromText = (
     canvas.width = 1260;
     canvas.height = 630;
 
-    // Create radial gradient background
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, Math.max(canvas.width, canvas.height) / 2);
-    gradient.addColorStop(1, '#fff4e6');    // Edge color
-    gradient.addColorStop(1, '#fff4e6');  // Midpoint color
+    // Load background image
+    try {
+        let headerText = header;
+        let descriptionText = description.replaceAll(header, "");
+        if(menu_id == 4){
+            headerText = maskText(header);
+        }else if(menu_id == 3){
+            headerText = maskTextCarID(header);
+        }
 
-    // Apply gradient as background
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        const backgroundImage = new Image();
+        backgroundImage.src = "/assets/images/bg-share.jpg"; // Adjust the path if necessary
 
-    // Title Text
-    ctx.fillStyle = "#7a7a7a"; // Text color
-    ctx.font = "32px 'IBMPlexSansThaiLooped-Medium'"; // Font size and family
-    ctx.textAlign = "center";
-    ctx.fillText(title, canvas.width / 2, 120); // Centered title text at y=100
+        return new Promise((resolve) => {
+            backgroundImage.onload = () => {
+                // Draw background image
+                ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-    // Header Text
-    ctx.font = "bold 60px 'IBMPlexSansThaiLooped-Medium'"; // Font size and style
-    ctx.fillText(header, canvas.width / 2, 220); // Centered header text at y=180
+                // Title Text
+                ctx.fillStyle = "#ffffff"; // Text color
+                ctx.font = "32px 'IBMPlexSansThaiLooped-Regular'"; // Font size and family
+                ctx.textAlign = "center";
+                ctx.fillText(title, canvas.width / 2, 120); // Centered title text at y=100
 
-    // Description Text
-    ctx.font = "35px 'IBMPlexSansThaiLooped-Medium'"; // Font size for description
-   // Calculate 60% width for description text and center it
-   const descriptionWidth = canvas.width * 0.6;
-   const descriptionX = (canvas.width - descriptionWidth) / 2;
+                // Header Text
+                ctx.font = "bold 65px 'IBMPlexSansThaiLooped-Medium'"; // Font size and style
+                ctx.fillText(headerText, canvas.width / 2, 250); // Centered header text at y=180
 
-   const lines: string[] = wrapText(ctx, description, descriptionWidth); // Wrap text within 60% of the canvas width
-   lines.forEach((line, index) => {
-       ctx.fillText(line, canvas.width / 2, 320 + index * 60); // Centered description text, with line spacing
-   });
-    // Convert canvas to image and compress it
-    return new Promise((resolve) => {
-        canvas.toBlob(
-            (blob) => {
-                if (blob) {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(blob);
-                    reader.onloadend = () => {
-                        resolve(reader.result as string);
-                    };
-                } else {
-                    resolve(undefined);
-                }
-            },
-            "image/jpeg",
-            0.7 // Adjust compression quality to keep image size < 60KB
-        );
-    });
+                // Description Text
+                ctx.font = "35px 'IBMPlexSansThaiLooped-Regular'"; // Font size for description
+
+                // Calculate 60% of the canvas width
+                const descriptionWidth = canvas.width * 0.6;
+
+                // Calculate the starting x-position for centering the text
+                const descriptionX = (canvas.width - descriptionWidth) / 2;
+
+                // Wrap the text within the 60% width
+                const lines: string[] = wrapText(ctx, descriptionText, descriptionWidth);
+                // Draw each line of text, centered horizontally
+                // Draw each line of text, centered horizontally
+                lines.forEach((line, index) => {
+                    ctx.fillText(line, descriptionX + descriptionWidth / 2, 350 + index * 60);
+                });
+
+                // Convert canvas to image and compress it
+                canvas.toBlob(
+                    (blob) => {
+                        if (blob) {
+                            const reader = new FileReader();
+                            reader.readAsDataURL(blob);
+                            reader.onloadend = () => {
+                                resolve(reader.result as string);
+                            };
+                        } else {
+                            resolve(undefined);
+                        }
+                    },
+                    "image/jpeg",
+                    0.7 // Adjust compression quality to keep image size < 60KB
+                );
+            };
+
+            backgroundImage.onerror = () => {
+                console.log("error image bg", backgroundImage);
+                resolve(undefined); // Handle error if the image fails to load
+            };
+        });
+    } catch (error) {
+        console.log(error);
+        return new Promise((resolve) => {
+
+        });
+    }
 };
 
-// Function to wrap text to fit within the canvas
+export const maskText = (input: string): string =>{
+    // Check if the input length is sufficient
+    if (input.length < 8) {
+        throw new Error("Input length must be at least 8 characters.");
+    }
+
+    // Mask characters between the 2nd and 8th positions
+    const maskedSection = input.slice(2, 8).replace(/./g, 'x');
+    const maskedText = input.slice(0, 2) + maskedSection + input.slice(8);
+
+    return maskedText;
+}
+export const maskTextCarID = (input: string): string =>{
+    // Check if the input length is sufficient
+    if (input.length < 4) {
+        throw new Error("Input length must be at least 4 characters.");
+    }
+
+    // Mask characters between the 1st and 4th positions (inclusive)
+    const maskedSection = input.slice(1, 4).replace(/./g, 'x');
+    const maskedText = input.charAt(0) + maskedSection + input.slice(4);
+
+    return maskedText;
+}
+
 export const wrapText = (
     ctx: CanvasRenderingContext2D,
     text: string,
@@ -73,18 +124,47 @@ export const wrapText = (
 ): string[] => {
     const words: string[] = text.split(" ");
     const lines: string[] = [];
-    let currentLine: string = words[0];
+    let currentLine: string = "";
 
-    for (let i = 1; i < words.length; i++) {
-        const word: string = words[i];
-        const width: number = ctx.measureText(currentLine + " " + word).width;
-        if (width < maxWidth) {
-            currentLine += " " + word;
+    for (let i = 0; i < words.length; i++) {
+        const word: string = words[i].replace(/<br>/g, ''); // Remove \n from the word
+
+        // Check if the original word contains a newline character
+        if (words[i].includes('\n')) {
+            const parts = words[i].split('<br>');
+            for (let j = 0; j < parts.length; j++) {
+                const part = parts[j];
+                const width: number = ctx.measureText(currentLine + (currentLine ? " " : "") + part).width;
+
+                if (width < maxWidth) {
+                    currentLine += (currentLine ? " " : "") + part;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = part;
+                }
+
+                // If this was not the last part, push the line and reset
+                if (j < parts.length - 1) {
+                    lines.push(currentLine);
+                    currentLine = "";
+                }
+            }
         } else {
-            lines.push(currentLine);
-            currentLine = word;
+            const width: number = ctx.measureText(currentLine + (currentLine ? " " : "") + word).width;
+            if (width < maxWidth) {
+                currentLine += (currentLine ? " " : "") + word;
+            } else {
+                lines.push(currentLine);
+                currentLine = word;
+            }
         }
     }
-    lines.push(currentLine);
+
+    // Push the last line
+    if (currentLine) {
+        lines.push(currentLine);
+    }
+
     return lines;
 };
+

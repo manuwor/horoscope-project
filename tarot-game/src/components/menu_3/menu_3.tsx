@@ -8,7 +8,7 @@ import MENU_LIST from "../../assets/json/menu.json";
 import APIService from "../../services/api.services";
 import { ResultMessageModel } from "../../model/result-post.model";
 import { Button, Form, FormControl, Spinner } from "react-bootstrap";
-import { generateImageFromText } from "../../services/image-service";
+import { generateImageFromText, maskTextCarID } from "../../services/image-service";
 import { compressAndUploadImage } from "../../services/upload-image";
 
 const Menu3Component = () => {
@@ -55,14 +55,14 @@ const Menu3Component = () => {
             const prompt = `ฉันอยากดูดวงทะเบียนรถ
     ทะเบียนรถคือ ${carID} และ ผลรวมคือ ${calculateThaiStringSum(carID)}
     ดูดวงจากผลรวม ${calculateThaiStringSum(carID)}
-    Return JSON format only with key (sum_car_id (ผลลัพธ์ของเลข), summary (สั้นๆ ไม่เกิน 100 คำ),explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), car_id (เลข ${carID}))`
+    Return JSON format only with key (sum_car_id (ผลลัพธ์ของเลข), summary (สั้นๆ ระหว่าง 40-50 คำ โดยไม่ต้องทวนทะเบียนรถ word break by "<br>"),explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), car_id (เลข ${carID}))`
             // To stream generated text output, call generateContentStream with the text input
             const result = await model.generateContent(prompt);
-            console.log(result.response.text());
             const jsonObject = JSON.parse(result.response.text());
-            console.log(jsonObject);
-            jsonObject["title"] = "ผลลัพธ์เลขทะเบียน " + carID + " ของคุณคือ";
-            const imageData = await generateImageFromText("ผลลัพธ์เลขทะเบียน", carID , jsonObject.summary);
+            jsonObject["summary"] = jsonObject.summary.replaceAll("<br>","").replaceAll(carID, "");
+            jsonObject["explanation"] = jsonObject.explanation.replaceAll("<br>","").replaceAll(carID, "");
+            jsonObject["title"] = "ผลลัพธ์เลขทะเบียน " + maskTextCarID(carID) + " ของคุณคือ";
+            const imageData = await generateImageFromText("ผลลัพธ์เลขทะเบียน", carID , jsonObject.summary, 3);
             let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
             if (imageData) {
                 uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);

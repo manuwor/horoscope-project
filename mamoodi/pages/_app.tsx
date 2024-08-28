@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     <>
     <GDPRConsent />
-    <Component {...pageProps} />;
+    <Component {...pageProps} />
     </>
   )
   

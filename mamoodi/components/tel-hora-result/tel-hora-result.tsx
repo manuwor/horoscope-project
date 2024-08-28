@@ -4,6 +4,7 @@ import ShareButtons from "../share-button/share-button";
 import config from "@/config";
 import { Button } from "@mui/material";
 import { TelHoraResultModel } from "@/model/result-tel-hora.model";
+import ShareButton from "@/services/share-button";
 
 const TelHoraResultComponent = ({ result }: any) => {
 
@@ -61,7 +62,9 @@ const TelHoraResultComponent = ({ result }: any) => {
                 <div className={styles.bodyCustomMain}>
                     <div className={styles.telHoraResult}>
                         <div className={styles.telHoraResultItem}>
-                            <span className={styles.telHoraResultItemHeaderDesc}>ผลลัพธ์จากเบอร์โทรศัพท์ </span>
+                            <div className={styles.telHoraResultShareControl}>
+                                <ShareButton url={config.url + "tel-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButton>
+                            </div>
 
                             {
                                 resultItem.imageUrl ? <img src={resultItem.imageUrl} className={styles.telHoraResultCardImg}></img> :
@@ -91,7 +94,7 @@ const TelHoraResultComponent = ({ result }: any) => {
                             </div>
                             <div className={styles.telHoraResultCardControl}>
                                 <span className={styles.telHoraResultCardTitle}>คำอธิบาย</span>
-                                <span className={styles.telHoraResultCardDesc}>{resultItem.result.explanation}</span>
+                                <span className={styles.telHoraResultCardDesc}>{resultItem.result.explanation.replaceAll("<br>", "")}</span>
                             </div>
                             <div className={styles.telHoraResultShareControl}>
                                 <ShareButtons url={config.url + "tel-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>

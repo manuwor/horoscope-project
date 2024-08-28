@@ -79,12 +79,11 @@ const Menu1Component = () => {
 
             const prompt = `คุณคือนักดูดวงที่แม่นที่สุด ฉันหยิบได้ไพ่ ${cardName} และ ฉันเกิดในวัน ${dateSelected} ฉันอยากรู้ดวงของฉันวันนี้, 
                          Please explain this card in Thai language about (overall, love, job, life) and suggest number 2 digit for matching with this card,
-                          Return JSON format only with key (overall, love,job,life, number)`
+                          Return JSON format only with key (overall (สั้นๆ ระหว่าง 40-50 คำ โดยไม่ต้องทวนชื่อไพ่ word break by "<br>"), love,job,life, number)`
             // To stream generated text output, call generateContentStream with the text input
             const result = await model.generateContent(prompt);
-            console.log(result.response.text());
             const jsonObject = JSON.parse(result.response.text());
-            console.log(jsonObject);
+            jsonObject["overall"] = jsonObject.overall.replaceAll("<br>","");
             jsonObject["title"] = "ดูดวงประจำวันของคุณ";
             const imageData = await generateImageFromText("ผลลัพธ์จากไพ่", cardName , jsonObject.overall);
             let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";

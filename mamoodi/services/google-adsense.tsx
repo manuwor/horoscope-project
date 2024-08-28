@@ -13,7 +13,7 @@ const GoogleAdsense: React.FC = () => {
       crossOrigin="anonymous"
       strategy="afterInteractive"
     />
-  );
-};
+  )
+}
 
 export default GoogleAdsense;

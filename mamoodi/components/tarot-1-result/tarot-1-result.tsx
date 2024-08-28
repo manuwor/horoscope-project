@@ -4,6 +4,7 @@ import styles from "./tarot-1-result.module.scss";
 import ShareButtons from "../share-button/share-button";
 import config from "@/config";
 import { Button } from "@mui/material";
+import ShareButton from "@/services/share-button";
 
 const Tarot1Result = ({ result }: any) => {
 
@@ -44,7 +45,7 @@ const Tarot1Result = ({ result }: any) => {
         }
     };
     const clickStart = () => {
-        window.open(config.app_url.tarot1 , "_self");
+        window.open(config.app_url.tarot1, "_self");
 
     }
 
@@ -63,12 +64,14 @@ const Tarot1Result = ({ result }: any) => {
                     <div className={styles.tarot1Result}>
                         <div className={styles.tarot1ResultItem}>
 
-                            <h1 className={styles.tarot1ResultItemHeader}>{resultItem.result.title}</h1>
+                            <div className="d-flex">
+                                <ShareButton url={config.url + "tarot-1/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButton>
+                            </div>
                             {
                                 resultItem.result.overall &&
                                 <div className={styles.tarot1ResultCardControl}>
                                     <span className={styles.tarot1ResultCardTitle}>ดวงโดยรวม</span>
-                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.overall}</span>
+                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.overall.replaceAll("<br>", "")}</span>
                                 </div>
 
                             }
@@ -88,7 +91,7 @@ const Tarot1Result = ({ result }: any) => {
                                 resultItem.result.job &&
                                 <div className={styles.tarot1ResultCardControl}>
                                     <span className={styles.tarot1ResultCardTitle}>หน้าที่การงาน</span>
-                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.job}</span>
+                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.job.replaceAll("<br>", "")}</span>
                                 </div>
 
                             }
@@ -96,7 +99,7 @@ const Tarot1Result = ({ result }: any) => {
                                 resultItem.result.love &&
                                 <div className={styles.tarot1ResultCardControl}>
                                     <span className={styles.tarot1ResultCardTitle}>ความรัก</span>
-                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.love}</span>
+                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.love.replaceAll("<br>", "")}</span>
                                 </div>
 
                             }
@@ -104,7 +107,7 @@ const Tarot1Result = ({ result }: any) => {
                                 resultItem.result.life &&
                                 <div className={styles.tarot1ResultCardControl}>
                                     <span className={styles.tarot1ResultCardTitle}>ชีวิต</span>
-                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.life}</span>
+                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.life.replaceAll("<br>", "")}</span>
                                 </div>
 
                             }
@@ -112,7 +115,7 @@ const Tarot1Result = ({ result }: any) => {
                                 resultItem.result.health &&
                                 <div className={styles.tarot1ResultCardControl}>
                                     <span className={styles.tarot1ResultCardTitle}>สุขภาพ</span>
-                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.health}</span>
+                                    <span className={styles.tarot1ResultCardDesc}>{resultItem.result.health.replaceAll("<br>", "")}</span>
                                 </div>
 
                             }

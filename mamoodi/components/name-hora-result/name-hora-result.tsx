@@ -4,6 +4,7 @@ import ShareButtons from "../share-button/share-button";
 import config from "@/config";
 import { Button } from "@mui/material";
 import { NameHoraResultModel } from "@/model/result-name-hora.model";
+import ShareButton from "@/services/share-button";
 
 const NameHoraResultComponent = ({ result }: any) => {
 
@@ -63,7 +64,9 @@ const NameHoraResultComponent = ({ result }: any) => {
                 <div className={styles.bodyCustomMain}>
                     <div className={styles.nameHoraResult}>
                         <div className={styles.nameHoraResultItem}>
-                            <span className={styles.nameHoraResultItemHeaderDesc}>ผลลัพธ์จากชื่อและนามสกุลของคุณ </span>
+                            <div className="d-flex">
+                                <ShareButton url={config.url + "name-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButton>
+                            </div>
 
                             {
                                 resultItem.imageUrl ? <img src={resultItem.imageUrl} className={styles.nameHoraResultCardImg}></img> :
@@ -79,7 +82,7 @@ const NameHoraResultComponent = ({ result }: any) => {
 
                             <div className={styles.nameHoraResultCardControl}>
                                 <span className={styles.nameHoraResultCardTitle}>คำอธิบาย</span>
-                                <span className={styles.nameHoraResultCardDesc}>{resultItem.result.explanation}</span>
+                                <span className={styles.nameHoraResultCardDesc}>{resultItem.result.explanation.replaceAll("<br>", "")}</span>
                             </div>
                             <div className={styles.nameHoraResultShareControl}>
                                 <ShareButtons url={config.url + "name-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>
@@ -90,7 +93,7 @@ const NameHoraResultComponent = ({ result }: any) => {
 
                             {/* Google AdSense */}
                             <div>
-                              
+
                                 <ins
                                     className="adsbygoogle"
                                     style={{ display: "block", textAlign: "center" }}
