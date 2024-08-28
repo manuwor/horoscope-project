@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/5tuz3xkPXKx4pwC0ZccO3/_buildManifest.js",
-    "static/5tuz3xkPXKx4pwC0ZccO3/_ssgManifest.js"
+    "static/IjSVdnEae-L0C2GTfi-iv/_buildManifest.js",
+    "static/IjSVdnEae-L0C2GTfi-iv/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -53,8 +53,8 @@
       "static/chunks/main-ffa90730685af1e5.js",
       "static/chunks/163-caeb34fbb4c904d8.js",
       "static/chunks/180-2e963da699b8ccf4.js",
-      "static/css/c49097d9b9f1c0e1.css",
-      "static/chunks/pages/car-hora/result-197ab4d9e7f0b2aa.js"
+      "static/css/8e875cb4cb83b4db.css",
+      "static/chunks/pages/car-hora/result-29ebd5a99bf49cef.js"
     ],
     "/name-hora/result": [
       "static/chunks/webpack-65ed5fa74777b0ed.js",
@@ -62,8 +62,8 @@
       "static/chunks/main-ffa90730685af1e5.js",
       "static/chunks/163-caeb34fbb4c904d8.js",
       "static/chunks/180-2e963da699b8ccf4.js",
-      "static/css/bc1cf5176d102e0a.css",
-      "static/chunks/pages/name-hora/result-7d0a85272bc142b9.js"
+      "static/css/3c5978e8f8794f72.css",
+      "static/chunks/pages/name-hora/result-f58b35d60377cc0c.js"
     ],
     "/sitemap.xml": [
       "static/chunks/webpack-65ed5fa74777b0ed.js",
@@ -77,8 +77,8 @@
       "static/chunks/main-ffa90730685af1e5.js",
       "static/chunks/163-caeb34fbb4c904d8.js",
       "static/chunks/180-2e963da699b8ccf4.js",
-      "static/css/c72b6dec7fb9b9ab.css",
-      "static/chunks/pages/tarot-1/result-1209abda8abb44cb.js"
+      "static/css/1f0a33e9cda8c5f0.css",
+      "static/chunks/pages/tarot-1/result-682f00f99f723d57.js"
     ],
     "/tel-hora/result": [
       "static/chunks/webpack-65ed5fa74777b0ed.js",
@@ -86,8 +86,8 @@
       "static/chunks/main-ffa90730685af1e5.js",
       "static/chunks/163-caeb34fbb4c904d8.js",
       "static/chunks/180-2e963da699b8ccf4.js",
-      "static/css/5fb0b0f0a4755143.css",
-      "static/chunks/pages/tel-hora/result-66933dde098dc88a.js"
+      "static/css/9c94a084c29da1ec.css",
+      "static/chunks/pages/tel-hora/result-1f95edac1fae9224.js"
     ]
   },
   "ampFirstPages": []

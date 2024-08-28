@@ -27,7 +27,16 @@
         .tarot1ResultShareControl {
             margin-top: 24px;
         }
-
+        .tarot1ResultCardImg{
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            margin-left: auto;
+            object-fit: contain;
+            margin-right: auto;
+        }
         .tarot1ResultItemHeader {
             font-size: 20px;
             font-family: $fontMedium;

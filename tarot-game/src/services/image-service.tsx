@@ -18,15 +18,15 @@ export const generateImageFromText = (
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, Math.max(canvas.width, canvas.height) / 2);
-    gradient.addColorStop(1, '#066137');    // Edge color
-    gradient.addColorStop(0.6, '#000000');  // Midpoint color
+    gradient.addColorStop(1, '#fff4e6');    // Edge color
+    gradient.addColorStop(1, '#fff4e6');  // Midpoint color
 
     // Apply gradient as background
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Title Text
-    ctx.fillStyle = "#ffffff"; // Text color
+    ctx.fillStyle = "#7a7a7a"; // Text color
     ctx.font = "32px 'IBMPlexSansThaiLooped-Medium'"; // Font size and family
     ctx.textAlign = "center";
     ctx.fillText(title, canvas.width / 2, 120); // Centered title text at y=100

@@ -30,19 +30,16 @@ const Menu5Component = () => {
     Return JSON format only with key (summary (สั้นๆ ไม่เกิน 50 คำ), explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), name_id (ชื่อ ${name} และ นามสกุล ${surname}))`
             // To stream generated text output, call generateContentStream with the text input
             const result = await model.generateContent(prompt);
-            console.log(result.response.text());
             const jsonObject = JSON.parse(result.response.text());
-            console.log(jsonObject);
             jsonObject["title"] = "ผลลัพธ์จากชื่อ " + name + " และนามสกุล " + surname + " ของคุณคือ";
             const imageData = await generateImageFromText("ดวงจากชื่อ ", name + " " + surname, jsonObject.summary);
             let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
             setImgData(imageData);
-
             if (imageData) {
                 uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
             }
             const body = {
-                menu_id: MENU_LIST[3].id,
+                menu_id: MENU_LIST[4].id,
                 result: jsonObject,
             }
             body["imageUrl"] = uploadedImageUrl

@@ -19,12 +19,12 @@ const NameHoraResultComponent = ({ result }: any) => {
     useEffect(() => {
         if (resultItem) {
             incrementResultViewCount(resultItem.id)
-          
+
         }
 
     }, [resultItem])
 
-   
+
     const incrementResultViewCount = async (resultId: string) => {
         try {
             const response = await fetch(`${config.api.url}results/${resultId}/increment-view`, {
@@ -45,48 +45,49 @@ const NameHoraResultComponent = ({ result }: any) => {
         }
     };
     const clickStart = () => {
-        window.open(config.app_url.name_hora , "_self");
+        window.open(config.app_url.name_hora, "_self");
 
     }
 
     return (
         <>
-        {
-            resultItem &&
+            {
+                resultItem &&
 
 
-            <div className={styles.bodyCustomMain}>
-                <div className={styles.nameHoraResult}>
-                    <div className={styles.nameHoraResultItem}>
-                        <span className={styles.nameHoraResultItemHeaderDesc}>ผลลัพธ์จากชื่อและนามสกุลของคุณ </span>
+                <div className={styles.bodyCustomMain}>
+                    <div className={styles.nameHoraResult}>
+                        <div className={styles.nameHoraResultItem}>
+                            <span className={styles.nameHoraResultItemHeaderDesc}>ผลลัพธ์จากชื่อและนามสกุลของคุณ </span>
 
-                        {
-                            imageData && <img src={imageData}></img>
-                        }
-                        <div className={styles.nameHoraResultCardIDControl}>
+                            {
+                                resultItem.imageUrl ? <img src={resultItem.imageUrl} className={styles.nameHoraResultCardImg}></img> :
+                                    <div className={styles.nameHoraResultCardIDControl}>
 
-                            <span className={styles.nameHoraResultCardText}>{resultItem.result.name_id}</span>
-                        </div>
-
-                       
+                                        <span className={styles.nameHoraResultCardText}>{resultItem.result.name_id}</span>
+                                    </div>
+                            }
 
 
-                        <div className={styles.nameHoraResultCardControl}>
-                            <span className={styles.nameHoraResultCardTitle}>คำอธิบาย</span>
-                            <span className={styles.nameHoraResultCardDesc}>{resultItem.result.explanation}</span>
-                        </div>
-                        <div className={styles.nameHoraResultShareControl}>
-                            <ShareButtons url={config.url + "name-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>
-                        </div>
-                        <div className={styles.nameHoraResultStartControl}>
-                            <Button className={styles.nameHoraResultStartButton} onClick={clickStart}>เริ่มดูเช็คดวงด้วยชื่อ</Button>
+
+
+
+                            <div className={styles.nameHoraResultCardControl}>
+                                <span className={styles.nameHoraResultCardTitle}>คำอธิบาย</span>
+                                <span className={styles.nameHoraResultCardDesc}>{resultItem.result.explanation}</span>
+                            </div>
+                            <div className={styles.nameHoraResultShareControl}>
+                                <ShareButtons url={config.url + "name-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>
+                            </div>
+                            <div className={styles.nameHoraResultStartControl}>
+                                <Button className={styles.nameHoraResultStartButton} onClick={clickStart}>เริ่มดูเช็คดวงด้วยชื่อ</Button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        }
-    </>
+                </div>
+            }
+        </>
     )
 }
 

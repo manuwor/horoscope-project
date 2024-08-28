@@ -36,4 +36,14 @@
         "name": "ดูดวงเบอร์โทรศัพท์",
         "menu_id": "0u9JnNuj0t2M7YqaOEzt"
     }
+    ,
+    {
+        "id": "0u9JnNuj0t2M7YqaOEzt",
+        "createdAt": {
+            "_seconds": 1724562148,
+            "_nanoseconds": 319000000
+        },
+        "name": "ดูดวงจากชื่อ",
+        "menu_id": "0u9JnNuj0t2M7YqaOEzt"
+    }
 ]

@@ -61,16 +61,18 @@ const CarHoraResultComponent = ({ result }: any) => {
                         <div className={styles.carHoraResultItem}>
                             <span className={styles.carHoraResultItemHeaderDesc}>ผลลัพธ์จากเลขทะเบียน </span>
 
-                            <div className={styles.carHoraResultCardIDControl}>
 
-                                <span className={styles.carHoraResultCardText}>{resultItem.result.car_id}</span>
-                            </div>
+                            {
+                                resultItem.imageUrl ? <img src={resultItem.imageUrl} className={styles.carHoraResultCardImg}></img> :
+                                    <div className={styles.carHoraResultCardIDControl}>
+                                        <span className={styles.carHoraResultCardText}>{resultItem.result.car_id}</span>
+                                    </div>
+
+                            }
 
                             <div className={styles.carHoraResultSumControl}>
                                 <h1 className={styles.carHoraResultSumText}>{resultItem.result.sum_car_id}</h1>
-
                             </div>
-
 
                             <div className={styles.carHoraResultCardControl}>
                                 <span className={styles.carHoraResultCardTitle}>คำอธิบาย</span>

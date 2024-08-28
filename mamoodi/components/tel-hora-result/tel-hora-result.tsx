@@ -44,48 +44,53 @@ const TelHoraResultComponent = ({ result }: any) => {
         }
     };
     const clickStart = () => {
-        window.open(config.app_url.tel_hora , "_self");
+        window.open(config.app_url.tel_hora, "_self");
 
     }
 
     return (
         <>
-        {
-            resultItem &&
+            {
+                resultItem &&
 
 
-            <div className={styles.bodyCustomMain}>
-                <div className={styles.telHoraResult}>
-                    <div className={styles.telHoraResultItem}>
-                        <span className={styles.telHoraResultItemHeaderDesc}>ผลลัพธ์จากเบอร์โทรศัพท์ </span>
+                <div className={styles.bodyCustomMain}>
+                    <div className={styles.telHoraResult}>
+                        <div className={styles.telHoraResultItem}>
+                            <span className={styles.telHoraResultItemHeaderDesc}>ผลลัพธ์จากเบอร์โทรศัพท์ </span>
 
-                        <div className={styles.telHoraResultCardIDControl}>
+                            {
+                                resultItem.imageUrl ? <img src={resultItem.imageUrl} className={styles.telHoraResultCardImg}></img> :
+                                    <div className={styles.telHoraResultCardIDControl}>
 
-                            <span className={styles.telHoraResultCardText}>{resultItem.result.tel_id}</span>
-                        </div>
+                                        <span className={styles.telHoraResultCardText}>{resultItem.result.tel_id}</span>
+                                    </div>
 
-                        <div className={styles.telHoraResultSumControl}>
-                            <h1 className={styles.telHoraResultSumText}>{resultItem.result.sum_tel_id}</h1>
-
-                        </div>
+                            }
 
 
-                        <div className={styles.telHoraResultCardControl}>
-                            <span className={styles.telHoraResultCardTitle}>คำอธิบาย</span>
-                            <span className={styles.telHoraResultCardDesc}>{resultItem.result.explanation}</span>
-                        </div>
-                        <div className={styles.telHoraResultShareControl}>
-                            <ShareButtons url={config.url + "tel-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>
-                        </div>
-                        <div className={styles.telHoraResultStartControl}>
-                            <Button className={styles.telHoraResultStartButton} onClick={clickStart}>เริ่มดูเช็คดวงด้วยเบอร์</Button>
+                            <div className={styles.telHoraResultSumControl}>
+                                <h1 className={styles.telHoraResultSumText}>{resultItem.result.sum_tel_id}</h1>
+
+                            </div>
+
+
+                            <div className={styles.telHoraResultCardControl}>
+                                <span className={styles.telHoraResultCardTitle}>คำอธิบาย</span>
+                                <span className={styles.telHoraResultCardDesc}>{resultItem.result.explanation}</span>
+                            </div>
+                            <div className={styles.telHoraResultShareControl}>
+                                <ShareButtons url={config.url + "tel-hora/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButtons>
+                            </div>
+                            <div className={styles.telHoraResultStartControl}>
+                                <Button className={styles.telHoraResultStartButton} onClick={clickStart}>เริ่มดูเช็คดวงด้วยเบอร์</Button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        }
-    </>
+                </div>
+            }
+        </>
     )
 }
 

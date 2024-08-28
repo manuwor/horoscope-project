@@ -8,6 +8,8 @@ import MENU_LIST from "../../assets/json/menu.json";
 import { ResultMessageModel } from "../../model/result-post.model";
 import { Button, Form, Spinner } from "react-bootstrap";
 import "./menu_4.scss";
+import { generateImageFromText } from "../../services/image-service";
+import { compressAndUploadImage } from "../../services/upload-image";
 
 
 const Menu4Component = () => {
@@ -31,20 +33,22 @@ const Menu4Component = () => {
             const prompt = `ฉันอยากดูดวงเบอร์โทรศัพท์
     เลขโทรศัพท์คือ ${telID} และ ผลรวมคือ ${sumTelephoneNumber(telID)}
     ดูดวงจากผลรวม ${sumTelephoneNumber(telID)}
-    Return JSON format only with key (sum_tel_id (ผลลัพธ์ของเลข), explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), tel_id (เลข ${telID}))`
+    Return JSON format only with key (sum_tel_id (ผลลัพธ์ของเลข), summary (สั้นๆ ไม่เกิน 100 คำ),explanation (ดวงที่ได้จากผลลัพธ์ ขอยาวๆ), tel_id (เลข ${telID}))`
             // To stream generated text output, call generateContentStream with the text input
             const result = await model.generateContent(prompt);
-            console.log(result.response.text());
             const jsonObject = JSON.parse(result.response.text());
-            console.log(jsonObject);
             jsonObject["title"] = "ผลลัพธ์เลขโทรศัพท์ " + telID + " ของคุณคือ";
-
+            const imageData = await generateImageFromText("ผลดูดวงจากเบอร์ของคุณ ", telID , jsonObject.summary);
+            let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
+            if (imageData) {
+                uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
+            }
             const body = {
                 menu_id: MENU_LIST[3].id,
                 result: jsonObject,
-                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media'
             }
-
+            body["imageUrl"] = uploadedImageUrl
+          
             APIService().postResult(body).then((res: any) => {
 
                 try {

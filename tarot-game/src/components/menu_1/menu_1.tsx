@@ -12,6 +12,8 @@ import { geminiConfig } from "../../utility/gemini-config";
 import MENU_LIST from "../../assets/json/menu.json";
 import APIService from "../../services/api.services";
 import { ResultMessageModel } from "../../model/result-post.model";
+import { generateImageFromText } from "../../services/image-service";
+import { compressAndUploadImage } from "../../services/upload-image";
 
 const Menu1Component = () => {
 
@@ -84,12 +86,16 @@ const Menu1Component = () => {
             const jsonObject = JSON.parse(result.response.text());
             console.log(jsonObject);
             jsonObject["title"] = "ดูดวงประจำวันของคุณ";
-
+            const imageData = await generateImageFromText("ผลลัพธ์จากไพ่", cardName , jsonObject.overall);
+            let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
+            if (imageData) {
+                uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
+            }
             const body = {
                 menu_id: MENU_LIST[0].id,
                 result: jsonObject,
-                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media'
             }
+            body["imageUrl"] = uploadedImageUrl
 
             APIService().postResult(body).then((res: any) => {
 

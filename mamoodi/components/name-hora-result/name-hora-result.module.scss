@@ -27,7 +27,16 @@
         .nameHoraResultShareControl {
             margin-top: 24px;
         }
-
+        .nameHoraResultCardImg{
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            margin-left: auto;
+            object-fit: contain;
+            margin-right: auto;
+        }
         .nameHoraResultCardIDControl{
             width: 80%;
             min-height: 130px;
@@ -42,8 +51,9 @@
 
             .nameHoraResultCardText{
                 margin: auto;
-                font-size: 36px;
+                font-size: 24px;
                 display: flex;
+                text-align: center;
                 color: black;
                 font-family: $fontMedium;
             }
