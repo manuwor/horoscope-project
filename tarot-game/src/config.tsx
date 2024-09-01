@@ -1,6 +1,9 @@
 const test = {
     ga_4 : "G-H9TF3EKB8E",
-    
+    app:{
+        home: "https://mamoodi.com",
+        image_path: "/assets/images"
+    },
     api_lotto: {
         base_url: "https://lotto.api.rayriffy.com",
         list: "/list",
@@ -15,7 +18,10 @@ const test = {
 };
 const prod = {
     ga_4 : "G-H9TF3EKB8E",
-  
+    app:{
+        home: "https://mamoodi.com",
+        image_path: "/assets/images"
+    },
     api_lotto: {
         base_url: "https://lotto.api.rayriffy.com",
         list: "/list",

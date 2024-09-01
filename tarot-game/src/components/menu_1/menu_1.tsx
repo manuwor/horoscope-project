@@ -14,6 +14,7 @@ import APIService from "../../services/api.services";
 import { ResultMessageModel } from "../../model/result-post.model";
 import { generateImageFromText } from "../../services/image-service";
 import { compressAndUploadImage } from "../../services/upload-image";
+import config from "../../config";
 
 const Menu1Component = () => {
 
@@ -37,15 +38,9 @@ const Menu1Component = () => {
 
         }, 1000); // Simulate shuffle animation delay
     };
-    const setCardSelection = (cardId: number) => {
+    const setCardSelection = (cardId: TarotCard[]) => {
         if(cardId != null){
-            const filteredDeck = shuffledDeck.find(card => card.id === cardId);
-            if (filteredDeck) {
-                const selectedCardMod = [...selectedCards, filteredDeck] as TarotCard[];
-                setSelectedCards(selectedCardMod);
-            } else {
-                console.log(`Card with id ${cardId} not found in shuffledDeck`);
-            }
+            setSelectedCards(cardId);
         }else{
             setSelectedCards(new Array());
         }
@@ -85,7 +80,8 @@ const Menu1Component = () => {
             const jsonObject = JSON.parse(result.response.text());
             jsonObject["overall"] = jsonObject.overall.replaceAll("<br>","");
             jsonObject["title"] = "ดูดวงประจำวันของคุณ";
-            const imageData = await generateImageFromText("ผลลัพธ์จากไพ่", cardName , jsonObject.overall);
+            jsonObject["card_url"] = config.app.home + config.app.image_path + "/tarot-cards/"+ selectedCards[0].card_img
+            const imageData = await generateImageFromText("ผลลัพธ์จากไพ่", cardName , jsonObject.overall, 1, true, selectedCards[0].card_img);
             let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
             if (imageData) {
                 uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
@@ -94,6 +90,7 @@ const Menu1Component = () => {
                 menu_id: MENU_LIST[0].id,
                 result: jsonObject,
             }
+            console.log(body);
             body["imageUrl"] = uploadedImageUrl
 
             APIService().postResult(body).then((res: any) => {

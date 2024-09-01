@@ -48,7 +48,7 @@ const LottoPastPage = ({result}) => {
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="ตรวจสลากกินแบ่งย้อนหลัง | เช็คผลรางวัลสลากกินแบ่งรัฐบาลย้อนหลัง" />
                 <meta property="og:image"
-                    content="https://mamoodi.com/assets/images/share-cover.jpg" />
+                    content="https://mamoodi.com/assets/images/lotto-pre.png" />
                 <meta name="keywords"
                     content="ตรวจสลากกินแบ่งย้อนหลัง, ผลสลากกินแบ่งย้อนหลัง, ตรวจหวยย้อนหลัง, สถิติหวย, ผลรางวัลสลากกินแบ่งรัฐบาล, ตรวจลอตเตอรี่ย้อนหลัง" />
                 <meta property="og:keywords"

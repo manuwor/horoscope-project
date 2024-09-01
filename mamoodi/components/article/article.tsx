@@ -4,6 +4,7 @@ import config from "@/config";
 import styles from "./article.module.scss";
 import { Article } from "@/model/article.model";
 import ShareButtons from "../share-button/share-button";
+import { AdUnit } from "next-google-adsense";
 
 declare global {
   interface Window {
@@ -79,15 +80,11 @@ const ArticleComponent = ({ article }: any) => {
 
                             {/* Google AdSense */}
                             <div>
-                               
-                                <ins
-                                    className="adsbygoogle"
-                                    style={{ display: "block", textAlign: "center" }}
-                                    data-ad-layout="in-article"
-                                    data-ad-format="fluid"
-                                    data-ad-client="ca-pub-7304132375043084"
-                                    data-ad-slot="5829918586"
-                                ></ins>
+                            <AdUnit
+                                publisherId="pub-7304132375043084" 
+                                slotId="5829918586"                 
+                                layout="display"                   
+                            />
                             </div>
                         </>
                     )}

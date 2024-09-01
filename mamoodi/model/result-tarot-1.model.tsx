@@ -3,6 +3,7 @@ export interface ResultTarot1Model {
     result: Result
     imageUrl: string
     menu_id: string
+    
     createdAt: CreatedAt
 }
 
@@ -10,6 +11,7 @@ interface Result {
     love: string
     number: string
     overall: string
+    card_url: string
     job: string
     health: string
     title: string

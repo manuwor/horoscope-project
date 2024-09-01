@@ -2,7 +2,9 @@ export const generateImageFromText = (
     title: string,
     header: string,
     description: string,
-    menu_id?: number
+    menu_id?: number,
+    isTarotCard?: boolean, // Add this parameter to check if it should be a tarot card
+    tarotCardImage?: string // Path to the tarot card image
 ): Promise<string | undefined> => {
     const canvas: HTMLCanvasElement = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -15,17 +17,15 @@ export const generateImageFromText = (
     canvas.width = 1260;
     canvas.height = 630;
 
-    // Load background image
     try {
         let headerText = header;
         let descriptionText = description.replaceAll(header, "");
-        if(menu_id == 4){
+        if (menu_id == 4) {
             headerText = maskText(header);
-        }else if(menu_id == 3){
+        } else if (menu_id == 3) {
             headerText = maskTextCarID(header);
         }
 
-        
         const backgroundImage = new Image();
         backgroundImage.src = "/assets/images/bg-share.jpg"; // Adjust the path if necessary
 
@@ -37,46 +37,76 @@ export const generateImageFromText = (
                 // Title Text
                 ctx.fillStyle = "#ffffff"; // Text color
                 ctx.font = "32px 'IBMPlexSansThaiLooped-Regular'"; // Font size and family
-                ctx.textAlign = "center";
-                ctx.fillText(title, canvas.width / 2, 120); // Centered title text at y=100
+                ctx.textAlign = isTarotCard ? "left" : "center"; // Align left if it's a tarot card
+                ctx.fillText(title, isTarotCard ? 50 : canvas.width / 2, 120); // Adjust x position for left alignment
 
                 // Header Text
                 ctx.font = "bold 65px 'IBMPlexSansThaiLooped-Medium'"; // Font size and style
-                ctx.fillText(headerText, canvas.width / 2, 250); // Centered header text at y=180
+                ctx.fillText(headerText, isTarotCard ? 50 : canvas.width / 2, 250); // Adjust x position for left alignment
 
                 // Description Text
                 ctx.font = "35px 'IBMPlexSansThaiLooped-Regular'"; // Font size for description
-
-                // Calculate 60% of the canvas width
-                const descriptionWidth = canvas.width * 0.6;
-
-                // Calculate the starting x-position for centering the text
-                const descriptionX = (canvas.width - descriptionWidth) / 2;
-
-                // Wrap the text within the 60% width
+                const descriptionWidth = isTarotCard ? canvas.width * 0.5 : canvas.width * 0.6;
+                const descriptionX = isTarotCard ? 50 : (canvas.width - descriptionWidth) / 2;
                 const lines: string[] = wrapText(ctx, descriptionText, descriptionWidth);
-                // Draw each line of text, centered horizontally
-                // Draw each line of text, centered horizontally
+
                 lines.forEach((line, index) => {
-                    ctx.fillText(line, descriptionX + descriptionWidth / 2, 350 + index * 60);
+                    ctx.fillText(line, descriptionX, 350 + index * 60); // Adjust x position for left alignment
                 });
 
-                // Convert canvas to image and compress it
-                canvas.toBlob(
-                    (blob) => {
-                        if (blob) {
-                            const reader = new FileReader();
-                            reader.readAsDataURL(blob);
-                            reader.onloadend = () => {
-                                resolve(reader.result as string);
-                            };
-                        } else {
-                            resolve(undefined);
-                        }
-                    },
-                    "image/jpeg",
-                    0.7 // Adjust compression quality to keep image size < 60KB
-                );
+                // If it's a tarot card, load and draw the tarot card image on the right
+                if (isTarotCard && tarotCardImage) {
+                    const tarotImage = new Image();
+                    tarotImage.src = "/assets/images/tarot-cards/"+tarotCardImage;
+
+                    tarotImage.onload = () => {
+                        const cardWidth = 300; // Set the width of the tarot card
+                        const cardHeight = 500; // Set the height of the tarot card
+                        const cardX = canvas.width - cardWidth - 50; // Position it on the right side
+                        const cardY = (canvas.height - cardHeight) / 2; // Center vertically
+
+                        ctx.drawImage(tarotImage, cardX, cardY, cardWidth, cardHeight);
+
+                        // Convert canvas to image and compress it
+                        canvas.toBlob(
+                            (blob) => {
+                                if (blob) {
+                                    const reader = new FileReader();
+                                    reader.readAsDataURL(blob);
+                                    reader.onloadend = () => {
+                                        resolve(reader.result as string);
+                                    };
+                                } else {
+                                    resolve(undefined);
+                                }
+                            },
+                            "image/jpeg",
+                            0.7 // Adjust compression quality to keep image size < 60KB
+                        );
+                    };
+
+                    tarotImage.onerror = () => {
+                        console.log("error loading tarot card image", tarotCardImage);
+                        resolve(undefined);
+                    };
+                } else {
+                    // Convert canvas to image and compress it
+                    canvas.toBlob(
+                        (blob) => {
+                            if (blob) {
+                                const reader = new FileReader();
+                                reader.readAsDataURL(blob);
+                                reader.onloadend = () => {
+                                    resolve(reader.result as string);
+                                };
+                            } else {
+                                resolve(undefined);
+                            }
+                        },
+                        "image/jpeg",
+                        0.7 // Adjust compression quality to keep image size < 60KB
+                    );
+                }
             };
 
             backgroundImage.onerror = () => {
@@ -87,10 +117,11 @@ export const generateImageFromText = (
     } catch (error) {
         console.log(error);
         return new Promise((resolve) => {
-
+            resolve(undefined);
         });
     }
 };
+
 
 export const maskText = (input: string): string =>{
     // Check if the input length is sufficient

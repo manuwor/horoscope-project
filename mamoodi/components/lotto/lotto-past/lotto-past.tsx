@@ -7,6 +7,7 @@ import APIService from "@/services/api.service";
 import { Container, Row, Col, Form, Button, Alert, Card } from 'react-bootstrap';
 import LottoDropdown from "../lotto-dropdown";
 import { TextField } from "@mui/material";
+import { AdUnit } from "next-google-adsense";
 
 const LottoPastComponent = () => {
     const [lottoList, setLottoList] = useState<LottoListModel>();
@@ -175,6 +176,11 @@ const LottoPastComponent = () => {
                                         </div>
                                     )}
                                 </div>
+                                <AdUnit
+                                publisherId="pub-7304132375043084" 
+                                slotId="5829918586"                 
+                                layout="display"                   
+                            />
                                 <div className={styles.lottoCurrentShowAllControl}>
                                     <span className={styles.lottoCurrentShowAllTitle}>รางวัลที่ 1</span>
                                     <span className={styles.lottoCurrentShowAllValue1}>

@@ -43,11 +43,11 @@ const LottoListPage = ({result}) => {
                 <meta name="description"
                     content="ตรวจผลสลากกินแบ่งรัฐบาลงวดล่าสุดได้ที่นี่ รู้ผลทันใจ อัปเดตทุกงวด พร้อมข้อมูลรางวัลที่ 1 และรางวัลอื่นๆ ครบถ้วน ไม่พลาดทุกการตรวจหวย" />
                 <meta name="og:description" content="ตรวจผลสลากกินแบ่งรัฐบาลงวดล่าสุดได้ที่นี่ รู้ผลทันใจ อัปเดตทุกงวด พร้อมข้อมูลรางวัลที่ 1 และรางวัลอื่นๆ ครบถ้วน ไม่พลาดทุกการตรวจหวย" />
-                <meta property="og:url" content="https://mamoodi.com/articles/" />
+                <meta property="og:url" content="https://mamoodi.com/lotto/" />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="ตรวจสลากกินแบ่งรัฐบาลงวดล่าสุด | เช็คผลหวยงวดล่าสุดที่นี่" />
                 <meta property="og:image"
-                    content="https://mamoodi.com/assets/images/share-cover.jpg" />
+                    content="https://mamoodi.com/assets/images/lotto-pre.png" />
                 <meta name="keywords"
                     content="ตรวจสลากกินแบ่งงวดล่าสุด, ผลสลากกินแบ่งรัฐบาลล่าสุด, ตรวจหวยล่าสุด, ผลหวยล่าสุด, ผลสลากกินแบ่งวันนี้, ตรวจลอตเตอรี่งวดนี้" />
                 <meta property="og:keywords"

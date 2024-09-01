@@ -5,6 +5,7 @@ import ShareButtons from "../share-button/share-button";
 import config from "@/config";
 import { Button } from "@mui/material";
 import ShareButton from "@/services/share-button";
+import { AdUnit } from "next-google-adsense";
 
 const Tarot1Result = ({ result }: any) => {
 
@@ -64,9 +65,10 @@ const Tarot1Result = ({ result }: any) => {
                     <div className={styles.tarot1Result}>
                         <div className={styles.tarot1ResultItem}>
 
-                            <div className="d-flex">
+                            <div className={styles.tarot1ResultItemShareControl}>
                                 <ShareButton url={config.url + "tarot-1/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButton>
                             </div>
+                            <img src={resultItem.result.card_url} className={styles.tarot1ResultCardImg}></img>
                             {
                                 resultItem.result.overall &&
                                 <div className={styles.tarot1ResultCardControl}>
@@ -78,14 +80,11 @@ const Tarot1Result = ({ result }: any) => {
 
                             {/* Google AdSense */}
                             <div>
-                                <ins
-                                    className="adsbygoogle"
-                                    style={{ display: "block", textAlign: "center" }}
-                                    data-ad-layout="in-article"
-                                    data-ad-format="fluid"
-                                    data-ad-client="ca-pub-7304132375043084"
-                                    data-ad-slot="5829918586"
-                                ></ins>
+                            <AdUnit
+                                publisherId="pub-7304132375043084" 
+                                slotId="5829918586"                 
+                                layout="display"                   
+                            />
                             </div>
                             {
                                 resultItem.result.job &&

@@ -12,6 +12,11 @@
         width: auto;
     }
 
+    .tarot1ResultItemShareControl{
+        display: flex;
+        margin-bottom: 2px;
+    }
+
     .tarot1ResultItem {
         display: flex;
         margin-top: 24px;
@@ -22,6 +27,15 @@
 
         @include media-breakpoint-down(md){
             max-width: 552px;
+        }
+
+        .tarot1ResultCardImg{
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 24px;
         }
 
         .tarot1ResultShareControl {

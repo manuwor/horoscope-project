@@ -12,3 +12,19 @@
     font-size: 16px;
     font-family: $fontMedium;
   }
+
+.tarot-card-img{
+  width: 60px;
+  height: 110px;
+  aspect-ratio: 7/11;
+  object-fit: contain;
+}
+
+.tarot-card-img-active{
+  width: 60px;
+  height: 110px;
+  border: 2px solid $button-color;
+  border-radius: 8px;
+  aspect-ratio: 7/11;
+  object-fit: contain;
+}
