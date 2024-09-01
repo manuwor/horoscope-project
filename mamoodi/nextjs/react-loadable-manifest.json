@@ -16,7 +16,7 @@
       "static/chunks/436-5b88bafebb4fe7d6.js",
       "static/chunks/218-75980df7bf226727.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/790.1d6b677350679c31.js"
+      "static/chunks/642.b71bf10cd4feb472.js"
     ]
   },
   "pages/articles/index.tsx -> ../../components/footer/footer": {
@@ -36,7 +36,7 @@
       "static/chunks/436-5b88bafebb4fe7d6.js",
       "static/chunks/218-75980df7bf226727.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/790.1d6b677350679c31.js"
+      "static/chunks/642.b71bf10cd4feb472.js"
     ]
   },
   "pages/car-hora/result/index.tsx -> ../../../components/footer/footer": {
@@ -52,7 +52,7 @@
       "static/css/49e81b3dad5268f5.css",
       "static/chunks/218-75980df7bf226727.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/585.b8c788f690ec8868.js"
+      "static/chunks/585.020900df1da801f7.js"
     ]
   },
   "pages/index.tsx -> ../components/footer/footer": {
@@ -72,7 +72,7 @@
       "static/chunks/436-5b88bafebb4fe7d6.js",
       "static/chunks/218-75980df7bf226727.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/790.1d6b677350679c31.js"
+      "static/chunks/642.b71bf10cd4feb472.js"
     ]
   },
   "pages/lotto/index.tsx -> ../../components/footer/footer": {
@@ -90,7 +90,7 @@
       "static/chunks/48-f68619f9b42372dc.js",
       "static/chunks/436-5b88bafebb4fe7d6.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/642.4a8bfeb5d4fd9c6c.js"
+      "static/chunks/790.1d6b677350679c31.js"
     ]
   },
   "pages/lotto/past/index.tsx -> ../../../components/footer/footer": {
@@ -123,7 +123,7 @@
       "static/css/49e81b3dad5268f5.css",
       "static/chunks/218-75980df7bf226727.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/585.b8c788f690ec8868.js"
+      "static/chunks/585.020900df1da801f7.js"
     ]
   },
   "pages/tarot-1/result/index.tsx -> ../../../components/footer/footer": {
@@ -139,7 +139,7 @@
       "static/css/49e81b3dad5268f5.css",
       "static/chunks/218-75980df7bf226727.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/585.b8c788f690ec8868.js"
+      "static/chunks/585.020900df1da801f7.js"
     ]
   },
   "pages/tel-hora/result/index.tsx -> ../../../components/footer/footer": {
@@ -155,7 +155,7 @@
       "static/css/49e81b3dad5268f5.css",
       "static/chunks/218-75980df7bf226727.js",
       "static/chunks/945.1bb7af9ba3bbdc8c.js",
-      "static/chunks/585.b8c788f690ec8868.js"
+      "static/chunks/585.020900df1da801f7.js"
     ]
   }
 }

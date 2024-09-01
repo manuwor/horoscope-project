@@ -6,6 +6,10 @@
   background: $bg-color;
   display: flex;
   padding: 12px;
+
+  @include media-breakpoint-down(md){
+    width: auto;
+  }
 }
 
 .lottoItemControl {

@@ -41,9 +41,9 @@
     }
 
     @include media-breakpoint-down(sm) {
-        max-width: 400px;
-        padding-left: 0%;
-        padding-right: 0%;
+        padding-left: 2%;
+        padding-right: 2%;
+        width: auto;
     }
 
 }
@@ -105,6 +105,10 @@
             margin-left: auto;
             margin-right: auto;
             padding: 2%;
+        }
+
+        @include media-breakpoint-down(sm){
+            width: -webkit-fill-available !important;
         }
     }
 

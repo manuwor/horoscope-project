@@ -17,6 +17,10 @@
         margin: auto;
         max-width: 992px;
 
+        @include media-breakpoint-down(md){
+            max-width: 400px;
+        }
+
 
         .landingItemListControl {
             cursor: pointer;
