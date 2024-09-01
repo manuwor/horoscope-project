@@ -7,7 +7,9 @@ import APIService from "@/services/api.service";
 import { Container, Row, Col, Form, Button, Alert, Card } from 'react-bootstrap';
 import LottoDropdown from "../lotto-dropdown";
 import { TextField } from "@mui/material";
-import { AdUnit } from "next-google-adsense";
+import AdBanner from "@/services/ads-banner";
+import config from "@/config";
+
 
 const LottoPastComponent = () => {
     const [lottoList, setLottoList] = useState<LottoListModel>();
@@ -130,23 +132,23 @@ const LottoPastComponent = () => {
                                                 กรอกหมายเลขสลากของท่าน (6 หลัก)
                                             </Form.Label>
                                             <div className={styles.lottoCurrentSearchControl}>
-                                                    <TextField
-                                                        type="text"
-                                                        placeholder="เช่น 095867"
-                                                        value={searchNumber}
-                                                        onChange={(e) => handleChangeSearch(e.target.value)}
-                                                        inputProps={{ maxLength: 6 }}
-                                                        fullWidth
-                                                        variant="outlined" // You can choose "outlined", "filled", or "standard"
-                                                    />
-                                                    <Button
-                                                        className={styles.lottCurrentSearchButton}
-                                                        onClick={handleSearch}
-                                                        variant="contained"
-                                                        color="primary"
-                                                    >
-                                                        ตรวจหวย
-                                                    </Button>
+                                                <TextField
+                                                    type="text"
+                                                    placeholder="เช่น 095867"
+                                                    value={searchNumber}
+                                                    onChange={(e) => handleChangeSearch(e.target.value)}
+                                                    inputProps={{ maxLength: 6 }}
+                                                    fullWidth
+                                                    variant="outlined" // You can choose "outlined", "filled", or "standard"
+                                                />
+                                                <Button
+                                                    className={styles.lottCurrentSearchButton}
+                                                    onClick={handleSearch}
+                                                    variant="contained"
+                                                    color="primary"
+                                                >
+                                                    ตรวจหวย
+                                                </Button>
                                             </div>
                                         </Form.Group>
                                     </Form>
@@ -176,11 +178,11 @@ const LottoPastComponent = () => {
                                         </div>
                                     )}
                                 </div>
-                                <AdUnit
-                                publisherId="pub-7304132375043084" 
-                                slotId="5829918586"                 
-                                layout="display"                   
-                            />
+                                <AdBanner
+                                    data-ad-slot={config.ads.ads_1_id}
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"
+                                />
                                 <div className={styles.lottoCurrentShowAllControl}>
                                     <span className={styles.lottoCurrentShowAllTitle}>รางวัลที่ 1</span>
                                     <span className={styles.lottoCurrentShowAllValue1}>

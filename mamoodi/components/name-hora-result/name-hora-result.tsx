@@ -5,7 +5,8 @@ import config from "@/config";
 import { Button } from "@mui/material";
 import { NameHoraResultModel } from "@/model/result-name-hora.model";
 import ShareButton from "@/services/share-button";
-import { AdUnit } from "next-google-adsense";
+import AdBanner from "@/services/ads-banner";
+
 
 const NameHoraResultComponent = ({ result }: any) => {
 
@@ -95,11 +96,11 @@ const NameHoraResultComponent = ({ result }: any) => {
                             {/* Google AdSense */}
                             <div>
 
-                            <AdUnit
-                                publisherId="pub-7304132375043084" 
-                                slotId="5829918586"                 
-                                layout="display"                   
-                            />
+                                <AdBanner
+                                    data-ad-slot={config.ads.ads_1_id}
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"
+                                />
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,8 @@ import ShareButtons from "../share-button/share-button";
 import config from "@/config";
 import { Button } from "@mui/material";
 import ShareButton from "@/services/share-button";
-import { AdUnit } from "next-google-adsense";
+import AdBanner from "@/services/ads-banner";
+
 
 const Tarot1Result = ({ result }: any) => {
 
@@ -80,11 +81,11 @@ const Tarot1Result = ({ result }: any) => {
 
                             {/* Google AdSense */}
                             <div>
-                            <AdUnit
-                                publisherId="pub-7304132375043084" 
-                                slotId="5829918586"                 
-                                layout="display"                   
-                            />
+                                <AdBanner
+                                    data-ad-slot={config.ads.ads_1_id}
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"
+                                />
                             </div>
                             {
                                 resultItem.result.job &&

@@ -5,7 +5,8 @@ import config from "@/config";
 import { Button } from "@mui/material";
 import { TelHoraResultModel } from "@/model/result-tel-hora.model";
 import ShareButton from "@/services/share-button";
-import { AdUnit } from "next-google-adsense";
+import AdBanner from "@/services/ads-banner";
+
 
 const TelHoraResultComponent = ({ result }: any) => {
 
@@ -84,11 +85,11 @@ const TelHoraResultComponent = ({ result }: any) => {
 
                             {/* Google AdSense */}
                             <div>
-                            <AdUnit
-                                publisherId="pub-7304132375043084" 
-                                slotId="5829918586"                 
-                                layout="display"                   
-                            />
+                                <AdBanner
+                                    data-ad-slot={config.ads.ads_1_id}
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"
+                                />
                             </div>
                             <div className={styles.telHoraResultCardControl}>
                                 <span className={styles.telHoraResultCardTitle}>คำอธิบาย</span>

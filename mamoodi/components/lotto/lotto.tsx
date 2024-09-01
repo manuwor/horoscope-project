@@ -6,7 +6,9 @@ import { LottoDetailModel } from "@/model/lotto-detail.model";
 import APIService from "@/services/api.service";
 import { Container, Row, Col, Form, Button, Alert, Card } from 'react-bootstrap';
 import { TextField } from "@mui/material";
-import { AdUnit } from "next-google-adsense";
+import AdBanner from "@/services/ads-banner";
+import config from "@/config";
+
 
 const LottoComponent = ({ resultList }: any) => {
     const [lottoDetail, setLottoDetail] = useState<LottoDetailModel>();
@@ -16,11 +18,32 @@ const LottoComponent = ({ resultList }: any) => {
     useEffect(() => {
         if (resultList) {
 
-            setLottoDetail(resultList);
+            getLottoList();
         }
     }, [resultList])
 
+    // useEffect(() => {
+    //     if(lottoDetail){
+    //         getLottoDetail(lottoDetail.response.)
+    //     }
+    // },[lottoDetail])
 
+    const getLottoList = () => {
+
+        APIService().getLottoPage().then((res: any) => {
+
+            try {
+                if (res.status == 200) {
+                    const result = res.data as LottoListModel;
+                    getLottoDetail(result.response[0].id)
+
+                }
+            } catch (error) {
+
+            }
+
+        })
+    }
 
     const handleChangeSearch = (value) => {
         setResult(null);
@@ -52,12 +75,9 @@ const LottoComponent = ({ resultList }: any) => {
 
         let found = false;
         if (lottoDetail) {
-
-
-
+            console.log(lottoDetail);
             // Check if the number matches any of the prizes
             const arrayResult: any[] = [];
-
             lottoDetail.response.prizes.forEach(prize => {
                 console.log(prize);
                 if (prize.number.includes(searchNumber)) {
@@ -66,12 +86,13 @@ const LottoComponent = ({ resultList }: any) => {
                     found = true;
                 }
             });
-
-
             // Check if the number matches any of the running numbers
             if (!found) {
                 lottoDetail.response.runningNumbers.forEach(runningNumber => {
                     if (runningNumber.number.includes(searchNumber.slice(-3)) || runningNumber.number.includes(searchNumber.slice(-2))) {
+                        arrayResult.push({ name: runningNumber.name, reward: runningNumber.reward });
+                        found = true;
+                    }else if (runningNumber.number.includes(searchNumber.slice(0, 3))) {
                         arrayResult.push({ name: runningNumber.name, reward: runningNumber.reward });
                         found = true;
                     }
@@ -161,11 +182,11 @@ const LottoComponent = ({ resultList }: any) => {
                                         </div>
                                     )}
                                 </div>
-                                <AdUnit
-                                publisherId="pub-7304132375043084" 
-                                slotId="5829918586"                 
-                                layout="display"                   
-                            />
+                                <AdBanner
+                                    data-ad-slot={config.ads.ads_1_id}
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"
+                                />
                                 <div className={styles.lottoCurrentShowAllControl}>
                                     <span className={styles.lottoCurrentShowAllTitle}>รางวัลที่ 1</span>
                                     <span className={styles.lottoCurrentShowAllValue1}>

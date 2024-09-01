@@ -39,15 +39,15 @@ const LottoListPage = ({result}) => {
                 <meta name="msapplication-TileColor" content="#ffffff" />
                 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
                 <meta name="theme-color" content="#ffffff" />
-                <title>ตรวจสลากกินแบ่งรัฐบาลงวดล่าสุด | เช็คผลหวยงวดล่าสุดที่นี่</title>
+                <title>ตรวจสลากกินแบ่งรัฐบาลงวดล่าสุด 1 กันยายน 2567 | เช็คผลหวยงวดล่าสุดที่นี่</title>
                 <meta name="description"
                     content="ตรวจผลสลากกินแบ่งรัฐบาลงวดล่าสุดได้ที่นี่ รู้ผลทันใจ อัปเดตทุกงวด พร้อมข้อมูลรางวัลที่ 1 และรางวัลอื่นๆ ครบถ้วน ไม่พลาดทุกการตรวจหวย" />
                 <meta name="og:description" content="ตรวจผลสลากกินแบ่งรัฐบาลงวดล่าสุดได้ที่นี่ รู้ผลทันใจ อัปเดตทุกงวด พร้อมข้อมูลรางวัลที่ 1 และรางวัลอื่นๆ ครบถ้วน ไม่พลาดทุกการตรวจหวย" />
-                <meta property="og:url" content="https://mamoodi.com/lotto/" />
+                <meta property="og:url" content="https://mamoodi.com/lotto" />
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="ตรวจสลากกินแบ่งรัฐบาลงวดล่าสุด | เช็คผลหวยงวดล่าสุดที่นี่" />
+                <meta property="og:title" content="ตรวจสลากกินแบ่งรัฐบาลงวดล่าสุด 1 กันยายน 2567 | เช็คผลหวยงวดล่าสุดที่นี่" />
                 <meta property="og:image"
-                    content="https://mamoodi.com/assets/images/lotto-pre.png" />
+                    content="https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fbg-lotto-main.jpg?alt=media" />
                 <meta name="keywords"
                     content="ตรวจสลากกินแบ่งงวดล่าสุด, ผลสลากกินแบ่งรัฐบาลล่าสุด, ตรวจหวยล่าสุด, ผลหวยล่าสุด, ผลสลากกินแบ่งวันนี้, ตรวจลอตเตอรี่งวดนี้" />
                 <meta property="og:keywords"
