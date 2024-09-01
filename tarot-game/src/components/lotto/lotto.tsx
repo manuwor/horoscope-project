@@ -25,7 +25,6 @@ const LottoComponent = () => {
         APIService().getLottoPage(1).then((res: any) => {
 
             try {
-
                 if (res.status == 200) {
                     const result = res.data as LottoListModel;
                     getLottoDetail(result.response[0].id);

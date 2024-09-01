@@ -1,0 +1,254 @@
+@import "../../../styles/globals.scss";
+
+.lottoControl {
+  width: 100vw;
+  min-height: 100vh;
+  background: $bg-color;
+  display: flex;
+  padding: 12px;
+}
+
+.lottoItemControl {
+  display: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 772px;
+  flex-direction: column;
+}
+
+.lottoSelectDate{
+    width: 50% !important;
+    height: auto;
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 12px 16px;
+    margin-bottom: 14px !important;
+    margin-top: 14px !important;
+
+    .lottoSelectDateForm{
+        height: 45px;
+        width: 100%;
+        font-family: $fontMedium;
+        border-radius: 8px;
+        
+    }
+
+    .lottoSelectDateForm::-ms-expand{
+        display: none;
+    }
+
+}
+
+.lottoCurrentControl {
+  background-color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lottoFlexControl{
+    display: flex;
+    flex-direction: column;
+}
+.lottoCurrentHeaderControl{
+    display: flex;
+}
+.lottoCurrentHeader {
+  font-size: 18px;
+  color: $text-black;
+  font-family: $fontMedium;
+  text-align: center;
+  
+}
+
+.lottoCurrentHeaderLink {
+    font-size: 15px;
+    color: $dark-blue;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: $fontMedium;
+    text-align: center;
+    margin-left: auto;
+  }
+
+.lottoCurrentFormGroup {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.lottoCurrentInputLabel {
+  font-size: 14px;
+  font-family: $fontMedium;
+  color: $text-black;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lottoCurrentSearchControl {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lottCurrentSearchButton {
+  background-color: black;
+  color: white;
+  width: 30%;
+  border: none;
+  font-size: 14px;
+  font-family: $fontMedium;
+  margin-left: 8px;
+}
+
+.lottoCurrentSuccessControl {
+  margin-top: 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid $green-color;
+  padding: 16px;
+}
+
+.lottoCurrentSuccessSubHeader {
+  font-size: 20px;
+  color: $green-color;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: $fontRegular;
+}
+.lottoCurrentSuccessHeaderControl{
+    display: flex;
+    flex-direction: column;
+}
+.lottoCurrentSuccessHeader {
+  font-size: 36px;
+  color: $green-color;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: $fontMedium;
+}
+
+.lottoCurrentFailedControl {
+  margin-top: 8px;
+  border-radius: 8px;
+  background-color: #efbcbc;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.lottoCurrentFailedSubHeader {
+  font-size: 20px;
+  color: $red;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: $fontRegular;
+}
+
+.lottoCurrentFailedHeader {
+  font-size: 24px;
+  color: $red;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: $fontMedium;
+}
+
+.lottoCurrentShowAllControl {
+  border-radius: 8px;
+  width: auto;
+  padding: 30px;
+  background-color: $bg-color;
+  display: flex;
+  margin-top: 24px;
+  border: none;
+  flex-direction: column;
+}
+
+.lottoCurrentShowAllTitle {
+  font-size: 18px;
+  font-family: $fontRegular;
+  text-align: center;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lottoCurrentShowAllValue1 {
+  font-size: 36px;
+  font-family: $fontMedium;
+  text-align: center;
+  color: $button-color;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+}
+
+.lottoCurrentShowAllDivider {
+  background-color: white;
+  width: 100%;
+  height: 1px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.lottoCurrentShowAllRunningControl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+}
+
+.lottoCurrentShowAllRunningItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.lottoCurrentShowAllOtherControl {
+  display: flex;
+  flex-direction: column;
+}
+
+.lottoCurrentShowAllOtherTitle {
+  font-size: 18px;
+  font-family: $fontMedium;
+  text-align: left;
+  color: white;
+}
+
+.lottoCurrentShowAllOtherSubTitle {
+  font-size: 14px;
+  font-family: $fontRegular;
+  text-align: left;
+  color: white;
+}
+
+.lottoCurrentShowAllOtherValueControl {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 16px;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.lottoCurrentShowAllOtherValue {
+  font-size: 20px;
+  font-family: $fontMedium;
+  text-align: left;
+  color: $button-color;
+}

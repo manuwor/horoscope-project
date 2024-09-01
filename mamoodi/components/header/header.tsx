@@ -46,7 +46,7 @@ const HeaderComponent = () => {
         {
             id: 5,
             name: "ตรวจหวยออนไลน์",
-            url: "https://app.mamoodi.com/lotto"
+            url: "https://mamoodi.com/lotto"
         },
         {
             id: 5,

@@ -10,7 +10,7 @@ const HomePage: React.FC = ({ articleModel }: any) => {
   const FooterComponent = dynamic(() => import('../components/footer/footer'));
 
   const startLotto = () => {
-    window.open(config.app_url.lotto, "_self")
+    window.open("/lotto", "_self")
   }
   const startCarHora = () => {
     window.open(config.app_url.car_hora, "_self")

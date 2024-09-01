@@ -15,6 +15,12 @@ const test = {
     },
     api:{
         url : "https://asia-southeast1-horoscope-project-d3937.cloudfunctions.net/api/"
+    },
+    api_lotto: {
+        base_url: "https://lotto.api.rayriffy.com",
+        list: "/list",
+        latest: "/latest",
+        detail: "/lotto"
     }
     
 };
@@ -37,6 +43,12 @@ const prod = {
     },
     api:{
         url : "https://asia-southeast1-horoscope-project-d3937.cloudfunctions.net/api/"
+    },
+    api_lotto: {
+        base_url: "https://lotto.api.rayriffy.com",
+        list: "/list",
+        latest: "/latest",
+        detail: "/lotto"
     }
 };
 
