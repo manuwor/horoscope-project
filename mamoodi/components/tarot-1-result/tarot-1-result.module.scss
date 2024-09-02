@@ -8,11 +8,11 @@
     min-height: 100vh;
     padding: 16px 12px;
 
-    @include media-breakpoint-down(md){
+    @include media-breakpoint-down(md) {
         width: auto;
     }
 
-    .tarot1ResultItemShareControl{
+    .tarot1ResultItemShareControl {
         display: flex;
         margin-bottom: 2px;
     }
@@ -25,23 +25,80 @@
         margin-right: auto;
         max-width: 992px;
 
-        @include media-breakpoint-down(md){
+        @include media-breakpoint-down(md) {
             max-width: 552px;
         }
 
-        .tarot1ResultCardImg{
-            width: 120px;
+        .tarot1ResultCardImgShow {
+            width: 180px;
             height: auto;
             object-fit: contain;
             margin-left: auto;
             margin-right: auto;
             margin-bottom: 24px;
+
+            @include media-breakpoint-down(md) {
+                width: 180px;
+            }
+        }
+
+        .tarot1ResultCardNameControl {
+            display: flex;
+            flex-direction: column;
+            margin-top: 12px;
+            margin-bottom: 12px;
+
+            .tarot1ResultCardNameText {
+                font-size: 25px;
+                font-family: $fontMedium;
+                margin-bottom: 4px;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+            }
+
+            .tarot1ResultCardDescText {
+                font-size: 13px;
+                font-family: $fontRegular;
+                margin-bottom: 4px;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+            }
+
+            .tarot1ResultCardNumberControl {
+                display: flex;
+                margin-top: 24px;
+                margin-left: auto;
+                margin-right: auto;
+                vertical-align: bottom;
+
+                .tarot1ResultCardNumberText {
+                    font-size: 16px;
+                    font-family: $fontRegular;
+                    color: white;
+                    margin-top: auto;
+                }
+
+                .tarot1ResultCardNumberDescText {
+                    font-size: 46px;
+                    font-family: $fontMedium;
+                    text-align: center;
+                    margin-left: 8px;
+                    color: white;
+                    line-height: 1em;
+                }
+
+            }
         }
 
         .tarot1ResultShareControl {
             margin-top: 24px;
         }
-        .tarot1ResultCardImg{
+
+        .tarot1ResultCardImg {
             width: 100%;
             height: auto;
             border-radius: 8px;
@@ -51,6 +108,7 @@
             object-fit: contain;
             margin-right: auto;
         }
+
         .tarot1ResultItemHeader {
             font-size: 20px;
             font-family: $fontMedium;
@@ -84,20 +142,20 @@
                 font-family: $fontRegular;
                 color: white;
 
-                @include media-breakpoint-down(md){
+                @include media-breakpoint-down(md) {
                     font-size: 13px;
                 }
 
             }
         }
 
-        .tarot1ResultStartControl{
+        .tarot1ResultStartControl {
             display: flex;
             margin-top: 24px;
             margin-left: auto;
             margin-right: auto;
 
-            .tarot1ResultStartButton{
+            .tarot1ResultStartButton {
                 margin-top: 36px;
                 width: 300px;
                 height: 48px;

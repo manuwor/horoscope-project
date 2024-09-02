@@ -12,6 +12,8 @@ interface Result {
     number: string
     overall: string
     card_url: string
+    card_name: string
+    card_description: string
     job: string
     health: string
     title: string

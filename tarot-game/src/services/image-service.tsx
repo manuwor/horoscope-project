@@ -20,52 +20,56 @@ export const generateImageFromText = (
     try {
         let headerText = header;
         let descriptionText = description.replaceAll(header, "");
+        const backgroundImage = new Image();
         if (menu_id == 4) {
             headerText = maskText(header);
         } else if (menu_id == 3) {
             headerText = maskTextCarID(header);
         }
 
-        const backgroundImage = new Image();
-        backgroundImage.src = "/assets/images/bg-share.jpg"; // Adjust the path if necessary
+        if (isTarotCard && tarotCardImage) {
+            backgroundImage.src = "/assets/images/bg-tarot-share.jpg"; // Adjust the path if necessary
+        } else {
+            backgroundImage.src = "/assets/images/bg-share.jpg"; // Adjust the path if necessary
+        }
 
         return new Promise((resolve) => {
             backgroundImage.onload = () => {
                 // Draw background image
                 ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-                // Title Text
-                ctx.fillStyle = "#ffffff"; // Text color
-                ctx.font = "32px 'IBMPlexSansThaiLooped-Regular'"; // Font size and family
-                ctx.textAlign = isTarotCard ? "left" : "center"; // Align left if it's a tarot card
-                ctx.fillText(title, isTarotCard ? 50 : canvas.width / 2, 120); // Adjust x position for left alignment
-
-                // Header Text
-                ctx.font = "bold 65px 'IBMPlexSansThaiLooped-Medium'"; // Font size and style
-                ctx.fillText(headerText, isTarotCard ? 50 : canvas.width / 2, 250); // Adjust x position for left alignment
-
-                // Description Text
-                ctx.font = "35px 'IBMPlexSansThaiLooped-Regular'"; // Font size for description
-                const descriptionWidth = isTarotCard ? canvas.width * 0.5 : canvas.width * 0.6;
-                const descriptionX = isTarotCard ? 50 : (canvas.width - descriptionWidth) / 2;
-                const lines: string[] = wrapText(ctx, descriptionText, descriptionWidth);
-
-                lines.forEach((line, index) => {
-                    ctx.fillText(line, descriptionX, 350 + index * 60); // Adjust x position for left alignment
-                });
-
-                // If it's a tarot card, load and draw the tarot card image on the right
+                // If it's a tarot card, load and draw the tarot card image on the left
                 if (isTarotCard && tarotCardImage) {
                     const tarotImage = new Image();
-                    tarotImage.src = "/assets/images/tarot-cards/"+tarotCardImage;
+                    tarotImage.src = "/assets/images/tarot-cards/" + tarotCardImage;
 
                     tarotImage.onload = () => {
                         const cardWidth = 300; // Set the width of the tarot card
                         const cardHeight = 500; // Set the height of the tarot card
-                        const cardX = canvas.width - cardWidth - 50; // Position it on the right side
+                        const cardX = 110; // Position it on the left side
                         const cardY = (canvas.height - cardHeight) / 2; // Center vertically
 
                         ctx.drawImage(tarotImage, cardX, cardY, cardWidth, cardHeight);
+
+                        // Title Text
+                        ctx.fillStyle = "#ffffff"; // Text color
+                        ctx.font = "32px 'IBMPlexSansThaiLooped-Regular'"; // Font size and family
+                        ctx.textAlign = "left"; // Align left for tarot card text
+                        const textStartX = cardX + cardWidth + 140; // Start text after the tarot card
+                        ctx.fillText(title, textStartX, 120); // Adjust x position for text
+
+                        // Header Text
+                        ctx.font = "bold 65px 'IBMPlexSansThaiLooped-Medium'"; // Font size and style
+                        ctx.fillText(headerText, textStartX, 210); // Adjust x position for text
+
+                        // Description Text
+                        ctx.font = "24px 'IBMPlexSansThaiLooped-Regular'"; // Font size for description
+                        const descriptionWidth = canvas.width - textStartX - 240; // Width of the remaining space
+                        const lines: string[] = wrapText(ctx, descriptionText, descriptionWidth);
+
+                        lines.forEach((line, index) => {
+                            ctx.fillText(line, textStartX, 300 + index * 60); // Draw each line of text
+                        });
 
                         // Convert canvas to image and compress it
                         canvas.toBlob(
@@ -90,6 +94,26 @@ export const generateImageFromText = (
                         resolve(undefined);
                     };
                 } else {
+                    // Title Text
+                    ctx.fillStyle = "#ffffff"; // Text color
+                    ctx.font = "32px 'IBMPlexSansThaiLooped-Regular'"; // Font size and family
+                    ctx.textAlign = "center"; // Centered text
+                    ctx.fillText(title, canvas.width / 2, 120);
+
+                    // Header Text
+                    ctx.font = "bold 65px 'IBMPlexSansThaiLooped-Medium'"; // Font size and style
+                    ctx.fillText(headerText, canvas.width / 2, 250);
+
+                    // Description Text
+                    ctx.font = "35px 'IBMPlexSansThaiLooped-Regular'"; // Font size for description
+                    const descriptionWidth = canvas.width * 0.6;
+                    const descriptionX = (canvas.width - descriptionWidth) / 2;
+                    const lines: string[] = wrapText(ctx, descriptionText, descriptionWidth);
+
+                    lines.forEach((line, index) => {
+                        ctx.fillText(line, descriptionX, 350 + index * 60);
+                    });
+
                     // Convert canvas to image and compress it
                     canvas.toBlob(
                         (blob) => {
@@ -123,7 +147,7 @@ export const generateImageFromText = (
 };
 
 
-export const maskText = (input: string): string =>{
+export const maskText = (input: string): string => {
     // Check if the input length is sufficient
     if (input.length < 8) {
         throw new Error("Input length must be at least 8 characters.");
@@ -135,7 +159,7 @@ export const maskText = (input: string): string =>{
 
     return maskedText;
 }
-export const maskTextCarID = (input: string): string =>{
+export const maskTextCarID = (input: string): string => {
     // Check if the input length is sufficient
     if (input.length < 4) {
         throw new Error("Input length must be at least 4 characters.");

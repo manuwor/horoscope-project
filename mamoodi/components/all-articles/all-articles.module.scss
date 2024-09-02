@@ -18,7 +18,7 @@
     }
 
     @include media-breakpoint-down(sm) {
-        max-width: 400px;
+        max-width: none;
         padding-left: 0%;
         padding-right: 0%;
     }
@@ -108,7 +108,7 @@
         }
 
         @include media-breakpoint-down(sm){
-            width: -webkit-fill-available !important;
+            width: fit-content;
         }
     }
 
@@ -228,6 +228,7 @@
                 margin-bottom: 12px;
                 flex-direction: row;
                 border-radius: 8px;
+                width: fit-content;
             }
 
             .itemImg {

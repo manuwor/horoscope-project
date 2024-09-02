@@ -24,6 +24,7 @@ const Menu1Component = () => {
     const [showButtonReady, setShowButtonReady] = useState(false);
     const [dateSelected, setSelectDateItem] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [imageData, setImageData] = useState<string>("")
     useEffect(() => {
         shuffleDeck(deck);
 
@@ -70,34 +71,34 @@ const Menu1Component = () => {
                     cardName += card.name + ", "
                 }
             })
-            console.log(cardName);
 
             const prompt = `คุณคือนักดูดวงที่แม่นที่สุด ฉันหยิบได้ไพ่ ${cardName} และ ฉันเกิดในวัน ${dateSelected} ฉันอยากรู้ดวงของฉันวันนี้, 
-                         Please explain this card in Thai language about (overall, love, job, life) and suggest number 2 digit for matching with this card,
-                          Return JSON format only with key (overall (สั้นๆ ระหว่าง 40-50 คำ โดยไม่ต้องทวนชื่อไพ่ word break by "<br>"), love,job,life, number)`
+                         Please explain this card in Thai language about (summary, overall, love, job, life) and suggest number 2 digit for matching with this card,
+                          Return JSON format only with key (summary (สั้นๆ ระหว่าง 30-40 คำ โดยไม่ต้องทวนชื่อไพ่ word break by "<br>"), overall , love,job,life, number)`
             // To stream generated text output, call generateContentStream with the text input
             const result = await model.generateContent(prompt);
             const jsonObject = JSON.parse(result.response.text());
             jsonObject["overall"] = jsonObject.overall.replaceAll("<br>","");
             jsonObject["title"] = "ดูดวงประจำวันของคุณ";
+            jsonObject["card_name"] = selectedCards[0].name;
+            jsonObject["card_description"] = selectedCards[0].meaning_th;
             jsonObject["card_url"] = config.app.home + config.app.image_path + "/tarot-cards/"+ selectedCards[0].card_img
-            const imageData = await generateImageFromText("ผลลัพธ์จากไพ่", cardName , jsonObject.overall, 1, true, selectedCards[0].card_img);
+            const imageData = await generateImageFromText("ผลลัพธ์จากไพ่", cardName , jsonObject.summary, 1, true, selectedCards[0].card_img);
             let uploadedImageUrl = "https://firebasestorage.googleapis.com/v0/b/horoscope-project-d3937.appspot.com/o/images%2Fshare-cover.jpg?alt=media";
             if (imageData) {
                 uploadedImageUrl = await compressAndUploadImage(imageData, `image_${Date.now()}.jpg`);
+                setImageData(imageData);
             }
             const body = {
                 menu_id: MENU_LIST[0].id,
                 result: jsonObject,
             }
-            console.log(body);
             body["imageUrl"] = uploadedImageUrl
-
+            
             APIService().postResult(body).then((res: any) => {
 
                 try {
                     if (res.status == 200) {
-                        console.log(res);
                         const result = res.data as ResultMessageModel;
                         window.open("https://mamoodi.com/tarot-1/result?id=" + result.id, "_self");
                     }
@@ -141,6 +142,7 @@ const Menu1Component = () => {
                                         <Spinner className="menu-1-form-loading-spinner"></Spinner>
                                         <span className="menu-1-form-loading-text">กำลังตรวจสอบดวงของคุณ</span>
                                     </div>
+                                  
 
                                 </div>
                             </>

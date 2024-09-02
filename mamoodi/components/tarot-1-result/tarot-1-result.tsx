@@ -69,7 +69,15 @@ const Tarot1Result = ({ result }: any) => {
                             <div className={styles.tarot1ResultItemShareControl}>
                                 <ShareButton url={config.url + "tarot-1/result?id=" + resultItem.id} title={resultItem.result.title}></ShareButton>
                             </div>
-                            <img src={resultItem.result.card_url} className={styles.tarot1ResultCardImg}></img>
+                            <img src={resultItem.result.card_url} className={styles.tarot1ResultCardImgShow}></img>
+                            <div className={styles.tarot1ResultCardNameControl}>
+                                <span className={styles.tarot1ResultCardNameText}>{resultItem.result.card_name}</span>
+                                <span className={styles.tarot1ResultCardDescText}>{resultItem.result.card_description}</span>
+                                <div className={styles.tarot1ResultCardNumberControl}>
+                                    <span className={styles.tarot1ResultCardNumberText}>เลขนำโชคของคุณคือ</span>
+                                    <span className={styles.tarot1ResultCardNumberDescText}>{resultItem.result.number}</span>
+                                </div>
+                            </div>
                             {
                                 resultItem.result.overall &&
                                 <div className={styles.tarot1ResultCardControl}>
@@ -79,14 +87,7 @@ const Tarot1Result = ({ result }: any) => {
 
                             }
 
-                            {/* Google AdSense */}
-                            <div>
-                                <AdBanner
-                                    data-ad-slot={config.ads.ads_1_id}
-                                    data-ad-format="auto"
-                                    data-full-width-responsive="true"
-                                />
-                            </div>
+
                             {
                                 resultItem.result.job &&
                                 <div className={styles.tarot1ResultCardControl}>
@@ -124,6 +125,15 @@ const Tarot1Result = ({ result }: any) => {
                             </div>
                             <div className={styles.tarot1ResultStartControl}>
                                 <Button className={styles.tarot1ResultStartButton} onClick={clickStart}>เริ่มดูดวงวันนี้</Button>
+                            </div>
+
+                            {/* Google AdSense */}
+                            <div>
+                                <AdBanner
+                                    data-ad-slot={config.ads.ads_1_id}
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"
+                                />
                             </div>
                         </div>
                     </div>

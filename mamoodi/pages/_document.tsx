@@ -2,6 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
 export default function Document() {
+  const isShow = process.env.NEXT_PUBLIC_NODE_ENV == "production" ? true : false;
   return (
     <Html lang="en">
       <Head>
@@ -35,12 +36,16 @@ export default function Document() {
               gtag('config', 'G-Z2MPLK12Y5');
             `}
         </script>
-        <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID}`}
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
+        {
+          isShow &&
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID}`}
+            strategy="lazyOnload"
+            crossOrigin="anonymous"
+          />
+        }
+
       </Head>
       <body style={{ margin: '0px' }}>
         <Main />

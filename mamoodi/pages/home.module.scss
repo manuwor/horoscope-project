@@ -9,6 +9,7 @@
 
     @include media-breakpoint-down(md){
         width: auto;
+        padding: 24px 0px;
     }
 
     .landingItemControl {
@@ -33,11 +34,27 @@
             max-width: 992px !important;
             display: flex;
 
+            @include media-breakpoint-down(md){
+                width: fit-content;
+                max-width: 500px;
+            }
+
+            @include media-breakpoint-down(sm){
+                width: fit-content;
+                max-width: none;
+            }
+
             .landingItemListImgControl{
                 width: fit-content;
                 height: 120px;
                 object-fit: contain;
                 border-radius: 8px;
+
+                @include media-breakpoint-down(sm){
+                    width: 120px;
+                    height: 120px;
+                    object-fit: cover;
+                }
             }
 
             .landingItemListContentControl {

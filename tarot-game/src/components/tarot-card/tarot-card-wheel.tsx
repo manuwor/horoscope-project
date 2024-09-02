@@ -9,7 +9,7 @@ import "./tarot-card-wheel.scss";
 
 const TarotCardWheel = ({ setSelectedCard, totalPick }: any) => {
   const CARD_COUNT = 78;
-  const DISPLAY_COUNT = 39;
+  const DISPLAY_COUNT = 12;
   const ANIMATION_DURATION = 2; // 300 milliseconds per card
 
   const WheelContainer = styled.div`
@@ -21,7 +21,7 @@ const TarotCardWheel = ({ setSelectedCard, totalPick }: any) => {
     position: relative;
 
     @media (max-width: 552px) {
-      margin-top: 20%;
+      margin-top: 15%;
     }
   `;
 
